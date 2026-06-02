@@ -13,23 +13,77 @@
           <p class="text-white font-bold py-2 px-2 h-10 w-30 text-[25px] ">Eikona</p>
           </div>
           <div class="flex flex-col justify-start items-start">
-              <a href="#" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Home</a>
+              <a href="#home" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Home</a>
               <a href="#info" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Info</a>
-              <a href="#" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Operations</a>
-              <a href="#" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Detection</a>
-              <a href="#" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Insights</a>
-              <a href="#" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Analytics</a>
+              <a href="#operations" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Operations</a>
+              <a href="#transformations" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Transformations</a>
+              <a href="#detections" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Detection</a>
+              <a href="#insights" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Insights</a>
+              <a href="#analytics" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Analytics</a>
         
           </div>
       </div>
         
       </nav>  
       <div class="flex-1 flex flex-col justify-center items-center px-4">
-        <label class="block text-white font-bold py-2 px-4 text-center text-4xl mt-[40px] shadow-amber-50">Enter Image</label> 
+        <label id="home"class="block text-white font-bold py-2 px-4 text-center text-4xl mt-[40px] shadow-amber-50">Enter Image</label> 
         <input type="file" accept="image/*" class="w-160 h-80  text-gray-400 bg-[#3D3838] border-2 border-black rounded-md focus:outline-none justify-center items-center  mt-4 hover:bg-[#2d2928] hover:text-white">
-
+      
       <div id="info" class="h-screen w-80 mt-100">
         <h2 class="text-2xl font-bold mb-4">Image Information</h2>
+        
+        </div>
+        <div id="operations" class="h-screen w-80 mt-100">
+        <h2 class="text-2xl font-bold mb-4">Image Operations</h2>
+          <div class="inline-block">
+            <div class="border-2 border-black rounded-md p-4 mb-4 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+              Image Rotation
+            </div>
+            <div class="border-2 border-black rounded-md p-4 mb-4 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+              Image Translation
+            </div>
+            <div class="border-2 border-black rounded-md p-4 mb-4 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+              Image Scaling
+            </div>
+            <div class="border-2 border-black rounded-md p-4 mb-4 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+              Image Addition
+            </div>
+            <div class="border-2 border-black rounded-md p-4 mb-4 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+              Image Subtraction
+            </div>
+            <div class="border-2 border-black rounded-md p-4 mb-4 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+              Image Multiplication
+            </div>
+            <div class="border-2 border-black rounded-md p-4 mb-4 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+              Image Division
+            </div>
+          </div>
+        </div>
+        <div id="transformations" class="h-screen w-80 mt-100">
+        <h2 class="text-2xl font-bold mb-4">Image Transformations</h2>
+        <div class="border-2 border-black rounded-md p-4 mb-4 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+              Log Transformation
+            </div>
+            <div class="border-2 border-black rounded-md p-4 mb-4 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+              Power law Transformation
+            </div>
+            <div class="border-2 border-black rounded-md p-4 mb-4 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+              Negative Transformation
+            </div>
+            <div class="border-2 border-black rounded-md p-4 mb-4 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+              Linear Scaling
+            </div>
+        </div>
+        <div id="detections" class="h-screen w-80 mt-100">
+        <h2 class="text-2xl font-bold mb-4">Image Detections</h2>
+        
+        </div>
+        <div id="insights" class="h-screen w-80 mt-100">
+        <h2 class="text-2xl font-bold mb-4">Image Insights</h2>
+        
+        </div>
+        <div id="analytics" class="h-screen w-80 mt-100">
+        <h2 class="text-2xl font-bold mb-4">Image Analytics</h2>
         
         </div>
         </div>
