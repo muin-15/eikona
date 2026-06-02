@@ -1,23 +1,42 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     
   </head>
   <body>
-    <div class="bg-[#5B4D49] h-screen">
-      <nav class="flex flex-row h-16 w-36"> 
-        <div class="bg-[#282220] text-white font-bold py-2 px-4 flex flex-row  h-screen">
+    
+    <div class="bg-[#5B4D49] min-h-screen w-full flex flex-row">
+      <nav class="sticky top-0 h-screen w-46 flex flex-row flex-shrink-0"> 
+        <div class="bg-[#282220] text-white font-bold py-10 px-4 flex flex-col h-screen border-r-4 border-black">
+          <div class="flex flex-row pb-10">
           <img src="src/assets/logo.png" alt="Eikona" font-size="24px" class="inline-block h-12 w-12 mr-2 border-2 border-black rounded-full">
-          <p class="text-white font-bold py-2 px-2 h-10 w-30 text-2xl mr-15">Eikona</p>
-        </div>
+          <p class="text-white font-bold py-2 px-2 h-10 w-30 text-[25px] ">Eikona</p>
+          </div>
+          <div class="flex flex-col justify-start items-start">
+              <a href="#" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Home</a>
+              <a href="#info" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Info</a>
+              <a href="#" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Operations</a>
+              <a href="#" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Detection</a>
+              <a href="#" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Insights</a>
+              <a href="#" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Analytics</a>
+        
+          </div>
+      </div>
         
       </nav>  
-      <div class="top-10">
+      <div class="flex-1 flex flex-col justify-center items-center px-4">
         <label class="block text-white font-bold py-2 px-4 text-center text-4xl mt-[40px] shadow-amber-50">Enter Image</label> 
-        <input type="file" accept="image/*" class="block w-160 h-80  text-gray-400 bg-[#3D3838] border-2 border-red-500 rounded-md focus:outline-none justify-center items-center mx-auto mt-4 hover:bg-[#2d2928] hover:text-white">
+        <input type="file" accept="image/*" class="w-160 h-80  text-gray-400 bg-[#3D3838] border-2 border-black rounded-md focus:outline-none justify-center items-center  mt-4 hover:bg-[#2d2928] hover:text-white">
+
+      <div id="info" class="h-screen w-80 mt-100">
+        <h2 class="text-2xl font-bold mb-4">Image Information</h2>
         
-      </div>
+        </div>
+        </div>
+      <div class="sticky top-0h-screen w-80 bg-[#382F2E] text-white p-6 flex-shrink-0 border-l-4 border-black"></div>
+      
     </div>
+    
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
