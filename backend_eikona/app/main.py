@@ -1,11 +1,16 @@
 import cv2
 
-
 image = cv2.imread('luffy.jpeg')
+
+if image is None:
+    print("Error: Could not read the image.")
+    exit()
+
 width_d = int(image.shape[1] *0.5)
 height_d = int(image.shape[0] *0.5)
 image_rd = cv2.resize(image, (width_d, height_d))
 cv2.imshow('luffy_resizedDownscaled.jpg', image_rd)
+
 width_d = int(image.shape[1] *2)
 height_d = int(image.shape[0] *2)
 image_ru = cv2.resize(image, (width_d, height_d))
@@ -33,11 +38,11 @@ imgbgr2rgb=cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 imgrgb2bgr=cv2.cvtColor(imgbgr2rgb, cv2.COLOR_RGB2BGR)
 
 
-cv2.imwrite('luffy_gray_to_rgb.jpg', imggray2rgb)
-cv2.imwrite('luffy_bgr_to_hsv.jpg', imgbgr2hsv)
-cv2.imwrite('luffy_hsv_to_bgr.jpg', imghsv2bgr)
-cv2.imwrite('luffy_bgr_to_rgb.jpg', imgbgr2rgb)
-cv2.imwrite('luffy_rgb_to_bgr.jpg', imgrgb2bgr)
+cv2.imshow('luffy_gray_to_rgb.jpg', imggray2rgb)
+cv2.imshow('luffy_bgr_to_hsv.jpg', imgbgr2hsv)
+cv2.imshow('luffy_hsv_to_bgr.jpg', imghsv2bgr)
+cv2.imshow('luffy_bgr_to_rgb.jpg', imgbgr2rgb)
+cv2.imshow('luffy_rgb_to_bgr.jpg', imgrgb2bgr)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
