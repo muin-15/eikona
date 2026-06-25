@@ -1,6 +1,6 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-import cv2
+from fastapi import FastAPI #type:ignore
+from fastapi.middleware.cors import CORSMiddleware #type:ignore
+import cv2 #type:ignore
 
 app = FastAPI()
 
@@ -26,7 +26,7 @@ image = cv2.imread('luffy.jpeg')
 if image is None:
     print("Error: Could not read the image.")
     exit()
-
+"""
 width_d = int(image.shape[1] *0.5)
 height_d = int(image.shape[0] *0.5)
 image_rd = cv2.resize(image, (width_d, height_d))
@@ -67,3 +67,4 @@ cv2.imshow('luffy_rgb_to_bgr.jpg', imgrgb2bgr)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+"""
