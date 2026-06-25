@@ -1,7 +1,8 @@
 import React,{ type ChangeEvent } from 'react' 
+import { useState } from 'react'
 import './App.css'
 
-const UploadBox = ({ id, title }: { id: string; title: string }) => {
+const UploadBox = ({ id, title ,conversionId}: { id: string; title: string; conversionId:string }) => {
   
   const handlefilechange = async(event: ChangeEvent<HTMLInputElement>) => {
     const file=event.target.files?.[0]
@@ -32,8 +33,7 @@ const UploadBox = ({ id, title }: { id: string; title: string }) => {
 export default function App() {
   return (
     <div>
-      <UploadBox id="upload1" title="Upload Box 1" />
-      <UploadBox id="upload2" title="Upload Box 2" />
+      <UploadBox id="bgr" title="Upload Box 1" conversionId="bgr1"/>
     </div>
   )
 }
