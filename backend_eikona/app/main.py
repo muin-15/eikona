@@ -2,6 +2,7 @@ from fastapi import FastAPI,UploadFile,File,Form #type:ignore
 from fastapi.middleware.cors import CORSMiddleware #type:ignore
 import cv2 #type:ignore
 import numpy as np
+from fastapi.responses import Response
 
 app = FastAPI()
 
