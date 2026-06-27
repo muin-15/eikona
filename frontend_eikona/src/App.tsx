@@ -1,5 +1,4 @@
 import React,{ type ChangeEvent } from 'react' 
-import { useState } from 'react'
 import './App.css'
 
 const UploadBox = ({ id, title ,conversionId}: { id: string; title: string; conversionId:string }) => {
@@ -32,10 +31,4 @@ const UploadBox = ({ id, title ,conversionId}: { id: string; title: string; conv
   )
 }
 
-export default function App() {
-  return (
-    <div>
-      <UploadBox id="bgr1" title="Upload Box 1" conversionId="bgr1"/>
-    </div>
-  )
-}
+export default UploadBox;
