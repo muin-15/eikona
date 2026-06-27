@@ -23,11 +23,6 @@ app.add_middleware(
 async def root():
     return {"message": "Hello World"}
 
-image = cv2.imread('luffy.jpeg')
-
-if image is None:
-    print("Error: Could not read the image.")
-    exit()
 @app.post("/color_conversion")
 async def convert_color(
     
@@ -45,8 +40,14 @@ async def convert_color(
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         cv2.imwrite('luffy_gray.jpg', gray)
         return {"message": "Image converted to grayscale."}
+    if image.ndim == 3 and image.shape[2] == 3:
+        print("purely gray image")
+    if conversionId=="bgr2":
+        color=cv2.applyColorMap(image,cv2.COLORMAP_TWILIGHT_SHIFTED)
+        cv2.imwrite('Colored_image.jpg',color)
     else:
         return("doremon zinda baad")
+    
 
 
 """
@@ -54,12 +55,11 @@ width_d = int(image.shape[1] *0.5)
 height_d = int(image.shape[0] *0.5)
 image_rd = cv2.resize(image, (width_d, height_d))
 cv2.imshow('luffy_resizedDownscaled.jpg', image_rd)
-
+ 
 width_d = int(image.shape[1] *2)
 height_d = int(image.shape[0] *2)
 image_ru = cv2.resize(image, (width_d, height_d))
 cv2.imshow('luffy_resizedUpscaled.jpg', image_ru)
-
 
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 gaussian_filter = cv2.GaussianBlur(image, (5, 5), 0)
