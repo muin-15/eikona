@@ -2,7 +2,7 @@ from fastapi import FastAPI,UploadFile,File,Form #type:ignore
 from fastapi.middleware.cors import CORSMiddleware #type:ignore
 import cv2 #type:ignore
 import numpy as np
-from fastapi.responses import Response
+import base64
 
 app = FastAPI()
 
@@ -28,7 +28,6 @@ image = cv2.imread('luffy.jpeg')
 if image is None:
     print("Error: Could not read the image.")
     exit()
-
 @app.post("/color_conversion")
 async def convert_color(
     
@@ -39,10 +38,15 @@ async def convert_color(
     nparr=np.frombuffer(contents,np.uint8)
     image=cv2.imdecode(nparr,cv2.IMREAD_COLOR)
 
+    if image is None:
+        return("can't process")
+        exit()
     if conversionId=="bgr1":
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         cv2.imwrite('luffy_gray.jpg', gray)
         return {"message": "Image converted to grayscale."}
+    else:
+        return("doremon zinda baad")
 
 
 """
