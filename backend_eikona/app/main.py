@@ -51,6 +51,19 @@ async def convert_color(
     elif conversionId=="bgr3":
         hsv=cv2.cvtColor(image,cv2.COLOR_BGR2HSV) 
         cv2.imwrite('hsv_image.jpg',hsv)
+
+    elif conversionId=="bgr4":
+        hsv_bgr=cv2.cvtColor(image,cv2.COLOR_HSV2BGR)
+        cv2.imwrite('hsv_bgr.jpg',hsv_bgr)
+
+    elif conversionId=="bgr5":
+        rgb=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+        cv2.imwrite('rgb.jpg',rgb)
+
+    elif conversionId=="bgr6":
+        rgb_bgr=cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
+        cv2.imwrite('rgb_bgr.jpg',rgb_bgr)
+        
     else:
         return("doremon zinda baad")
     
