@@ -1,8 +1,9 @@
-from fastapi import FastAPI,UploadFile,File,Form #type:ignore
+from fastapi import FastAPI,UploadFile,File,Form,HTTPException #type:ignore
 from fastapi.middleware.cors import CORSMiddleware #type:ignore
 import cv2 #type:ignore
 import numpy as np
-import base64
+import uuid
+
 
 app = FastAPI()
 
@@ -23,19 +24,30 @@ app.add_middleware(
 async def root():
     return {"message": "Hello World"}
 
+async def validate_image(file:UploadFile):
+    contents=await file.read()
+    nparr=np.frombuffer(contents,np.uint8)
+
+    if len(nparr)==0:
+        print("Error Image van't be loaded")
+        raise HTTPException(status_code=404,detail="Image not present")
+
+    image=cv2.imdecode(nparr,cv2.IMREAD_COLOR)
+
+    if image is None:
+        return("can't process")
+        raise HTTPException(statue_code=404,detail="Please provide an Image")
+    return image
+
+
 @app.post("/color_conversion")
 async def convert_color(
     
     file:UploadFile=File(...),
     conversionId:str=Form(...)):
 
-    contents=await file.read()
-    nparr=np.frombuffer(contents,np.uint8)
-    image=cv2.imdecode(nparr,cv2.IMREAD_COLOR)
+    image=await validate_image(file)
 
-    if image is None:
-        return("can't process")
-        exit()
     if conversionId=="bgr1":
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         cv2.imwrite('luffy_gray.jpg', gray)
@@ -63,12 +75,10 @@ async def convert_color(
     elif conversionId=="bgr6":
         rgb_bgr=cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
         cv2.imwrite('rgb_bgr.jpg',rgb_bgr)
-        
+
     else:
-        return("doremon zinda baad")
+        return("404 Error can't proceed")
     
-
-
 """
 width_d = int(image.shape[1] *0.5)
 height_d = int(image.shape[0] *0.5)

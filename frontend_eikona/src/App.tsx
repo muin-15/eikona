@@ -17,6 +17,7 @@ const UploadBox = ({ id, title ,conversionId}: { id: string; title: string; conv
         method: 'POST',
         body: formData
       })
+      //const response=await fetch('http://localhost:8000/color_conversion')
       const data=await response.json()
       console.log('File uploaded successfully:', data)
     } catch (error) {
