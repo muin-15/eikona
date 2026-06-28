@@ -50,7 +50,7 @@ async def convert_color(
 
     if conversionId=="bgr1":
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        cv2.imwrite('luffy_gray.jpg', gray)
+        cv2.imwrite('bgr_gray.jpg', gray)
         return {"message": "Image converted to grayscale."}
     elif conversionId=="bgr2":
         if image.ndim == 3 and image.shape[2] == 3:
@@ -58,11 +58,11 @@ async def convert_color(
         elif image.ndim==1:
             color=cv2.cvtColor(image,cv2.COLOR_GRAY2BGR)
         
-        cv2.imwrite('Colored_image.jpg',color)
+        cv2.imwrite('gray_bgr.jpg',color)
         
     elif conversionId=="bgr3":
         hsv=cv2.cvtColor(image,cv2.COLOR_BGR2HSV) 
-        cv2.imwrite('hsv_image.jpg',hsv)
+        cv2.imwrite('bgr_hsv.jpg',hsv)
 
     elif conversionId=="bgr4":
         hsv_bgr=cv2.cvtColor(image,cv2.COLOR_HSV2BGR)
@@ -70,7 +70,7 @@ async def convert_color(
 
     elif conversionId=="bgr5":
         rgb=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
-        cv2.imwrite('rgb1.jpg',rgb)
+        cv2.imwrite('bgr_rgb.jpg',rgb)
 
     elif conversionId=="bgr6":
         rgb_bgr=cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
