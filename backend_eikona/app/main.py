@@ -70,7 +70,7 @@ async def convert_color(
 
     elif conversionId=="bgr5":
         rgb=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
-        cv2.imwrite('rgb.jpg',rgb)
+        cv2.imwrite('rgb1.jpg',rgb)
 
     elif conversionId=="bgr6":
         rgb_bgr=cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
