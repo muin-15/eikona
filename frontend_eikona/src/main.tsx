@@ -98,3 +98,19 @@ mountUploadBox('filter4',{
   paraName:'conversionId',
   paraValue:'filter4'
 });
+
+mountUploadBox('t6',{
+  id:'t6',
+  title:'Uniform Image Scaling (UpScaling)',
+  endpoint:'/transformations',
+  paraName:'conversionId',
+  paraValue:'t6'
+});
+
+mountUploadBox('t7',{
+  id:'t7',
+  title:'Uniform Image scaling (Downscaling)',
+  endpoint:'/transformations',
+  paraName:'conversionId',
+  paraValue:'t7'
+});
