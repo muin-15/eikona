@@ -30,7 +30,6 @@ const UploadBox:React.FC<prop_uploadbox> = ({ id, title ,endpoint,paraName,paraV
         method: 'POST',
         body: formData
       })
-      //const response=await fetch('http://localhost:8000/color_conversion')
       const data=await response.json()
       if (response.ok){
         setmessage(`Success:${data.message}`);

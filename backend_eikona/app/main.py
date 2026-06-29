@@ -79,6 +79,30 @@ async def convert_color(
     else:
         return("404 Error can't proceed")
     
+
+@app.post("/filtering")
+async def image_filter(
+    file:UploadFile=File(...),
+    conversionId:str=Form(...)):
+
+    image=await validate_image(file)
+
+    if conversionId=="filter1":
+        gaussian=cv2.GaussianBlur(image,(5,5),0)
+        cv2.imwrite('gaussian_blur.jpg',gaussian)
+
+    elif conversionId=="filter2":
+        mean=cv2.boxFilter(image,-1,(5,5))
+        cv2.imwrite('mean_blur.jpg',mean)
+
+    elif conversionId=="filter3":
+        median=cv2.medianBlur(image,5)
+        cv2.imwrite('median_blur.jpg',median)
+
+    elif conversionId=="filter4":
+        laplacian=cv2.Laplacian(image,cv2.CV_64F,ksize=3)
+        cv2.imwrite('laplacian_blur.jpg',laplacian)
+
 """
 width_d = int(image.shape[1] *0.5)
 height_d = int(image.shape[0] *0.5)
