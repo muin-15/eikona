@@ -108,7 +108,9 @@ async def image_filter(
 async def iamge_transformation(
     file:UploadFile=File(...),
     conversionId:str=Form(...)):
+
     image=await validate_image(file)
+
     if conversionId=='t6' or conversionId=='t7':
         if conversionId=='t6':
             width=int(image.shape[1]*2)
@@ -116,23 +118,18 @@ async def iamge_transformation(
         else:
             width=int(image.shape[1]*0.5)
             height=int(image.shape[0]*0.5)
+
         upscale=cv2.resize(image,(width,height))
         cv2.imwrite('Scaled_image.jpg',upscale)
 
-"""
-width_d = int(image.shape[1] *0.5)
-height_d = int(image.shape[0] *0.5)
-image_rd = cv2.resize(image, (width_d, height_d))
-cv2.imshow('luffy_resizedDownscaled.jpg', image_rd)
- 
-width_d = int(image.shape[1] *2)
-height_d = int(image.shape[0] *2)
-image_ru = cv2.resize(image, (width_d, height_d))
-cv2.imshow('luffy_resizedUpscaled.jpg', image_ru)
+@app.post("/detection")
+async def image_detection(
+    file:UploadFile=File(...),
+    conversionId:str=Form(...)):
+    image=await validate_image(file)
+    if conversionId=='d2':
+        edge=cv2.Canny(image,100,200)
+        cv2.imwrite('edges.jpg',edge)
 
-edges = cv2.Canny(gray, 100, 200)
-cv2.imshow('edges.jpg', edges)
-
-"""
 cv2.waitKey(0)
 cv2.destroyAllWindows()

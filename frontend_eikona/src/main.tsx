@@ -114,3 +114,11 @@ mountUploadBox('t7',{
   paraName:'conversionId',
   paraValue:'t7'
 });
+
+mountUploadBox('d2',{
+  id:'d2',
+  title:'Edge Detection',
+  endpoint:'/detection',
+  paraName:'conversionId',
+  paraValue:'d2'
+});
