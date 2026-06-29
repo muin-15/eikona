@@ -87,15 +87,15 @@ async def image_filter(
 
     image=await validate_image(file)
 
-    if conversionId=="filter1":
+    if conversionId=="filter3":
         gaussian=cv2.GaussianBlur(image,(5,5),0)
         cv2.imwrite('gaussian_blur.jpg',gaussian)
 
-    elif conversionId=="filter2":
+    elif conversionId=="filter1":
         mean=cv2.boxFilter(image,-1,(5,5))
         cv2.imwrite('mean_blur.jpg',mean)
 
-    elif conversionId=="filter3":
+    elif conversionId=="filter2":
         median=cv2.medianBlur(image,5)
         cv2.imwrite('median_blur.jpg',median)
 

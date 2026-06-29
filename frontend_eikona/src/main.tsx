@@ -66,3 +66,35 @@ mountUploadBox('bgr6',{
   paraName:'conversionId',
   paraValue:'bgr6'
 });
+
+mountUploadBox('filter1',{
+  id:'filter1',
+  title:'Mean Filtering',
+  endpoint:'/filtering',
+  paraName:'conversionId',
+  paraValue:'filter1'
+});
+
+mountUploadBox('filter2',{
+  id:'filter2',
+  title:'Median filtering',
+  endpoint:'/filtering',
+  paraName:'conversionId',
+  paraValue:'filter2'
+});
+
+mountUploadBox('filter3',{
+  id:'filter3',
+  title:'Gaussian Smoothing',
+  endpoint:'/filtering',
+  paraName:'conversionId',
+  paraValue:'filter3'
+});
+
+mountUploadBox('filter4',{
+  id:'filter4',
+  title:'laplacian Sharpening',
+  endpoint:'/filtering',
+  paraName:'conversionId',
+  paraValue:'filter4'
+});
