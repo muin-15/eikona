@@ -28,10 +28,7 @@
         
       </nav>  
       <div class="flex-1 flex flex-col justify-center items-center px-4">
-        <label id="home"class="block text-white font-bold py-2 px-4 text-center text-4xl mt-[40px] shadow-amber-50">Enter Image</label> 
-        <input type="file" accept="image/*" class="w-160 h-80  text-gray-400 bg-[#3D3838] border-2 border-black rounded-md focus:outline-none justify-center items-center  mt-4 hover:bg-[#2d2928] hover:text-white">
-      
-      <div id="info" class="h-screen w-180 mt-100">
+      <div id="home" class="h-screen w-180 mt-15">
         <h2 class="text-2xl font-bold mb-15 text-center">Image Information</h2>
         <div class="text-white"><b>Eikona - Advanced Image Processing Suite:-</b>
           <p><br>Eikona is a powerful web-based image processing platform designed to make advanced image editing, enhancement, and computer vision techniques accessible through an intuitive interface. Built with modern technologies and high-performance image processing libraries, Eikona enables users to transform, analyze, and optimize images in real time.</p>
@@ -40,6 +37,18 @@
           <p><br>Designed with performance and usability in mind, Eikona delivers fast processing, interactive previews, and a seamless workflow, making it an all-in-one solution for modern image enhancement and computer vision tasks.</p>
         </div>
         </div>
+        
+        <div id="info" class="h-screen w-180 mt-50 flex flex-col" >
+          <div class="text-2xl font-bold to-black  text-center">Image Compression</div> 
+          <label id="compression" class="border-2 to-black rounded-md pt-48 pb-48 pl-72 pr-72 mb-9 mt-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center ">hi
+            <input type="file" accept="image/*" class="hidden ">
+          </label>
+          <label id="compression_rate" class="border-2 to-black bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center ">
+            <input type="range" id="compression_rate" name="Rate" min="0" max="100" value="50"
+            oninput="document.getElementById('ratedisplay').value=this.value" class="accent-green-500 w-150 h-20 ml-15">
+            <output id="ratedisplay">50</output>
+          </label>
+        </div> 
         <div id="operations" class="h-screen  mt-75">
         <h2 class="text-2xl font-bold mb-15 text-center ">Image Operations</h2>
           <div class="grid grid-cols-2 gap-8 w-full text-[24px]">
@@ -61,6 +70,7 @@
             </label>
           </div>
         </div>
+        
         <div id="color_conversion" class="h-screen  mt-75">
         <h2 class="text-2xl font-bold mb-15 text-center ">Color Conversions</h2>
           <div class="grid grid-cols-2 gap-8 w-full text-[24px]">
