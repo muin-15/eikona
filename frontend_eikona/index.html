@@ -14,7 +14,7 @@
           </div>
           <div class="flex flex-col justify-start items-start">
               <a href="#home" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Home</a>
-              <a href="#compress" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Info</a>
+              <a href="#image_compressor" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Compression</a>
               <a href="#operations" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Operations</a>
               <a href="#color_conversion" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Color Conversion</a>
               <a href="#transformations" class="block text-white font-bold py-4 px-4 rounded hover:bg-[#2d2928] hover:text-white">Transformations</a>
@@ -37,15 +37,18 @@
           <p><br>Designed with performance and usability in mind, Eikona delivers fast processing, interactive previews, and a seamless workflow, making it an all-in-one solution for modern image enhancement and computer vision tasks.</p>
         </div>
         </div>
-        
-        <div id="compress" class="flex flex-col justify-center items-center border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center" >
+        <div id="image_compressor" class="flex-1 flex flex-col justify-center items-center px-4 ">
+          <h3 class="text-black font-bold text-center text-2xl mb-5">Image Compression</h3>
+        <div id="compress" class="flex flex-col justify-center items-center border-2 border-black rounded-md p-18 mt-10 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center" >
           <!-- 2. Range Input (Slider) -->
-          <label for="rangeInput">Intensity (1-100):</label>
+           
+          <label for="rangeInput" class="text-orange-500 text-2xl border-2 border-black rounded-md p-9 mb-9 bg-[#3D3838] hover:bg[#2d2928] hover:text-white cursor-pointer text-center ">Intensity (1-100):</label>
           <input type="range" id="rangeInput" min="1" max="100" value="50" class="w-64 accent-lime-400" oninput="document.getElementById('rangeValue').innerText = this.value">
           <span id="rangeValue" class="text-white">50</span> <!-- Displays current slider value -->
           <br><br>
           <div id="compress-mount"></div>
         </div> 
+        <div></div>
 
         <div id="operations" class="h-screen  mt-75">
         <h2 class="text-2xl font-bold mb-15 text-center ">Image Operations</h2>

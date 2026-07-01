@@ -126,10 +126,10 @@ mountUploadBox('d2',{
 
 mountUploadBox('compress-mount',{
   id:'compression',
-  title:'Image Compression',
+  title:'Click to select Image',
   endpoint:'/compress',
   paraName:'conversionId',
-  paraValue:'compression',
+  paraValue:'compress',
   range:{
     paraName:'intensity',
     elementId:'rangeInput'

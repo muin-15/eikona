@@ -125,6 +125,8 @@ async def iamge_transformation(
 
         upscale=cv2.resize(image,(width,height))
         cv2.imwrite('Scaled_image.jpg',upscale)
+        return {"message": f"Image successfully processed for {conversionId}"}
+        
 
     raise HTTPException(status_code=400, detail="Invalid detection ID")
 
@@ -136,6 +138,8 @@ async def image_detection(
     if conversionId=='d2':
         edge=cv2.Canny(image,100,200)
         cv2.imwrite('edges.jpg',edge)
+        return {"message": f"Image successfully processed for {conversionId}"}
+        
     raise HTTPException(status_code=400, detail="Invalid detection ID")
 
 
@@ -148,7 +152,7 @@ async def image_compression(
     if conversionId=='compress':
         #cv2.imwrite('compressed.jpg', image, [cv2.IMWRITE_JPEG_QUALITY, compression_rate])
         cv2.imwrite('img.jpg',image,[cv2.IMWRITE_JPEG_QUALITY, intensity])
-        return {"message": f"Image compressed successfully with intensity {intensity}"}
+        
 
     
     
