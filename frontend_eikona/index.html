@@ -39,32 +39,37 @@
         </div>
         
         <div id="compress" class="h-screen w-180 mt-50 flex flex-col" >
-          <div class="text-2xl font-bold to-black  text-center">Image Compression</div> 
-          <label id="compression" class="border-2 to-black rounded-md pt-48 pb-48 pl-72 pr-72 mb-9 mt-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center ">hi
-            <input type="file" accept="image/*" class="hidden ">
-          </label>
-          <label id="compression_rate" class="border-2 to-black bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center ">
-            <input type="range" id="compression_rate" name="Rate" min="0" max="100" value="50"
-            oninput="document.getElementById('ratedisplay').value=this.value" class="accent-green-500 w-150 h-20 ml-15">
-            <output id="ratedisplay">50</output>
-          </label>
-        </div> 
+          <form id="uploadForm">
+          <!-- 1. Image Input -->
+            <label for="imageInput">Choose Image:</label>
+            <input type="file" id="imageInput" accept="image/*" required>
+            <br><br>
+
+          <!-- 2. Range Input (Slider) -->
+          <label for="rangeInput">Intensity (1-100):</label>
+          <input type="range" id="rangeInput" min="1" max="100" value="50">
+          <span id="rangeValue">50</span> <!-- Displays current slider value -->
+          <br><br>
+
+          <button type="submit">Submit to Backend</button>
+        </form></div> 
+
         <div id="operations" class="h-screen  mt-75">
         <h2 class="text-2xl font-bold mb-15 text-center ">Image Operations</h2>
           <div class="grid grid-cols-2 gap-8 w-full text-[24px]">
-            <label class="border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label class="flex flex-col items-center border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center justify-center  ">
               Image Addition
               <input type="file" accept="image/" class="hidden">
             </label>
-            <label class="border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label class="flex flex-col justify-center items-center border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
               Image Subtraction
               <input type="file" accept="image/" class="hidden">
             </label>
-            <label class="border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label class="flex flex-col justify-center items-center border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
               Image Multiplication
               <input type="file" accept="image/" class="hidden">
             </label>
-            <label class="border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label class="flex flex-col justify-center items-center border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
               Image Division
               <input type="file" accept="image/" class="hidden">
             </label>
@@ -107,44 +112,44 @@
         <div id="transformations" class="h-screen mt-100">
         <h2 class="text-2xl font-bold mb-15 text-center">Image Transformations</h2>
         <div class="grid grid-cols-2 gap-8 w-full text-[24px]">
-          <label id="t1" class="border-2 border-black rounded-md p-18 mb-4 ml-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+          <label id="t1" class="border-2 border-black rounded-md p-18 mb-4 ml-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center flex flex-col justify-center items-center">
               Image Rotation
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="t2" class="border-2 border-black rounded-md p-18 mb-4 mr-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label id="t2" class="border-2 border-black rounded-md p-18 mb-4 mr-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center flex flex-col justify-center items-center">
               Image Translation
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="t3" class="border-2 border-black rounded-md p-18 mb-4 ml-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label id="t3" class="border-2 border-black rounded-md p-18 mb-4 ml-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center flex flex-col justify-center items-center">
               Log Transformation
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="t4" class="border-2 border-black rounded-md p-18 mb-4 mr-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label id="t4" class="border-2 border-black rounded-md p-18 mb-4 mr-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center flex flex-col justify-center items-center">
               Power law Transformation
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="t5" class="border-2 border-black rounded-md p-18 mb-4 ml-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label id="t5" class="border-2 border-black rounded-md p-18 mb-4 ml-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center flex flex-col justify-center items-center">
               Negative Transformation
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="t6" class="border-2 border-black rounded-md p-18 mb-4 mr-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label id="t6" class="border-2 border-black rounded-md p-18 mb-4 mr-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center flex flex-col justify-center items-center">
               Uniform Image Scaling(Upscaling)
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="t7" class="border-2 border-black rounded-md p-18 mb-4 ml-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label id="t7" class="border-2 border-black rounded-md p-18 mb-4 ml-10 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center flex flex-col justify-center items-center">
               Uniform Image Scaling(Downscaling)
               <input type="file" accept="image/" class="hidden">
 
             </label>
             </div>
         </div>
-        <div id="detections" class="h-screen  mt-100">
+        <div id="detections" class="h-screen  mt-180">
         <h2 class="text-2xl font-bold mb-15 text-center">Image Detections</h2>
         <div class="grid grid-cols-2 gap-8 w-full text-[24px]">
         <label id="d1" class="border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
@@ -172,22 +177,22 @@
         <div id="filtering" class="h-screen mt-100">
         <h2 class="text-2xl font-bold mb-15 text-center">Image Filtering</h2>
         <div class="grid grid-cols-2 gap-8 w-full text-[24px]">
-        <label id="filter1" class="border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+        <label id="filter1" class=" align-center border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center flex flex-col justify-center items-center">
               Mean Filtering
               <input type="file" accept="image/" class="hidden">
 
         </label>
-            <label id="filter2" class="border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label id="filter2" class="flex flex-col justify-center items-center border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
               Median Filtering
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="filter3" class="border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label id="filter3" class="flex flex-col justify-center items-center border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
               Gaussian smoothing
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="filter4" class="border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
+            <label id="filter4" class="flex flex-col justify-center items-center border-2 border-black rounded-md p-18 mb-9 bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer text-center">
               Laplacian Sharpening
               <input type="file" accept="image/" class="hidden">
 

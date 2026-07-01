@@ -131,5 +131,15 @@ async def image_detection(
         edge=cv2.Canny(image,100,200)
         cv2.imwrite('edges.jpg',edge)
 
+@app.post("/compress")
+async def image_compression(
+    file:UploadFile=File(...),
+    conversionId:str=Form(...)):
+    image=await validate_image(file)
+    if conversionId=='compression':
+        #cv2.imwrite('compressed.jpg', image, [cv2.IMWRITE_JPEG_QUALITY, compression_rate])
+        cv2.imwrite('img.jpg',image)
+        return {"message": "Image compressed successfully."}
+
 cv2.waitKey(0)
 cv2.destroyAllWindows()

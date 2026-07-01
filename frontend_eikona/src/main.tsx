@@ -122,3 +122,15 @@ mountUploadBox('d2',{
   paraName:'conversionId',
   paraValue:'d2'
 });
+
+mountUploadBox('compression',{
+  id:'compression',
+  title:'Image Compression',
+  endpoint:'/compress',
+  paraName:'conversionId',
+  paraValue:'compression',
+  range:{
+    paraName:'compression_rate',
+    elementId:'compression_rate'
+  }
+});
