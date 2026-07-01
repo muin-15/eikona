@@ -150,9 +150,10 @@ async def image_compression(
     intensity:int=Form(50)):
     image=await validate_image(file)
     if conversionId=='compress':
-        #cv2.imwrite('compressed.jpg', image, [cv2.IMWRITE_JPEG_QUALITY, compression_rate])
-        cv2.imwrite('img.jpg',image,[cv2.IMWRITE_JPEG_QUALITY, intensity])
         
+        cv2.imwrite('img.jpg',image,[cv2.IMWRITE_JPEG_QUALITY, intensity])
+        return{"message": f"Image successfully compressed with intensity {intensity}"}
+    raise HTTPException(status_code=400, detail="Invalid compression ID")
 
     
     
