@@ -29,6 +29,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({ id, title ,endpoint,paraName,paraV
 
     if (!file) {
         setmessage("Please select an image.");
+        setError(true);
         return;
     }
 
@@ -39,8 +40,9 @@ const UploadBox:React.FC<prop_uploadbox> = ({ id, title ,endpoint,paraName,paraV
 
     if (range) {
         const rangeEl = document.getElementById(range.elementId) as HTMLInputElement;
-
+      if (rangeEl) {
         formData.append(range.paraName, rangeEl.value);
+      }
     }
 
     try {
@@ -52,10 +54,10 @@ const UploadBox:React.FC<prop_uploadbox> = ({ id, title ,endpoint,paraName,paraV
         const data = await response.json();
 
         if (response.ok) {
-            setmessage(`Success: ${data.message}`);
+            setmessage(`Success: ${data?.message}`);
             setError(false);
         } else {
-            setmessage(`Error: ${data.detail || data.message}`);
+            setmessage(`Error: ${data?.detail || data?.message}`);
             setError(true);
         }
 
@@ -71,9 +73,18 @@ const UploadBox:React.FC<prop_uploadbox> = ({ id, title ,endpoint,paraName,paraV
       {title}
       <input type="file" id={id} onChange={handlefilechange} className="hidden" />
     </label>
-    <button onClick={handleSubmit} className='flex flex-col text-center items-center justify-center border-2 to-black bg-[#3D3838] hover:bg-[#2d2928] hover:text-white cursor-pointer rounded-md w-44 h-12 mt-10'>
+
+    {file && <p className="mt-2 text-green-400 text-sm">Selected: {file.name}</p>}
+
+    <button onClick={handleSubmit} className='flex flex-col text-center items-center justify-center border-2 to-black bg-[#302b2b] hover:bg-[#3e3938] hover:text-white cursor-pointer rounded-md w-44 h-12 mt-10'>
       Submit
     </button>
+
+    {message && (
+      <p className={`mt-4 text-sm ${isError ? 'text-red-500' : 'text-green-500'}`}>
+        {message}
+      </p>
+    )}
     </>
   );
 }

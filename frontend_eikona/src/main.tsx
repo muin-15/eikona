@@ -5,19 +5,20 @@ import './index.css';
 import UploadBox from './App.tsx';
 
 const mountUploadBox=(mountId:string,props:React.ComponentProps<typeof UploadBox> )=>{
+const rootElement = document.getElementById(mountId);
 
-  const rootelement=document.getElementById(mountId);
-  if(rootelement){
-    ReactDOM.createRoot(rootelement).render(
-      <StrictMode>
-        <UploadBox {...props}/>
-      </StrictMode>,
-    );
-  }
-  else{
-    console.error(`Can't procide through ${mountId}`);
-  }
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <UploadBox {...props}
+      />
+    </React.StrictMode>
+  );
+}else{
+  console.error(`can't procide through element hook ID ${mountId}`);
+}
 };
+
 mountUploadBox('bgr1',{
   id:'bgr1',
   title:'BGR To GRAY',
@@ -123,14 +124,14 @@ mountUploadBox('d2',{
   paraValue:'d2'
 });
 
-mountUploadBox('compression',{
+mountUploadBox('compress-mount',{
   id:'compression',
   title:'Image Compression',
   endpoint:'/compress',
   paraName:'conversionId',
   paraValue:'compression',
   range:{
-    paraName:'compression_rate',
-    elementId:'compression_rate'
+    paraName:'intensity',
+    elementId:'rangeInput'
   }
 });

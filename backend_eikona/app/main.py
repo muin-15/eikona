@@ -51,7 +51,7 @@ async def convert_color(
     if conversionId=="bgr1":
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         cv2.imwrite('bgr_gray.jpg', gray)
-        return {"message": "Image converted to grayscale."}
+        
     elif conversionId=="bgr2":
         if image.ndim == 3 and image.shape[2] == 3:
            color=cv2.applyColorMap(image,cv2.COLORMAP_TWILIGHT_SHIFTED)
@@ -79,6 +79,8 @@ async def convert_color(
     else:
         return("404 Error can't proceed")
     
+    return {"message": f"Image successfully processed for {conversionId}"}
+    
 
 @app.post("/filtering")
 async def image_filter(
@@ -103,6 +105,8 @@ async def image_filter(
         laplacian=cv2.Laplacian(image,cv2.CV_64F,ksize=3)
         cv2.imwrite('laplacian_blur.jpg',laplacian)
 
+    return {"message": f"Image successfully processed for {conversionId}"}
+
 
 @app.post("/transformations")
 async def iamge_transformation(
@@ -122,6 +126,8 @@ async def iamge_transformation(
         upscale=cv2.resize(image,(width,height))
         cv2.imwrite('Scaled_image.jpg',upscale)
 
+    raise HTTPException(status_code=400, detail="Invalid detection ID")
+
 @app.post("/detection")
 async def image_detection(
     file:UploadFile=File(...),
@@ -130,16 +136,20 @@ async def image_detection(
     if conversionId=='d2':
         edge=cv2.Canny(image,100,200)
         cv2.imwrite('edges.jpg',edge)
+    raise HTTPException(status_code=400, detail="Invalid detection ID")
+
 
 @app.post("/compress")
 async def image_compression(
     file:UploadFile=File(...),
-    conversionId:str=Form(...)):
+    conversionId:str=Form(...),
+    intensity:int=Form(50)):
     image=await validate_image(file)
-    if conversionId=='compression':
+    if conversionId=='compress':
         #cv2.imwrite('compressed.jpg', image, [cv2.IMWRITE_JPEG_QUALITY, compression_rate])
-        cv2.imwrite('img.jpg',image)
-        return {"message": "Image compressed successfully."}
+        cv2.imwrite('img.jpg',image,[cv2.IMWRITE_JPEG_QUALITY, intensity])
+        return {"message": f"Image compressed successfully with intensity {intensity}"}
 
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+    
+    
+
