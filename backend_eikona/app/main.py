@@ -79,7 +79,7 @@ async def convert_color(
     else:
         return("404 Error can't proceed")
     
-    return {"message": f"Image successfully processed for {conversionId}"}
+    return {"message": "Image successfully processed"}
     
 
 @app.post("/filtering")
@@ -105,7 +105,7 @@ async def image_filter(
         laplacian=cv2.Laplacian(image,cv2.CV_64F,ksize=3)
         cv2.imwrite('laplacian_blur.jpg',laplacian)
 
-    return {"message": f"Image successfully processed for {conversionId}"}
+    return {"message": "Image successfully processed"}
 
 
 @app.post("/transformations")
@@ -125,7 +125,7 @@ async def iamge_transformation(
 
         upscale=cv2.resize(image,(width,height))
         cv2.imwrite('Scaled_image.jpg',upscale)
-        return {"message": f"Image successfully processed for {conversionId}"}
+        return {"message": "Image successfully processed"}
         
 
     raise HTTPException(status_code=400, detail="Invalid detection ID")
@@ -138,7 +138,7 @@ async def image_detection(
     if conversionId=='d2':
         edge=cv2.Canny(image,100,200)
         cv2.imwrite('edges.jpg',edge)
-        return {"message": f"Image successfully processed for {conversionId}"}
+        return {"message": "Image successfully processed"}
         
     raise HTTPException(status_code=400, detail="Invalid detection ID")
 
