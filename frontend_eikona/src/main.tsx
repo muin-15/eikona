@@ -100,6 +100,14 @@ mountUploadBox('filter4',{
   paraValue:'filter4'
 });
 
+mountUploadBox('filter5',{
+  id:'filter5',
+  title:'Bilateral Filtering',
+  endpoint:'/filtering',
+  paraName:'conversionId',
+  paraValue:'filter5'
+});
+
 mountUploadBox('t6',{
   id:'t6',
   title:'Uniform Image Scaling (UpScaling)',

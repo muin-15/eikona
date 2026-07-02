@@ -105,6 +105,10 @@ async def image_filter(
         laplacian=cv2.Laplacian(image,cv2.CV_64F,ksize=3)
         cv2.imwrite('laplacian_blur.jpg',laplacian)
 
+    elif conversionId=="filter5":
+        bilateral=cv2.bilateralFilter(image,d=9,sigmaColor=75,sigmaSpace=75)
+        cv2.imwrite('bilateral_blur.jpg',bilateral)
+
     return {"message": "Image successfully processed"}
 
 
