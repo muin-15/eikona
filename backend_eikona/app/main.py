@@ -2,8 +2,8 @@ from fastapi import FastAPI,UploadFile,File,Form,HTTPException #type:ignore
 from fastapi.middleware.cors import CORSMiddleware #type:ignore
 import cv2 #type:ignore
 import numpy as np
-import uuid
-
+import matplotlib.pyplot as plt 
+from matplotlib.figure import Figure
 
 app = FastAPI()
 
@@ -160,5 +160,26 @@ async def image_compression(
     raise HTTPException(status_code=400, detail="Invalid compression ID")
 
     
-    
+@app.post("/analytics")
+async def image_analytics(
+    file:UploadFile=File(...),
+    conversionId:str=Form(...)):
+    image=await validate_image(file) 
+    colors=('b','g','r')
+    if conversionId=='histogram': 
+        fig=Figure(figsize=(7,4))
+        ax = fig.subplots() 
+        ax.set_title('Histogram Analysis')
+        ax.set_xlabel('Pixel Value')
+        ax.set_ylabel('Frequency')
+        for i,color in enumerate(colors):
+            img_hist=cv2.calcHist([image],[i],None,[256],[0,256])
+            ax.plot(img_hist,color=color,label=f'{color.upper()} Channel')
+        
+        ax.set_xlim([0,256])
+        ax.legend()
+        ax.grid(True)
+        fig.savefig('img_hist.png',bbox_inches='tight')
+        return {"message": "Image successfully processed"}
+    return("Analysis Done Successfully")
 

@@ -143,3 +143,11 @@ mountUploadBox('compress-mount',{
     elementId:'rangeInput'
   }
 });
+
+mountUploadBox('histogram',{
+  id:'histogram',
+  title:'Image Histogram',
+  endpoint:'/analytics',
+  paraName:'conversionId',
+  paraValue:'histogram'
+});
