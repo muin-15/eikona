@@ -76,7 +76,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({ id, title ,endpoint,paraName,paraV
 
     {file && <p className="mt-2 text-green-400 text-sm">Selected: {file.name}</p>}
 
-    <button onClick={handleSubmit} className='flex flex-col text-center items-center justify-center border-2 to-black bg-[#302b2b] hover:bg-[#3e3938] hover:text-white cursor-pointer rounded-md w-44 h-12 mt-10 '>
+    <button onClick={handleSubmit} className='flex flex-col text-center items-center justify-center border-2 to-black bg-[#302b2b] hover:bg-[#3e3938]  hover:text-white cursor-pointer rounded-md w-54 h-12 mt-10 '>
       Submit
     </button>
 
