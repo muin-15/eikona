@@ -166,6 +166,7 @@ async def image_analytics(
     conversionId:str=Form(...)):
     image=await validate_image(file) 
     colors=('b','g','r')
+
     if conversionId=='histogram': 
         fig=Figure(figsize=(7,4))
         ax = fig.subplots() 
@@ -185,7 +186,7 @@ async def image_analytics(
     elif conversionId=='dft':
         if len(image.shape) == 3:
             image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        dft_img=cv2.dft(np.float32(image),flags=cv2.DFT_COMPLEX_OUTPUT)
+        dft_img=cv2.dft(np.float32(image),flags=cv2.DFT_COMPLEX_OUTPUT) 
         magnitude_spectrum=20*np.log(cv2.magnitude(dft_img[:,:,0],dft_img[:,:,1]))
         fig=Figure(figsize=(7,4))
         ax=fig.add_subplot(1,1,1)
@@ -193,5 +194,14 @@ async def image_analytics(
         fig.savefig('img_dft.png',bbox_inches='tight')
         return {"message": "Image successfully processed"}
     
+    elif conversionId=='dct':
+        if len(image.shape) == 3:
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        dct_img=cv2.dct(np.float32(image))
+        fig=Figure(figsize=(7,4))
+        ax=fig.add_subplot(1,1,1)
+        ax.imshow(dct_img,cmap='gray')
+        fig.savefig('img_dct.png',bbox_inches='tight')
+        return {"message": "Image successfully processed"}
     return("Analysis Done Successfully")
 

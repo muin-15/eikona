@@ -159,3 +159,11 @@ mountUploadBox('dft',{
   paraName:'conversionId',
   paraValue:'dft'
 });
+
+mountUploadBox('dct',{
+  id:'dct',
+  title:'Discrete Cosine Transform',
+  endpoint:'/analytics',
+  paraName:'conversionId',
+  paraValue:'dct'
+});
