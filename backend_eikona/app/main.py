@@ -203,5 +203,17 @@ async def image_analytics(
         ax.imshow(dct_img,cmap='gray')
         fig.savefig('img_dct.png',bbox_inches='tight')
         return {"message": "Image successfully processed"}
+    
+    elif conversionId=='fft':
+        if len(image.shape) == 3:
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        f=np.fft.fft2(image)
+        fshift=np.fft.fftshift(f)
+        magnitude_spectrum=20*np.log(np.abs(fshift))
+        fig=Figure(figsize=(7,4))
+        ax=fig.add_subplot(1,1,1)
+        ax.imshow(magnitude_spectrum,cmap='gray')
+        fig.savefig('img_fft.png',bbox_inches='tight')
+        return {"message": "Image successfully processed"}
     return("Analysis Done Successfully")
 

@@ -154,7 +154,7 @@ mountUploadBox('histogram',{
 
 mountUploadBox('dft',{
   id:'dft',
-  title:'Discrete Forier Transform',
+  title:'Discrete Fourier Transform',
   endpoint:'/analytics',
   paraName:'conversionId',
   paraValue:'dft'
@@ -166,4 +166,12 @@ mountUploadBox('dct',{
   endpoint:'/analytics',
   paraName:'conversionId',
   paraValue:'dct'
+});
+
+mountUploadBox('fft',{
+  id:'fft',
+  title:'Fast Fourier Transform',
+  endpoint:'/analytics',
+  paraName:'conversionId',
+  paraValue:'fft'
 });
