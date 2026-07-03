@@ -151,3 +151,11 @@ mountUploadBox('histogram',{
   paraName:'conversionId',
   paraValue:'histogram'
 });
+
+mountUploadBox('dft',{
+  id:'dft',
+  title:'Discrete Forier Transform',
+  endpoint:'/analytics',
+  paraName:'conversionId',
+  paraValue:'dft'
+});
