@@ -42,15 +42,38 @@
         <p>Designed with performance and usability in mind, Eikona delivers fast processing, interactive previews, and a seamless workflow, making it an all-in-one solution for modern image enhancement and computer vision tasks.</p>
         <br><p>Eikona is created by noticing the daily needs of students who are learning and professionals in the field of image processing and computer vision.</p>
       </div>
-      </div>
-
+      <div class="flex">
+      <div class="relative text-center justify-between items-center mt-50 text-emerald-500 font-semibold w-full "> 
+        <div class="absolute inset-0 m-auto h-36 w-36 rounded-full bg-emerald-500 blur-xl opacity-30"></div>
+        <div class="relative z-10 text-center justify-center items-center">
+          <p class="text-5xl relative ">30+</p>
+          <p class="mt-3">operations</p>
         </div>
-        <div id="image_compressor" class=" flex flex-col w-full max-w-4xl justify-center items-center px-4 py-20 ">
-          <h3 class="text-black font-bold text-center text-2xl mb-5">Image Compression</h3>
+      </div>
+      <div class="relative text-center justify-between items-center mt-50 text-emerald-500 font-semibold w-full "> 
+        <div class="absolute inset-0 m-auto h-36 w-36 rounded-full bg-emerald-500 blur-xl opacity-30"></div>
+        <div class="relative z-10 text-center justify-center items-center">
+          <p class="text-5xl relative ">0%</p>
+          <p class="mt-3">Quality loss</p>
+        </div>
+      </div>
+      <div class="relative text-center justify-between items-center mt-50 text-emerald-500 font-semibold w-full "> 
+        <div class="absolute inset-0 m-auto h-36 w-36 rounded-full bg-emerald-500 blur-xl opacity-30"></div>
+        <div class="relative z-10 text-center justify-center items-center">
+          <p class="text-5xl relative ">24/7</p>
+          <p class="mt-3">support</p>
+        </div>
+      </div>
+      </div>
+      </div>
+      
+        </div>
+        <div id="image_compressor" class=" flex flex-col w-full max-w-4xl justify-center mt-50 items-center px-4 py-20 ">
+          <h3 class="text-emerald-500 font-bold text-center text-2xl mb-5">Image Compression</h3>
         <div id="compress" class="flex flex-col justify-center items-center border-2 border-emerald-500 rounded-md p-16 mt-10 mb-9  bg-emerald-950/30 hover:border-amber-50 cursor-pointer text-center" >
           <!-- 2. Range Input (Slider) -->
            
-          <label for="rangeInput" class="text-black font-semibold text-2xl border-2 border-black rounded-md p-9 mb-9 bg-emerald-500 hover:bg-black hover:text-emerald-500 cursor-pointer text-center ">Intensity (1-100):</label>
+          <label for="rangeInput" class="text-black font-semibold text-2xl border-2 border-black rounded-md p-9 mb-9 bg-emerald-500 cursor-pointer text-center ">Intensity (1-100):</label>
           <input type="range" id="rangeInput" min="1" max="100" value="50" class="w-64 accent-emerald-600 " oninput="document.getElementById('rangeValue').innerText = this.value">
           <span id="rangeValue" class="text-white">50</span> <!-- Displays current slider value -->
           <br><br>
@@ -58,7 +81,7 @@
         </div> 
         <div></div>
 
-        <div id="operations" class="min-h-screen py-20 w-full max-w-4xl">
+        <div id="operations" class="min-h-screen py-20 mt-10 w-full max-w-4xl">
         <h2 class="text-2xl font-bold mb-15 text-center ">Image Operations</h2>
           <div class="grid grid-cols-2 gap-8 w-full text-[24px]">
             <label class="flex flex-col items-center border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-700 hover:text-black hover:border-amber-50 cursor-pointer text-center justify-center  ">
