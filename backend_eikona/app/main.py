@@ -172,7 +172,28 @@ async def image_operations(
             raise HTTPException(status_code=400, detail="Images must have the same dimensions for addition")
         added=cv2.add(image1,image2)
         cv2.imwrite('added_img.jpg',added)
-        return {"message": "Images successfully added"}
+        return {"message": "Images Successfully added"}
+    
+    elif conversionId=='sub':
+        if image1.shape!=image2.shape:
+            raise HTTPException(status_code=400,detail="Images must have the same dimensions for subtraction")
+        subtract=cv2.subtract(image1,image2)
+        cv2.imwrite('subtracted_img.jpg',subtract)
+        return {"message":"Images Successfully subtracted"}
+    
+    elif conversionId=='mul':
+        if image1.shape!=image2.shape:
+            raise HTTPException(status_code=400,detail="Images must have the same dimensions for multiplication")
+        multiplied=cv2.multiply(image1,image2)
+        cv2.imwrite('multiplied_img.jpg',multiplied)
+        return {"message":"Images Successfully multiplicated"}
+    
+    elif conversionId=='div':
+        if image1.shape!=image2.shape:
+            raise HTTPException(status_code=400,detail="Images must have the same dimensions for division")
+        divided=cv2.divide(image1,image2)
+        cv2.imwrite('divided_img.jpg',divided)
+        return {"message":"Images Successfully divided"}
     raise HTTPException(status_code=400, detail="Invalid operation ID")
 
 @app.post("/analytics")

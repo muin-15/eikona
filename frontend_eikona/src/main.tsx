@@ -202,3 +202,30 @@ mountUploadBox('add',{
   paraValue:'add',
   requiredInput:2
 });
+
+mountUploadBox('sub',{
+  id:'sub',
+  title:'Image Subtraction: First Image - ',
+  endpoint:'/operations',
+  paraName:'conversionId',
+  paraValue:'sub',
+  requiredInput:2
+});
+
+mountUploadBox('mul',{
+  id:'mul',
+  title:'Image Multiplication: First Image * ',
+  endpoint:'/operations',
+  paraName:'conversionId',
+  paraValue:'mul',
+  requiredInput:2
+});
+
+mountUploadBox('div',{
+  id:'div',
+  title:'Image Division: First Image / ',
+  endpoint:'/operations',
+  paraName:'conversionId',
+  paraValue:'div',
+  requiredInput:2
+});
