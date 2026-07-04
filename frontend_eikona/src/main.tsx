@@ -24,8 +24,8 @@ mountUploadBox('bgr1',{
   title:'BGR To GRAY',
   endpoint:'/color_conversion',
   paraName:'conversionId',
-  paraValue:'bgr1'
-
+  paraValue:'bgr1',
+  requiredInput:1
 });
 
 mountUploadBox('bgr2',{
@@ -33,7 +33,8 @@ mountUploadBox('bgr2',{
   title:'GRAY TO BGR',
   endpoint:'/color_conversion',
   paraName:'conversionId',
-  paraValue:'bgr2'
+  paraValue:'bgr2',
+  requiredInput:1
 });
 
 mountUploadBox('bgr3',{
@@ -41,7 +42,8 @@ mountUploadBox('bgr3',{
   title:'BGR TO HSV',
   endpoint:'/color_conversion',
   paraName:'conversionId',
-  paraValue:'bgr3'
+  paraValue:'bgr3',
+  requiredInput:1
 });
 
 mountUploadBox('bgr4',{
@@ -49,7 +51,8 @@ mountUploadBox('bgr4',{
   title:'HSV TO BGR',
   endpoint:'/color_conversion',
   paraName:'conversionId',
-  paraValue:'bgr4'
+  paraValue:'bgr4',
+  requiredInput:1
 });
 
 mountUploadBox('bgr5',{
@@ -57,7 +60,8 @@ mountUploadBox('bgr5',{
   title:'BGR TO RGB',
   endpoint:'/color_conversion',
   paraName:'conversionId',
-  paraValue:'bgr5'
+  paraValue:'bgr5',
+  requiredInput:1
 });
 
 mountUploadBox('bgr6',{
@@ -65,7 +69,8 @@ mountUploadBox('bgr6',{
   title:'RGB TO BGR',
   endpoint:'/color_conversion',
   paraName:'conversionId',
-  paraValue:'bgr6'
+  paraValue:'bgr6',
+  requiredInput:1
 });
 
 mountUploadBox('filter1',{
@@ -73,7 +78,8 @@ mountUploadBox('filter1',{
   title:'Mean Filtering',
   endpoint:'/filtering',
   paraName:'conversionId',
-  paraValue:'filter1'
+  paraValue:'filter1',
+  requiredInput:1
 });
 
 mountUploadBox('filter2',{
@@ -81,7 +87,8 @@ mountUploadBox('filter2',{
   title:'Median filtering',
   endpoint:'/filtering',
   paraName:'conversionId',
-  paraValue:'filter2'
+  paraValue:'filter2',
+  requiredInput:1
 });
 
 mountUploadBox('filter3',{
@@ -89,7 +96,8 @@ mountUploadBox('filter3',{
   title:'Gaussian Smoothing',
   endpoint:'/filtering',
   paraName:'conversionId',
-  paraValue:'filter3'
+  paraValue:'filter3',
+  requiredInput:1
 });
 
 mountUploadBox('filter4',{
@@ -97,7 +105,8 @@ mountUploadBox('filter4',{
   title:'laplacian Sharpening',
   endpoint:'/filtering',
   paraName:'conversionId',
-  paraValue:'filter4'
+  paraValue:'filter4',
+  requiredInput:1
 });
 
 mountUploadBox('filter5',{
@@ -105,7 +114,8 @@ mountUploadBox('filter5',{
   title:'Bilateral Filtering',
   endpoint:'/filtering',
   paraName:'conversionId',
-  paraValue:'filter5'
+  paraValue:'filter5',
+  requiredInput:1
 });
 
 mountUploadBox('t6',{
@@ -113,7 +123,8 @@ mountUploadBox('t6',{
   title:'Uniform Image Scaling (UpScaling)',
   endpoint:'/transformations',
   paraName:'conversionId',
-  paraValue:'t6'
+  paraValue:'t6',
+  requiredInput:1
 });
 
 mountUploadBox('t7',{
@@ -121,7 +132,8 @@ mountUploadBox('t7',{
   title:'Uniform Image scaling (Downscaling)',
   endpoint:'/transformations',
   paraName:'conversionId',
-  paraValue:'t7'
+  paraValue:'t7',
+  requiredInput:1
 });
 
 mountUploadBox('d2',{
@@ -129,7 +141,8 @@ mountUploadBox('d2',{
   title:'Edge Detection',
   endpoint:'/detection',
   paraName:'conversionId',
-  paraValue:'d2'
+  paraValue:'d2',
+  requiredInput:1
 });
 
 mountUploadBox('compress-mount',{
@@ -141,7 +154,8 @@ mountUploadBox('compress-mount',{
   range:{
     paraName:'intensity',
     elementId:'rangeInput'
-  }
+  },
+  requiredInput:1
 });
 
 mountUploadBox('histogram',{
@@ -149,7 +163,8 @@ mountUploadBox('histogram',{
   title:'Image Histogram',
   endpoint:'/analytics',
   paraName:'conversionId',
-  paraValue:'histogram'
+  paraValue:'histogram',
+  requiredInput:1
 });
 
 mountUploadBox('dft',{
@@ -157,7 +172,8 @@ mountUploadBox('dft',{
   title:'Discrete Fourier Transform',
   endpoint:'/analytics',
   paraName:'conversionId',
-  paraValue:'dft'
+  paraValue:'dft',
+  requiredInput:1
 });
 
 mountUploadBox('dct',{
@@ -165,7 +181,8 @@ mountUploadBox('dct',{
   title:'Discrete Cosine Transform',
   endpoint:'/analytics',
   paraName:'conversionId',
-  paraValue:'dct'
+  paraValue:'dct',
+  requiredInput:1
 });
 
 mountUploadBox('fft',{
@@ -173,5 +190,15 @@ mountUploadBox('fft',{
   title:'Fast Fourier Transform',
   endpoint:'/analytics',
   paraName:'conversionId',
-  paraValue:'fft'
+  paraValue:'fft',
+  requiredInput:1
+});
+
+mountUploadBox('add',{
+  id:'add',
+  title:' Image Addition: First Image + ',
+  endpoint:'/operations',
+  paraName:'conversionId',
+  paraValue:'add',
+  requiredInput:2
 });

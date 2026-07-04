@@ -36,7 +36,7 @@ async def validate_image(file:UploadFile):
 
     if image is None:
         return("can't process")
-        raise HTTPException(statue_code=404,detail="Please provide an Image")
+        raise HTTPException(status_code=404,detail="Please provide an Image")
     return image
 
 
@@ -159,7 +159,22 @@ async def image_compression(
         return{"message": f"Image successfully compressed with intensity {intensity}"}
     raise HTTPException(status_code=400, detail="Invalid compression ID")
 
-    
+@app.post("/operations")
+async def image_operations(
+    file:UploadFile=File(...),
+    file2:UploadFile=File(...),
+    conversionId:str=Form(...)):
+    image1=await validate_image(file)
+    image2=await validate_image(file2)
+
+    if conversionId=='add':
+        if image1.shape!=image2.shape:
+            raise HTTPException(status_code=400, detail="Images must have the same dimensions for addition")
+        added=cv2.add(image1,image2)
+        cv2.imwrite('added_img.jpg',added)
+        return {"message": "Images successfully added"}
+    raise HTTPException(status_code=400, detail="Invalid operation ID")
+
 @app.post("/analytics")
 async def image_analytics(
     file:UploadFile=File(...),

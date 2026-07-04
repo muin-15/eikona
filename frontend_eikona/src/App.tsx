@@ -3,25 +3,33 @@ import './App.css'
 
 interface prop_uploadbox{
   id:string;
-  title:string
-  endpoint:string
-  paraName:string
-  paraValue:string
+  title:string;
+  endpoint:string;
+  paraName:string;
+  paraValue:string;
+  requiredInput?:number;
   range?:{
-    paraName:string
-    elementId:string
-  }
+    paraName:string;
+    elementId:string;
+  };
 }
-const UploadBox:React.FC<prop_uploadbox> = ({ id, title ,endpoint,paraName,paraValue,range}) => {
+const UploadBox:React.FC<prop_uploadbox> = ({ 
+  id, title, endpoint, paraName, paraValue, range,requiredInput=1,
+}) => {
   const [message,setmessage]= useState<string>('');
   const [isError,setError]=useState<boolean>(false);
   const [file,setFile]=useState<File | null>(null);
+  const [file2,setFile2]=useState<File | null>(null);
 
-  const handlefilechange = async(event: ChangeEvent<HTMLInputElement>) => {
+  const handlefilechange = async(event: ChangeEvent<HTMLInputElement>,type:'file' | 'file2') => {
     console.log("Event handling is processing");
     const selectedFile=event.target.files?.[0];
     if(selectedFile){
-      setFile(selectedFile);
+      if(type==='file'){
+        setFile(selectedFile);
+      } else {
+        setFile2(selectedFile);
+      }
     }
   };
 
@@ -32,10 +40,17 @@ const UploadBox:React.FC<prop_uploadbox> = ({ id, title ,endpoint,paraName,paraV
         setError(true);
         return;
     }
-
+    if (requiredInput === 2 && !file2) {
+        setmessage("Please select the second image.");
+        setError(true);
+        return;
+    }
     const formData = new FormData();
 
     formData.append("file", file);
+    if(requiredInput===2 && file2){
+      formData.append("file2", file2);
+    }
     formData.append(paraName, paraValue);
 
     if (range) {
@@ -71,9 +86,19 @@ const UploadBox:React.FC<prop_uploadbox> = ({ id, title ,endpoint,paraName,paraV
     <>
     <label htmlFor={id} className="upload-box ">
       {title}
-      <input type="file" id={id} onChange={handlefilechange} className="hidden" />
+      <input type="file" id={id}  className="hidden" onChange={(e) => handlefilechange(e, "file")} />
     </label>
-
+   {requiredInput === 2 && (
+    <label htmlFor={`${id}-2`} className="upload-box border-4 border-dashed border-white rounded-md p-4 mt-4">
+        Second Image
+        <input
+            id={`${id}-2`}
+            type="file"
+            className="hidden"
+            onChange={(e) => handlefilechange(e, "file2")}
+        />
+    </label>
+    )}
     {file && <p className="mt-2 text-green-400 text-sm">Selected: {file.name}</p>}
 
     <button onClick={handleSubmit} className='flex flex-col text-center items-center justify-center border-2 to-black bg-[#302b2b] hover:bg-[#3e3938]  hover:text-white cursor-pointer rounded-md w-54 h-12 mt-10 '>
