@@ -229,3 +229,21 @@ mountUploadBox('div',{
   paraValue:'div',
   requiredInput:2
 });
+
+mountUploadBox('t1',{
+  id:'t1',
+  title:'Image Rotation',
+  endpoint:'/transformations',
+  paraName:'conversionId',
+  paraValue:'t1',
+  requiredInput:3
+});
+
+mountUploadBox('t2',{
+  id:'t2',
+  title:'Background Removal',
+  endpoint:'/transformations',
+  paraName:'conversionId',
+  paraValue:'t2',
+  requiredInput:1
+});

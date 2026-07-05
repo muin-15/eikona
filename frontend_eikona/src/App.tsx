@@ -20,6 +20,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
   const [isError,setError]=useState<boolean>(false);
   const [file,setFile]=useState<File | null>(null);
   const [file2,setFile2]=useState<File | null>(null);
+  const [angle,setAngle]=useState<number | null>(null);
 
   const handlefilechange = async(event: ChangeEvent<HTMLInputElement>,type:'file' | 'file2') => {
     console.log("Event handling is processing");
@@ -45,11 +46,19 @@ const UploadBox:React.FC<prop_uploadbox> = ({
         setError(true);
         return;
     }
+    if (requiredInput === 3 && angle===null){
+      setmessage("Please enter angle to rotate");
+      setError(true);
+      return;
+    }
     const formData = new FormData();
 
     formData.append("file", file);
     if(requiredInput===2 && file2){
       formData.append("file2", file2);
+    }
+    if(requiredInput===3 && angle !==null){
+      formData.append("angle",angle.toString());
     }
     formData.append(paraName, paraValue);
 
@@ -98,6 +107,21 @@ const UploadBox:React.FC<prop_uploadbox> = ({
             onChange={(e) => handlefilechange(e, "file2")}
         />
     </label>
+    )}
+    {requiredInput===3 && (
+      <div className="mt-4">
+      <label htmlFor={`${id}-3`} className="block mb-2">
+        Enter Angle
+      </label>
+
+      <input
+        id={`${id}-3`}
+        type="number"
+        className="border-2 rounded-md p-2 w-full"
+        placeholder="e.g. 45"
+        onChange={(e) => setAngle(Number(e.target.value))}
+      />
+</div>
     )}
     {file && <p className="mt-2 text-green-400 text-sm">Selected: {file.name}</p>}
 

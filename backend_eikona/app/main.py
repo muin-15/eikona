@@ -4,6 +4,7 @@ import cv2 #type:ignore
 import numpy as np
 import matplotlib.pyplot as plt 
 from matplotlib.figure import Figure
+from rembg import remove
 
 app = FastAPI()
 
@@ -115,11 +116,21 @@ async def image_filter(
 @app.post("/transformations")
 async def iamge_transformation(
     file:UploadFile=File(...),
-    conversionId:str=Form(...)):
+    conversionId:str=Form(...),
+    angle:float=Form(...)):
 
     image=await validate_image(file)
 
-    if conversionId=='t6' or conversionId=='t7':
+    if conversionId=='t1':
+        scale=1.0
+        height,width=image.shape[:2]
+        center=(width//2,height//2)
+        rotation_matrix=cv2.getRotationMatrix2D(center,angle,scale)
+        rotated_img=cv2.warpAffine(image,rotation_matrix,(width,height))
+        cv2.imwrite('Rotated_img.jpg',rotated_img)
+        return {"message":" Image rotated successfully"}
+
+    elif conversionId=='t6' or conversionId=='t7':
         if conversionId=='t6':
             width=int(image.shape[1]*2)
             height=int(image.shape[0]*2)
@@ -129,8 +140,11 @@ async def iamge_transformation(
 
         upscale=cv2.resize(image,(width,height))
         cv2.imwrite('Scaled_image.jpg',upscale)
+
+    elif conversionId=='t3':
+        bg_removed=remove(image)
+        cv2.imwrite('Background_removed.jpg',bg_removed)
         return {"message": "Image successfully processed"}
-        
 
     raise HTTPException(status_code=400, detail="Invalid detection ID")
 
