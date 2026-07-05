@@ -277,6 +277,23 @@ async def image_conversions(
     image=await validate_image(file)
     
     if conversionId=='topng':
-        cv2.imwrite('jpeg_png.png',image)
-        return {"message":"converted to PNG"}
+        cv2.imwrite('png_converted.png',image)
+        return {"message":"Converted to PNG"}
+    
+    elif conversionId=='tojpg':
+        cv2.imwrite('jpg_converted.jpg',image)
+        return {"message":"Converted to JPG"}
+    
+    elif conversionId=='tobmp':
+        cv2.imwrite('bmp_converted.bmp',image)
+        return {"message":"Converted to BMP"}
+    
+    elif conversionId=='totiff':
+        cv2.imwrite('tiff_converted.tiff',image)
+        return {"message":"Converted to TIFF"}
+    
+    elif conversionId=='towebp':
+        cv2.imwrite('webp_converted.webp',image)
+        return {"message":"Converted to WEBP"}
+    
     raise HTTPException(status_code=400,detail="Invalide extension for operation")

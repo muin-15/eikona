@@ -271,7 +271,7 @@ mountUploadBox('tobmp',{
   title:'Convert to BMP',
   endpoint:'/image_conversion',
   paraName:'conversionId',
-  paraValue:'tojpg',
+  paraValue:'tobmp',
   requiredInput:1
 });
 
