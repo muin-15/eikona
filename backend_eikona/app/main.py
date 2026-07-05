@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 from matplotlib.figure import Figure
 from rembg import remove
+from typing import Optional
 
 app = FastAPI()
 
@@ -117,7 +118,7 @@ async def image_filter(
 async def iamge_transformation(
     file:UploadFile=File(...),
     conversionId:str=Form(...),
-    angle:float=Form(...)):
+    angle:Optional[float]=Form(None)):
 
     image=await validate_image(file)
 
@@ -140,8 +141,9 @@ async def iamge_transformation(
 
         upscale=cv2.resize(image,(width,height))
         cv2.imwrite('Scaled_image.jpg',upscale)
+        return {"message":"Image Scaled Successfully"}
 
-    elif conversionId=='t3':
+    elif conversionId=='t2':
         bg_removed=remove(image)
         cv2.imwrite('Background_removed.jpg',bg_removed)
         return {"message": "Image successfully processed"}
