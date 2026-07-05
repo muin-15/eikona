@@ -269,3 +269,14 @@ async def image_analytics(
         return {"message": "Image successfully processed"}
     return("Analysis Done Successfully")
 
+@app.post('/image_conversion')
+async def image_conversions(
+    file:UploadFile=File(...),
+    conversionId:str=Form(...)):
+
+    image=await validate_image(file)
+    
+    if conversionId=='topng':
+        cv2.imwrite('jpeg_png.png',image)
+        return {"message":"converted to PNG"}
+    raise HTTPException(status_code=400,detail="Invalide extension for operation")
