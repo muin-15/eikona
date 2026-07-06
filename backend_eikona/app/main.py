@@ -320,3 +320,14 @@ async def image_conversions(
         return {"message":"Converted to WEBP"}
     
     raise HTTPException(status_code=400,detail="Invalide extension for operation")
+
+@app.post('/restoration')
+async def Image_analytice(
+    file:UploadFile=File(...),
+    conversionId:str=Form(...)):
+    image=await validate_image(file)
+    if conversionId=='res3':
+        bg_removed=remove(image)
+        cv2.imwrite('Background_removed.jpg',bg_removed)
+        return {"message": "Image successfully processed"}
+    raise HTTPException(status_code=400,detail="Provide Image for processing")

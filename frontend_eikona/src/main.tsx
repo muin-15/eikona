@@ -239,12 +239,12 @@ mountUploadBox('t1',{
   requiredInput:3
 });
 
-mountUploadBox('t2',{
-  id:'t2',
+mountUploadBox('res3',{
+  id:'res3',
   title:'Background Removal',
-  endpoint:'/transformations',
+  endpoint:'/restoration',
   paraName:'conversionId',
-  paraValue:'t2',
+  paraValue:'res3',
   requiredInput:1
 });
 
