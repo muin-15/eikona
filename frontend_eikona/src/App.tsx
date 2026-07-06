@@ -21,6 +21,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
   const [file,setFile]=useState<File | null>(null);
   const [file2,setFile2]=useState<File | null>(null);
   const [angle,setAngle]=useState<number | null>(null);
+  const [gValue,setGvalue]=useState<number | null>(null);
 
   const handlefilechange = async(event: ChangeEvent<HTMLInputElement>,type:'file' | 'file2') => {
     console.log("Event handling is processing");
@@ -51,6 +52,11 @@ const UploadBox:React.FC<prop_uploadbox> = ({
       setError(true);
       return;
     }
+    if (requiredInput === 4 && gValue===null){
+      setmessage("Please enter Gamma value to transform");
+      setError(true);
+      return;
+    }
     const formData = new FormData();
 
     formData.append("file", file);
@@ -59,6 +65,9 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     }
     if(requiredInput===3 && angle !==null){
       formData.append("angle",angle.toString());
+    }
+    if(requiredInput===4 && gValue !==null){
+      formData.append("gamma",gValue.toString())
     }
     formData.append(paraName, paraValue);
 
@@ -122,6 +131,21 @@ const UploadBox:React.FC<prop_uploadbox> = ({
         onChange={(e) => setAngle(Number(e.target.value))}
       />
 </div>
+    )}
+    {requiredInput===4 && (
+      <div className='mt-4'>
+        <label htmlFor={`${id}-4`} className="block mb-2">
+          Enter Gamma Value
+        </label>
+
+        <input
+          id={`${id}-4`}
+          type="number"
+          className="border-2 rounded-md p-2 w-full "
+          placeholder='bet: 0.1-5.0'
+          onChange={(e) => setGvalue(Number(e.target.value))}
+        />
+      </div>
     )}
     {file && <p className="mt-2 text-amber-300 text-sm">Selected: {file.name}</p>}
 

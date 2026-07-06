@@ -308,7 +308,7 @@ mountUploadBox('t4',{
   endpoint:'/transformations',
   paraName:'conversionId',
   paraValue:'t4',
-  requiredInput:1
+  requiredInput:4
 });
 
 mountUploadBox('t5',{

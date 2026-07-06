@@ -37,7 +37,6 @@ async def validate_image(file:UploadFile):
     image=cv2.imdecode(nparr,cv2.IMREAD_COLOR)
 
     if image is None:
-        return("can't process")
         raise HTTPException(status_code=404,detail="Please provide an Image")
     return image
 
@@ -118,11 +117,12 @@ async def image_filter(
 async def iamge_transformation(
     file:UploadFile=File(...),
     conversionId:str=Form(...),
-    angle:Optional[float]=Form(None)):
+    angle:Optional[float]=Form(None),
+    gamma:Optional[float]=Form(None)):
 
     image=await validate_image(file)
 
-    if conversionId=='t1':
+    if conversionId=='t1' and angle:
         scale=1.0
         height,width=image.shape[:2]
         center=(width//2,height//2)
@@ -154,17 +154,20 @@ async def iamge_transformation(
         return {"message":"Negative Transformation Applied Successfully"}
     
     elif conversionId=='t4':
-        gamma=1.8
-        table=np.array([((i/255)**gamma)*255 for i in np.arange(0,256)]).astype("uint8")
-        power_law=cv2.LUT(image,table)
-        cv2.imwrite('Power_law_img.jpg',power_law)
-        return {"message":"PowerLaw Transformation Applied Successfully"}
+        if gamma>=0 and gamma<=5:
+            table=np.array([((i/255)**gamma)*255 for i in np.arange(0,256)]).astype("uint8")
+            power_law=cv2.LUT(image,table)
+            cv2.imwrite('Power_law_img.jpg',power_law)
+            return {"message":"PowerLaw Transformation Applied Successfully"}
+        else:
+            raise HTTPException(status_code=400,detail="Provide Gamma Value between 0.1-5.0")
 
     elif conversionId=='t5':
         img_float=image.astype(np.float32)
-        c=255/np.log(1+np.max(image))
+        max_val=np.max(img_float)
+        c=255/np.log(1+max_val) if max_val> 0 else 1
         log_img=c*np.log(1+img_float)
-        restored_log=np.uint8(log_img)
+        restored_log=cv2.convertScaleAbs(log_img)
         cv2.imwrite('Log_img.jpg',restored_log)
         return {"message":"Log Transformation Applied Successfully"}
 
