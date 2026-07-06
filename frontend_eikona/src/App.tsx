@@ -120,7 +120,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     {requiredInput===3 && (
       <div className="mt-4">
       <label htmlFor={`${id}-3`} className="block mb-2">
-        Enter Angle
+        Enter Angle to Rotate Image
       </label>
 
       <input
