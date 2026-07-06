@@ -292,3 +292,30 @@ mountUploadBox('towebp',{
   paraValue:'towebp',
   requiredInput:1
 });
+
+mountUploadBox('t3',{
+  id:'t3',
+  title:'Negative Transformation',
+  endpoint:'/transformations',
+  paraName:'conversionId',
+  paraValue:'t3',
+  requiredInput:1
+});
+
+mountUploadBox('t4',{
+  id:'t4',
+  title:'Power-Law Transformation',
+  endpoint:'/transformations',
+  paraName:'conversionId',
+  paraValue:'t4',
+  requiredInput:1
+});
+
+mountUploadBox('t5',{
+  id:'t5',
+  title:'Log Transformation',
+  endpoint:'/transformations',
+  paraName:'conversionId',
+  paraValue:'t5',
+  requiredInput:1
+});

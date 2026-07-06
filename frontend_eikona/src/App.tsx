@@ -123,14 +123,14 @@ const UploadBox:React.FC<prop_uploadbox> = ({
       />
 </div>
     )}
-    {file && <p className="mt-2 text-green-400 text-sm">Selected: {file.name}</p>}
+    {file && <p className="mt-2 text-amber-300 text-sm">Selected: {file.name}</p>}
 
     <button onClick={handleSubmit} className='flex flex-col text-center items-center justify-center border-2 to-black bg-[#302b2b] hover:bg-[#3e3938]  hover:text-white cursor-pointer rounded-md w-54 h-12 mt-10 '>
       Submit
     </button>
 
     {message && (
-      <p className={`mt-4 text-sm ${isError ? 'text-red-500' : 'text-green-500'}`}>
+      <p className={`mt-4 text-sm ${isError ? 'text-red-500' : 'text-amber-50'}`}>
         {message}
       </p>
     )}

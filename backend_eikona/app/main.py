@@ -147,6 +147,26 @@ async def iamge_transformation(
         bg_removed=remove(image)
         cv2.imwrite('Background_removed.jpg',bg_removed)
         return {"message": "Image successfully processed"}
+    
+    elif conversionId=='t3':
+        negative_img=255-image
+        cv2.imwrite('Negative_img.jpg',negative_img)
+        return {"message":"Negative Transformation Applied Successfully"}
+    
+    elif conversionId=='t4':
+        gamma=1.8
+        table=np.array([((i/255)**gamma)*255 for i in np.arange(0,256)]).astype("uint8")
+        power_law=cv2.LUT(image,table)
+        cv2.imwrite('Power_law_img.jpg',power_law)
+        return {"message":"PowerLaw Transformation Applied Successfully"}
+
+    elif conversionId=='t5':
+        img_float=image.astype(np.float32)
+        c=255/np.log(1+np.max(image))
+        log_img=c*np.log(1+img_float)
+        restored_log=np.uint8(log_img)
+        cv2.imwrite('Log_img.jpg',restored_log)
+        return {"message":"Log Transformation Applied Successfully"}
 
     raise HTTPException(status_code=400, detail="Invalid detection ID")
 
