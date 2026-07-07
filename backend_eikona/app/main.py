@@ -114,7 +114,7 @@ async def image_filter(
 
 
 @app.post("/transformations")
-async def iamge_transformation(
+async def image_transformation(
     file:UploadFile=File(...),
     conversionId:str=Form(...),
     angle:Optional[float]=Form(None),
@@ -322,7 +322,7 @@ async def image_conversions(
     raise HTTPException(status_code=400,detail="Invalide extension for operation")
 
 @app.post('/restoration')
-async def Image_analytice(
+async def Image_restoration(
     file:UploadFile=File(...),
     conversionId:str=Form(...)):
     image=await validate_image(file)
