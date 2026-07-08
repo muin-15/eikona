@@ -386,4 +386,8 @@ async def image_tools(
         bg_remove=remove(image)
         cv2.imwrite('Background_removed.jpg',bg_remove)
         return {"message":"Background Removed Successfully"}
+    elif conversionId=='tool2':
+        style_image=cv2.stylization(image)
+        cv2.imwrite('stilyzed_img.jpg',style_image)
+        return {"message":"Image Stylized Properly"}
     raise HTTPException(status_code=400,detail='Provide Image for Background Removal')

@@ -337,3 +337,12 @@ mountUploadBox('res2',{
   paraValue:'res2',
   requiredInput:1
 });
+
+mountUploadBox('tool2',{
+  id:'tool2',
+  title:'Stilyzation',
+  endpoint:'/tools',
+  paraName:'conversionId',
+  paraValue:'tool2',
+  requiredInput:1
+});
