@@ -346,3 +346,14 @@ mountUploadBox('tool2',{
   paraValue:'tool2',
   requiredInput:1
 });
+
+mountUploadBox('tool3',{
+  id:'tool3',
+  title:'Enhancement',
+  endpoint:'/tools',
+  paraName:'conversionId',
+  paraValue:'tool3',
+  requiredInput:1
+});
+
+

@@ -382,12 +382,18 @@ async def image_tools(
     file:UploadFile=File(...),
     conversionId:str=Form(...)):
     image=await validate_image(file)
+    gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+    _, mask = cv2.threshold(gray, 240, 255, cv2.THRESH_BINARY)
     if conversionId=='tool1':
         bg_remove=remove(image)
         cv2.imwrite('Background_removed.jpg',bg_remove)
         return {"message":"Background Removed Successfully"}
     elif conversionId=='tool2':
-        style_image=cv2.stylization(image)
+        style_image=cv2.stylization(image,sigma_s=60,sigma_r=0.45)
         cv2.imwrite('stilyzed_img.jpg',style_image)
         return {"message":"Image Stylized Properly"}
+    elif conversionId=='tool3':
+        enhance=cv2.inpaint(image,mask,3,cv2.INPAINT_TELEA)
+        cv2.imwrite('Enhanced_img.jpg',enhance)
+        return {"message":"Image Enhanced Successfully"}
     raise HTTPException(status_code=400,detail='Provide Image for Background Removal')
