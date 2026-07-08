@@ -372,11 +372,18 @@ async def Image_restoration(
         restored=inverse_filter(image,psf)
     elif conversionId=='res2':
         restored=wiener_filter(image,psf,k=0.01)
-    elif conversionId=='res3':
-        image = cv2.imread("luffy.jpeg", cv2.IMREAD_GRAYSCALE)
-        blurred = cv2.filter2D(image, -1, psf)
-        cv2.imwrite("blurred.png", blurred)
     else: 
         raise HTTPException(status_code=400,detail='Invalid processing')
     cv2.imwrite('restored.png',restored)
     return {"message":"Image Restored Successfully"}
+
+@app.post('/tools')
+async def image_tools(
+    file:UploadFile=File(...),
+    conversionId:str=Form(...)):
+    image=await validate_image(file)
+    if conversionId=='tool1':
+        bg_remove=remove(image)
+        cv2.imwrite('Background_removed.jpg',bg_remove)
+        return {"message":"Background Removed Successfully"}
+    raise HTTPException(status_code=400,detail='Provide Image for Background Removal')
