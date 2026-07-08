@@ -22,6 +22,43 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+def psf_genretion(shape,length=20,angle=45):
+    h,w=shape[:2]
+    psf=np.zeros((h,w),dtype=np.float32)
+    center=(h//2,w//2)
+    cv2.line(psf,
+            (center[0] - length // 2, center[1]), 
+            (center[0] + length // 2, center[1]),
+            1.0, 
+            thickness=1)
+    rotation_matrix=cv2.getRotationMatrix2D((center[0],center[1]),angle,1.0)
+    psf=cv2.warpAffine(psf,rotation_matrix,(w,h))
+    psf/=psf.sum()
+    psf=np.fft.ifftshift(psf)
+    return psf
+
+def inverse_filter(image,psf_kernel,epsilon=1e-3):
+    image=image.astype(np.float32)/255.0
+    G=np.fft.fft2(image)
+    H=np.fft.fft2(psf_kernel)
+    H_safe=np.where(np.abs(H)<epsilon,epsilon,H)
+    F=G/H_safe
+    restored=np.real(np.fft.fft2(F))
+    restored=np.clip(restored,0,1)
+
+    return (restored*255).astype(np.uint8)
+
+def wiener_filter(image,psf_kernel,k=0.01):
+    image=image.astype(np.float32)/255.0
+    G=np.fft.fft2(image)
+    H=np.fft.fft2(psf_kernel)
+    H_conj=np.conj(H)
+    F=(H_conj/(np.abs(H) ** 2 +k))*G
+    restored=np.real(np.fft.fft2(F))
+    restored=np.clip(restored,0,1)
+
+    return (restored*255).astype(np.uint8)
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
@@ -326,8 +363,20 @@ async def Image_restoration(
     file:UploadFile=File(...),
     conversionId:str=Form(...)):
     image=await validate_image(file)
-    if conversionId=='res3':
-        bg_removed=remove(image)
-        cv2.imwrite('Background_removed.jpg',bg_removed)
-        return {"message": "Image successfully processed"}
-    raise HTTPException(status_code=400,detail="Provide Image for processing")
+    if len(image.shape)==3:
+        image=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+
+    psf=psf_genretion(image.shape,length=25,angle=30)
+
+    if conversionId=='res1':
+        restored=inverse_filter(image,psf)
+    elif conversionId=='res2':
+        restored=wiener_filter(image,psf,k=0.01)
+    elif conversionId=='res3':
+        image = cv2.imread("luffy.jpeg", cv2.IMREAD_GRAYSCALE)
+        blurred = cv2.filter2D(image, -1, psf)
+        cv2.imwrite("blurred.png", blurred)
+    else: 
+        raise HTTPException(status_code=400,detail='Invalid processing')
+    cv2.imwrite('restored.png',restored)
+    return {"message":"Image Restored Successfully"}

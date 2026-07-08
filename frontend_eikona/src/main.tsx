@@ -319,3 +319,21 @@ mountUploadBox('t5',{
   paraValue:'t5',
   requiredInput:1
 });
+
+mountUploadBox('res1',{
+  id:'res1',
+  title:'Inverse Filtering',
+  endpoint:'/restoration',
+  paraName:'conversionId',
+  paraValue:'res1',
+  requiredInput:1
+});
+
+mountUploadBox('res2',{
+  id:'res2',
+  title:'Wiener Filtering',
+  endpoint:'/restoration',
+  paraName:'conversionId',
+  paraValue:'res2',
+  requiredInput:1
+});
