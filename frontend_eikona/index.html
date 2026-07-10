@@ -112,9 +112,10 @@
               BGR to Grayscale
               <input type="file" accept="image/" class="hidden">
             </label>
-            <label id="bgr2" class="border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
-              Grayscale to BGR
+            <label id="d1" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9  bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center items-center justify-center flex flex-col">
+              Thresholding
               <input type="file" accept="image/" class="hidden">
+
             </label>
             
             <label id="bgr3" class="border-2 rounded-md p-18 mb-9 border-emerald-500  bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
@@ -177,11 +178,7 @@
         <div id="detections" class="min-h-screen py-20 w-full max-w-4xl">
         <h2 class="text-2xl font-bold mb-15 text-center">Image Detections</h2>
         <div class="grid grid-cols-2 gap-8 w-full text-[24px]">
-        <label id="d1" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9  bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center">
-              Thresholding
-              <input type="file" accept="image/" class="hidden">
-
-            </label>
+        
             <label id="d2" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
               Edge Detection
               <input type="file" accept="image/" class="hidden">

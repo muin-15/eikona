@@ -215,7 +215,12 @@ async def image_detection(
     file:UploadFile=File(...),
     conversionId:str=Form(...)):
     image=await validate_image(file)
-    if conversionId=='d2':
+    if conversionId=='d1':
+        gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+        ret,thresh=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
+        cv2.imwrite('threshold_img(binary).jpg',thresh)
+        return {"message":"Transformed to binary successfully"}
+    elif conversionId=='d2':
         edge=cv2.Canny(image,100,200)
         cv2.imwrite('edges.jpg',edge)
         return {"message": "Image successfully processed"}

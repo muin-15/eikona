@@ -188,7 +188,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     )
 
     }
-    {file && <p className="mt-2 w-64 text-center text-amber-300 text-sm break-words mx-auto">Selected: {file.name}</p>}
+    {file && <p className="mt-2 w-64 text-center text-amber-300 text-sm wrap-break-words mx-auto">Selected: {file.name}</p>}
 
     <button onClick={handleSubmit} className='flex flex-col text-center items-center justify-center border-2 to-black bg-[#302b2b] hover:bg-[#3e3938]  hover:text-white cursor-pointer rounded-md w-54 h-12 mt-10 '>
       Submit

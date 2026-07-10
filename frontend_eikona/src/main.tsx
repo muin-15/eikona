@@ -28,14 +28,6 @@ mountUploadBox('bgr1',{
   requiredInput:1
 });
 
-mountUploadBox('bgr2',{
-  id:'bgr2',
-  title:'GRAY TO BGR',
-  endpoint:'/color_conversion',
-  paraName:'conversionId',
-  paraValue:'bgr2',
-  requiredInput:1
-});
 
 mountUploadBox('bgr3',{
   id:'bgr3',
@@ -374,5 +366,12 @@ mountUploadBox('tool5',{
   requiredInput:5
 });
 
-
+mountUploadBox('d1',{
+  id:'d1',
+  title:'Thresholding',
+  endpoint:'/color_conversion',
+  paraName:'conversionId',
+  paraValue:'d1',
+  requiredInput:1
+});
 
