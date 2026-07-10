@@ -344,16 +344,35 @@ mountUploadBox('tool2',{
   endpoint:'/tools',
   paraName:'conversionId',
   paraValue:'tool2',
-  requiredInput:1
+  requiredInput:5
 });
 
 mountUploadBox('tool3',{
   id:'tool3',
-  title:'Enhancement',
+  title:'IMAGE INPAINT',
   endpoint:'/tools',
   paraName:'conversionId',
   paraValue:'tool3',
   requiredInput:1
 });
+
+mountUploadBox('tool4',{
+  id:'tool4',
+  title:'Pencil Sketch',
+  endpoint:'/tools',
+  paraName:'conversionId',
+  paraValue:'tool4',
+  requiredInput:5
+});
+
+mountUploadBox('tool5',{
+  id:'tool5',
+  title:'HDR EFFECT',
+  endpoint:'/tools',
+  paraName:'conversionId',
+  paraValue:'tool5',
+  requiredInput:5
+});
+
 
 

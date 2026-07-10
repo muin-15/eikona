@@ -22,6 +22,8 @@ const UploadBox:React.FC<prop_uploadbox> = ({
   const [file2,setFile2]=useState<File | null>(null);
   const [angle,setAngle]=useState<number | null>(null);
   const [gValue,setGvalue]=useState<number | null>(null);
+  const [sigmaS,setSsigma]=useState<number | null>(null);
+  const [sigmaR,setRsigma]=useState<number | null>(null);
 
   const handlefilechange = async(event: ChangeEvent<HTMLInputElement>,type:'file' | 'file2') => {
     console.log("Event handling is processing");
@@ -57,6 +59,11 @@ const UploadBox:React.FC<prop_uploadbox> = ({
       setError(true);
       return;
     }
+    if (requiredInput === 5 && (sigmaR===null || sigmaS===null)){
+      setmessage("please enter Sigma_s value");
+      setError(true);
+      return;
+    }
     const formData = new FormData();
 
     formData.append("file", file);
@@ -68,6 +75,12 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     }
     if(requiredInput===4 && gValue !==null){
       formData.append("gamma",gValue.toString())
+    }
+    if(requiredInput===5 &&  sigmaR!==null && sigmaS!==null){
+      formData.append("sigmaS",sigmaS.toString())
+      if(sigmaR){
+      formData.append("sigmaR",sigmaR.toString()) 
+      }
     }
     formData.append(paraName, paraValue);
 
@@ -147,6 +160,34 @@ const UploadBox:React.FC<prop_uploadbox> = ({
         />
       </div>
     )}
+    {requiredInput===5 &&(
+      <div className='mt-12'>
+        <label htmlFor={`${id}-5`} className="block mb-2">
+          Enter Sigma Spatial Value
+        </label>
+
+        <input
+          id={`${id}-5`}
+          type='number'
+          className="border-2 rounded-md p-2 w-full"
+          placeholder='bet: 1-100+'
+          onChange={(e) => setSsigma(Number(e.target.value))}
+        />
+        <label htmlFor={`${id}-6`} className='block mb-2'>
+          Enter Sigma Range
+        </label>
+
+        <input
+          id={`${id}-6`}
+          type='number'
+          className='border-2 rounded-md p-2 w-full'
+          placeholder='bet: 0.1-1.0'
+          onChange={(e) => setRsigma(Number(e.target.value))}
+        />
+      </div>
+    )
+
+    }
     {file && <p className="mt-2 text-amber-300 text-sm">Selected: {file.name}</p>}
 
     <button onClick={handleSubmit} className='flex flex-col text-center items-center justify-center border-2 to-black bg-[#302b2b] hover:bg-[#3e3938]  hover:text-white cursor-pointer rounded-md w-54 h-12 mt-10 '>
