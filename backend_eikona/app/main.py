@@ -1,10 +1,10 @@
 from fastapi import FastAPI,UploadFile,File,Form,HTTPException #type:ignore
 from fastapi.middleware.cors import CORSMiddleware #type:ignore
 import cv2 #type:ignore
-import numpy as np
+import numpy as np #type:ignore
 import matplotlib.pyplot as plt 
 from matplotlib.figure import Figure
-from rembg import remove
+from rembg import remove #type:ignore
 from typing import Optional
 
 app = FastAPI()
@@ -22,20 +22,24 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def psf_genretion(shape,length=20,angle=45):
+def psf_genretion(shape,cid,length=20,angle=45):
     h,w=shape[:2]
     psf=np.zeros((h,w),dtype=np.float32)
-    center=(h//2,w//2)
+    center=(w//2,h//2)
     cv2.line(psf,
             (center[0] - length // 2, center[1]), 
             (center[0] + length // 2, center[1]),
             1.0, 
             thickness=1)
-    rotation_matrix=cv2.getRotationMatrix2D((center[0],center[1]),angle,1.0)
+    rotation_matrix=cv2.getRotationMatrix2D((center),angle,1.0)
     psf=cv2.warpAffine(psf,rotation_matrix,(w,h))
     psf/=psf.sum()
-    psf=np.fft.ifftshift(psf)
-    return psf
+    if cid=='res1':
+        return np.fft.fft2(np.fft.ifftshift(psf))
+    elif cid=='res2':
+        return psf
+    else:
+        return {"message":"Incorrect Id"}
 
 def inverse_filter(image,psf_kernel,epsilon=1e-3):
     image=image.astype(np.float32)/255.0
@@ -43,7 +47,7 @@ def inverse_filter(image,psf_kernel,epsilon=1e-3):
     H=np.fft.fft2(psf_kernel)
     H_safe=np.where(np.abs(H)<epsilon,epsilon,H)
     F=G/H_safe
-    restored=np.real(np.fft.fft2(F))
+    restored=np.real(np.fft.ifft2(F))
     restored=np.clip(restored,0,1)
 
     return (restored*255).astype(np.uint8)
@@ -54,7 +58,7 @@ def wiener_filter(image,psf_kernel,k=0.01):
     H=np.fft.fft2(psf_kernel)
     H_conj=np.conj(H)
     F=(H_conj/(np.abs(H) ** 2 +k))*G
-    restored=np.real(np.fft.fft2(F))
+    restored=np.real(np.fft.ifft2(F))
     restored=np.clip(restored,0,1)
 
     return (restored*255).astype(np.uint8)
@@ -117,7 +121,6 @@ async def convert_color(
     else:
         return("404 Error can't proceed")
     
-    return {"message": "Image successfully processed"}
     
 
 @app.post("/filtering")
@@ -147,7 +150,8 @@ async def image_filter(
         bilateral=cv2.bilateralFilter(image,d=9,sigmaColor=75,sigmaSpace=75)
         cv2.imwrite('bilateral_blur.jpg',bilateral)
 
-    return {"message": "Image successfully processed"}
+    else:
+        {"message": "Image successfully processed"}
 
 
 @app.post("/transformations")
@@ -208,7 +212,8 @@ async def image_transformation(
         cv2.imwrite('Log_img.jpg',restored_log)
         return {"message":"Log Transformation Applied Successfully"}
 
-    raise HTTPException(status_code=400, detail="Invalid detection ID")
+    else:
+        raise HTTPException(status_code=400, detail="Invalid detection ID")
 
 @app.post("/detection")
 async def image_detection(
@@ -225,7 +230,8 @@ async def image_detection(
         cv2.imwrite('edges.jpg',edge)
         return {"message": "Image successfully processed"}
         
-    raise HTTPException(status_code=400, detail="Invalid detection ID")
+    else:
+        raise HTTPException(status_code=400, detail="Invalid detection ID")
 
 
 @app.post("/compress")
@@ -238,7 +244,8 @@ async def image_compression(
         
         cv2.imwrite('img.jpg',image,[cv2.IMWRITE_JPEG_QUALITY, intensity])
         return{"message": f"Image successfully compressed with intensity {intensity}"}
-    raise HTTPException(status_code=400, detail="Invalid compression ID")
+    else:
+        raise HTTPException(status_code=400, detail="Invalid compression ID")
 
 @app.post("/operations")
 async def image_operations(
@@ -275,7 +282,8 @@ async def image_operations(
         divided=cv2.divide(image1,image2)
         cv2.imwrite('divided_img.jpg',divided)
         return {"message":"Images Successfully divided"}
-    raise HTTPException(status_code=400, detail="Invalid operation ID")
+    else:
+        raise HTTPException(status_code=400, detail="Invalid operation ID")
 
 @app.post("/analytics")
 async def image_analytics(
@@ -332,7 +340,9 @@ async def image_analytics(
         ax.imshow(magnitude_spectrum,cmap='gray')
         fig.savefig('img_fft.png',bbox_inches='tight')
         return {"message": "Image successfully processed"}
-    return("Analysis Done Successfully")
+    
+    else:
+        raise HTTPException(status_code=400,detail="Can't process successfully")
 
 @app.post('/image_conversion')
 async def image_conversions(
@@ -361,17 +371,19 @@ async def image_conversions(
         cv2.imwrite('webp_converted.webp',image)
         return {"message":"Converted to WEBP"}
     
-    raise HTTPException(status_code=400,detail="Invalide extension for operation")
+    else:
+        raise HTTPException(status_code=400,detail="Invalide extension for operation")
 
 @app.post('/restoration')
 async def Image_restoration(
     file:UploadFile=File(...),
     conversionId:str=Form(...)):
     image=await validate_image(file)
+    cid=conversionId
     if len(image.shape)==3:
         image=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
-    psf=psf_genretion(image.shape,length=25,angle=30)
+    psf=psf_genretion(image.shape,cid,length=25,angle=30,)
 
     if conversionId=='res1':
         restored=inverse_filter(image,psf)
@@ -418,4 +430,5 @@ async def image_tools(
         cv2.imwrite('hdr_img.jpg',hdr_img)
         return {"message":"Image Enhanced Successfully"}
     
-    raise HTTPException(status_code=400,detail='Provide Image for Background Removal')
+    else:
+        raise HTTPException(status_code=400,detail='Provide Image for Background Removal')

@@ -368,7 +368,7 @@ mountUploadBox('tool5',{
 
 mountUploadBox('d1',{
   id:'d1',
-  title:'Thresholding',
+  title:'Thresholding(Binary)',
   endpoint:'/color_conversion',
   paraName:'conversionId',
   paraValue:'d1',
