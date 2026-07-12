@@ -29,6 +29,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
   const [loading,setLoading]=useState<boolean>(false);
   const [preview,setPreview]=useState("");
   const [showpreview,setShowpreview]=useState(false);
+  const [resultimage,setResultimage]=useState("");
 
   const handlefilechange = async(event: ChangeEvent<HTMLInputElement>,type:'file' | 'file2') => {
     console.log("Event handling is processing");
@@ -88,9 +89,8 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     }
     if(requiredInput===5 &&  sigmaR!==null && sigmaS!==null){
       formData.append("sigmaS",sigmaS.toString())
-      if(sigmaR){
+      
       formData.append("sigmaR",sigmaR.toString()) 
-      }
     }
     formData.append(paraName, paraValue);
 
@@ -113,6 +113,8 @@ const UploadBox:React.FC<prop_uploadbox> = ({
         if (response.ok) {
             setmessage(`Success: ${data?.message}`);
             setError(false);
+            setResultimage(`http://localhost:8000${data.image}`);
+
         } else {
             setmessage(`Error: ${data?.detail || data?.message}`);
             setError(true);
@@ -243,7 +245,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
       </div>
     )}
     {showpreview &&(
-      <div className="fixed inset-0 bg-black/95 z-[9999] flex justify-center items-center"
+      <div className="fixed inset-0 bg-black/95 z-9999 flex justify-center items-center"
       onClick={()=> setShowpreview(false)}>
         
 
@@ -278,6 +280,32 @@ const UploadBox:React.FC<prop_uploadbox> = ({
       Cancel
       </button>
       </div>
+    )}
+ 
+  {resultimage && (
+    <div className='mt-8 flex flex-col items-center justify-center p-6 border-2 border-emerald-500 rounded-xl bg-emerald-950/20 w-full'>
+    
+    <h3 className="text-emerald-400 font-bold mb-4 uppercase tracking-widest">Output Result</h3>
+    
+    <img
+      src={resultimage}
+      /* Notice: No broken onClick function here anymore! */
+      className='max-w-xs md:max-w-md border-2 border-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.5)] rounded-xl object-contain'
+    />
+
+    </div>
+    )}
+    {resultimage && !loading &&(
+      <div
+      className='mt-8 flex flex-col items-center justify-center p-6 border-2 border-emerald-500 rounded-xl bg-emerald-950/20 w-full'>
+          <h3 className="text-emerald-400 font-bold mb-4 uppercase tracking-widest">Output Result</h3>
+          <img src={resultimage} alt="Processed Result" className='max-w-xs md:max-w-md border-2 border-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.5)] rounded-xl object-contain' />
+          <a href={resultimage} download={`Eikona-Result-${Date.now()}.jpg`} className="mt-6 flex items-center gap-2 px-6 py-2 bg-emerald-500 text-black font-bold uppercase tracking-wider rounded hover:bg-emerald-400 transition-colors">
+            <Download size={20}/>
+            Download
+            </a>
+      </div>
+
     )}
     </>
   );

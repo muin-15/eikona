@@ -1,5 +1,6 @@
 from fastapi import FastAPI,UploadFile,File,Form,HTTPException #type:ignore
 from fastapi.middleware.cors import CORSMiddleware #type:ignore
+from fastapi.responses import Response
 import cv2 #type:ignore
 import numpy as np #type:ignore
 import matplotlib.pyplot as plt 
@@ -93,6 +94,7 @@ async def convert_color(
     if conversionId=="bgr1":
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         cv2.imwrite('bgr_gray.jpg', gray)
+        return Response(content=gray.tobytes(),media_type='image/jpg')
         
     elif conversionId=="bgr2":
         if image.ndim == 3 and image.shape[2] == 3:
