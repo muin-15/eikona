@@ -1,5 +1,7 @@
 import React,{ useState, type ChangeEvent } from 'react' 
 import './App.css'
+import {LoaderCircle} from "lucide-react"; 
+import {Download} from "lucide-react";
 
 interface prop_uploadbox{
   id:string;
@@ -24,15 +26,23 @@ const UploadBox:React.FC<prop_uploadbox> = ({
   const [gValue,setGvalue]=useState<number | null>(null);
   const [sigmaS,setSsigma]=useState<number | null>(null);
   const [sigmaR,setRsigma]=useState<number | null>(null);
+  const [loading,setLoading]=useState<boolean>(false);
+  const [preview,setPreview]=useState("");
+  const [showpreview,setShowpreview]=useState(false);
 
   const handlefilechange = async(event: ChangeEvent<HTMLInputElement>,type:'file' | 'file2') => {
     console.log("Event handling is processing");
     const selectedFile=event.target.files?.[0];
+    const imageURL=URL.createObjectURL(selectedFile); 
+    setPreview(imageURL);
+    setShowpreview(true);
     if(selectedFile){
       if(type==='file'){
         setFile(selectedFile);
+        setPreview(URL.createObjectURL(selectedFile));
       } else {
         setFile2(selectedFile);
+        setPreview(URL.createObjectURL(selectedFile));
       }
     }
   };
@@ -92,6 +102,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     }
 
     try {
+        setLoading(true);
         const response = await fetch(`http://localhost:8000${endpoint}`, {
             method: "POST",
             body: formData,
@@ -110,6 +121,9 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     } catch (err) {
         setmessage(`Network Error: ${err instanceof Error ? err.message : String(err)}`);
         setError(true);
+    }
+    finally{
+      setLoading(false);
     }
 };
   
@@ -198,6 +212,72 @@ const UploadBox:React.FC<prop_uploadbox> = ({
       <p className={`mt-4 text-sm ${isError ? 'text-red-500' : 'text-amber-50'}`}>
         {message}
       </p>
+    )}
+    {loading && (
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center">
+
+      <LoaderCircle
+          size={70}
+          className="animate-spin text-emerald-400"
+      />
+
+      <p className="mt-6 text-xl text-white">
+          Processing Image...
+      </p>
+
+      <p className="text-gray-400">
+          Please wait
+      </p>
+
+    </div>
+    )}
+    {preview && (
+      <div className='mt-5'>
+        <img
+        src={preview}
+        alt="Preview"
+        onClick={() => setShowpreview(true)}
+        className='w-54 border-2 border-black shadow-lg rounded-xl'
+        />
+
+      </div>
+    )}
+    {showpreview &&(
+      <div className="fixed inset-0 bg-black/95 z-[9999] flex justify-center items-center"
+      onClick={()=> setShowpreview(false)}>
+        
+
+        
+        <img
+        src={preview}
+        alt="Full Preview"
+        className="max-w-[90vw] max-h-[90vh] object-contain "
+        onClick={(e)=>e.stopPropagation()}
+      />
+
+      <button
+          onClick={()=> setShowpreview(false)}
+          className="absolute top-5 right-5 text-white text-4xl hover:text-red-500">
+            ✕
+        </button>
+        
+        <button
+          className="absolute bottom-28 right-8 bg-emerald-500 px-8 py-3 rounded-xl text-black font-bold hover:bg-emerald-400 border-black border-2"
+          onClick={() => setShowpreview(false)}
+        >
+        Use Image
+        </button>
+        <button
+          className="absolute bottom-8 right-8 bg-red-600 px-13 py-3 rounded-xl border-black border-2"
+          onClick={() => {
+          setShowpreview(false);
+          setFile(null);
+          setPreview("");
+      }}
+      >
+      Cancel
+      </button>
+      </div>
     )}
     </>
   );
