@@ -107,16 +107,17 @@ const UploadBox:React.FC<prop_uploadbox> = ({
             method: "POST",
             body: formData,
         });
-
-        const data = await response.json();
-
+        
         if (response.ok) {
-            setmessage(`Success: ${data?.message}`);
+            const blob =await response.blob();
+            const outputImage=URL.createObjectURL(blob)
+            setResultimage(outputImage);
+            setmessage(`Success: Image Processed`);
             setError(false);
-            setResultimage(`http://localhost:8000${data.image}`);
 
         } else {
-            setmessage(`Error: ${data?.detail || data?.message}`);
+            const errorText=await response.text()
+            setmessage(`Error ${errorText}`);
             setError(true);
         }
 

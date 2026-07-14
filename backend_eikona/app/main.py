@@ -93,35 +93,39 @@ async def convert_color(
 
     if conversionId=="bgr1":
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        cv2.imwrite('bgr_gray.jpg', gray)
-        return Response(content=gray.tobytes(),media_type='image/jpg')
+        success, encoded_image = cv2.imencode('.jpg', gray)
+        
         
     elif conversionId=="bgr2":
         if image.ndim == 3 and image.shape[2] == 3:
            color=cv2.applyColorMap(image,cv2.COLORMAP_TWILIGHT_SHIFTED)
         elif image.ndim==1:
             color=cv2.cvtColor(image,cv2.COLOR_GRAY2BGR)
+        success,encoded_image=cv2.imencode('.jpg',color)
         
-        cv2.imwrite('gray_bgr.jpg',color)
+        
         
     elif conversionId=="bgr3":
         hsv=cv2.cvtColor(image,cv2.COLOR_BGR2HSV) 
-        cv2.imwrite('bgr_hsv.jpg',hsv)
+        success,encoded_image=cv2.imencode('.jpg',hsv)
 
     elif conversionId=="bgr4":
         hsv_bgr=cv2.cvtColor(image,cv2.COLOR_HSV2BGR)
-        cv2.imwrite('hsv_bgr.jpg',hsv_bgr)
+        success,encoded_image=cv2.imencode('.jpg',hsv_bgr)
 
     elif conversionId=="bgr5":
         rgb=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
-        cv2.imwrite('bgr_rgb.jpg',rgb)
+        success,encoded_image=cv2.imencode('.jpg',rgb)
 
     elif conversionId=="bgr6":
         rgb_bgr=cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
-        cv2.imwrite('rgb_bgr.jpg',rgb_bgr)
+        success,encoded_image=cv2.imencode('.jpg',rgb_bgr)
 
-    else:
-        return("404 Error can't proceed")
+    if not success:
+            return ("404 can't process image")
+
+    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
+    
     
     
 
