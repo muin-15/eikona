@@ -139,7 +139,7 @@ mountUploadBox('d2',{
 
 mountUploadBox('compress-mount',{
   id:'compression',
-  title:'Click to select Image',
+  title:'Click to select img',
   endpoint:'/compress',
   paraName:'conversionId',
   paraValue:'compress',
@@ -240,50 +240,15 @@ mountUploadBox('tool1',{
   requiredInput:1
 });
 
-mountUploadBox('topng',{
+mountUploadBox('toconvert',{
   id:'topng',
-  title:'Convert to PNG',
+  title:'Convert to Another File Format',
   endpoint:'/image_conversion',
   paraName:'conversionId',
-  paraValue:'topng',
+  paraValue:'toconvert',
   requiredInput:1
 });
 
-mountUploadBox('tojpg',{
-  id:'tojpg',
-  title:'Convert to JPG',
-  endpoint:'/image_conversion',
-  paraName:'conversionId',
-  paraValue:'tojpg',
-  requiredInput:1
-});
-
-mountUploadBox('tobmp',{
-  id:'tobmp',
-  title:'Convert to BMP',
-  endpoint:'/image_conversion',
-  paraName:'conversionId',
-  paraValue:'tobmp',
-  requiredInput:1
-});
-
-mountUploadBox('totiff',{
-  id:'totiff',
-  title:'Convert to TIFF',
-  endpoint:'/image_conversion',
-  paraName:'conversionId',
-  paraValue:'totiff',
-  requiredInput:1
-});
-
-mountUploadBox('towebp',{
-  id:'towebp',
-  title:'Convert to WEBP',
-  endpoint:'/image_conversion',
-  paraName:'conversionId',
-  paraValue:'towebp',
-  requiredInput:1
-});
 
 mountUploadBox('t3',{
   id:'t3',

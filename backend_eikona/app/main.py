@@ -8,7 +8,6 @@ from matplotlib.figure import Figure
 from rembg import remove #type:ignore
 from typing import Optional
 import io
-from matlpotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 app = FastAPI()
 
@@ -24,15 +23,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-SUPPORTED_FORMATS={
-    "jpg":(".jpg","image/jpeg"),
-    "jpeg":(".jpg","image/jpeg"),
-    "png":(".png","image/png"),
-    "bmp":(".bmp","image/bmp"),
-    "tiff":(".tiff","image/tiff"),
-    "webp":(".webp","image/webp"),
-}
 
 def psf_genretion(shape,cid,length=20,angle=45):
     h,w=shape[:2]
@@ -407,35 +397,11 @@ async def image_conversions(
 
     image=await validate_image(file)
     
-    if conversionId=='topng':
+    if conversionId=='toconvert':
         success,encoded_image=cv2.imencode('.png',image)
         if not success:
             return ('Invalid Format')
         return Response(content=encoded_image.tobytes(),media_type='image/png')
-    
-    elif conversionId=='tojpg':
-        success,encoded_image=cv2.imencode('.jpg',image)
-        if not success:
-            return ('Invalid Format')
-        return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
-    
-    elif conversionId=='tobmp':
-        success,encoded_image=cv2.imencode('.bmp',image)
-        if not success:
-            return ('Invalid Format')
-        return Response(content=encoded_image.tobytes(),media_type='image/bmp')
-    
-    elif conversionId=='totiff':
-        success,encoded_image=cv2.imencode('.tiff',image)
-        if not success:
-            return ('Invalid Format')
-        return Response(content=encoded_image.tobytes(),media_type='image/tiff')
-    
-    elif conversionId=='towebp':
-        success,encoded_image=cv2.imencode('.webp',image)
-        if not success:
-            return ("Invalid Format")
-        return Response(content=encoded_image.tobytes(),media_type='image/webp')
     
     else:
         raise HTTPException(status_code=400,detail="Invalide extension for operation")

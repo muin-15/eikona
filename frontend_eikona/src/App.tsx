@@ -33,7 +33,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
   const [Resultview,setResultview]=useState(false);
   const [hidePreviewThumb,setHidePreviewThumb]=useState(false);
   const [hideResultThumb,setHideResultThumb]=useState(false);
-  const [outputFormat,setOutputformat]=useState('jpg');
+  const [outputFormat,setOutputFormat]=useState('jpg');
 
   const handlefilechange = async(event: ChangeEvent<HTMLInputElement>,type:'file' | 'file2') => {
     console.log("Event handling is processing");
@@ -81,7 +81,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
       return;
     }
     const formData = new FormData();
-
+    
     formData.append("file", file);
     if(requiredInput===2 && file2){
       formData.append("file2", file2);
@@ -97,11 +97,13 @@ const UploadBox:React.FC<prop_uploadbox> = ({
       
       formData.append("sigmaR",sigmaR.toString()) 
     }
+    formData.append("outputFormat", outputFormat);
     formData.append(paraName, paraValue);
 
     if (range) {
         const rangeEl = document.getElementById(range.elementId) as HTMLInputElement;
       if (rangeEl) {
+
         formData.append(range.paraName, rangeEl.value);
       }
     }
@@ -215,7 +217,17 @@ const UploadBox:React.FC<prop_uploadbox> = ({
 
     }
     {file && <p className="mt-2 w-64 text-center text-amber-300 text-sm wrap-break-words mx-auto">Selected: {file.name}</p>}
-
+    <select
+    value={outputFormat}
+    onChange={(e) => setOutputFormat(e.target.value)}
+    className="border-2 rounded-md p-2 mt-4 bg-black text-emerald-400"
+    >
+    <option value="jpg">JPG</option>
+    <option value="png">PNG</option>
+    <option value="bmp">BMP</option>
+    <option value="tiff">TIFF</option>
+    <option value="webp">WEBP</option>
+    </select>
     <button onClick={handleSubmit} className=' text-center items-center justify-center border-2 to-black bg-[#302b2b] hover:bg-[#3e3938]  hover:text-white cursor-pointer rounded-md w-54 h-12 mt-10 '>
       Submit
     </button>
@@ -307,7 +319,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     )}
     {resultimage && !loading &&(
       <div>
-          <a href={resultimage} download={`Eikona-Result-${Date.now()}.jpg`} className="mt-6 flex items-center px-4 py-4 bg-emerald-900 text-indigo-300 font-bold uppercase tracking-wider rounded-full hover:bg-emerald-950 hover:text-indigo-100 transition-colors">
+          <a href={resultimage} download={`Eikona-Result-${Date.now()}.${outputFormat}`} className="mt-6 flex items-center px-4 py-4 bg-emerald-900 text-indigo-300 font-bold uppercase tracking-wider rounded-full hover:bg-emerald-950 hover:text-indigo-100 transition-colors">
             <Download size={20}/>
             </a>
       </div>
