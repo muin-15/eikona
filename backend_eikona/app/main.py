@@ -36,12 +36,8 @@ def psf_genretion(shape,cid,length=20,angle=45):
     rotation_matrix=cv2.getRotationMatrix2D((center),angle,1.0)
     psf=cv2.warpAffine(psf,rotation_matrix,(w,h))
     psf/=psf.sum()
-    if cid=='res1':
-        return np.fft.fft2(np.fft.ifftshift(psf))
-    elif cid=='res2':
-        return psf
-    else:
-        return {"message":"Incorrect Id"}
+    return psf
+   
 
 def inverse_filter(image,psf_kernel,epsilon=1e-3):
     image=image.astype(np.float32)/255.0
@@ -154,14 +150,14 @@ async def image_filter(
 
     elif conversionId=="filter5":
         bilateral=cv2.bilateralFilter(image,d=9,sigmaColor=75,sigmaSpace=75)
-        success,encoded_image-cv2.imencode('.jpg',bilateral)
+        success,encoded_image=cv2.imencode('.jpg',bilateral)
 
     else:
-        {"message": "Invalid conversionId"}
+        return {"message": "Invalid conversionId"}
 
     if not success:
         return ("Can't process image")
-    return Response(content=encoded_image.tobyte(),media_type='image/jpeg')
+    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
 
 
 
@@ -174,7 +170,7 @@ async def image_transformation(
 
     image=await validate_image(file)
 
-    if conversionId=='t1' and angle:
+    if conversionId=='t1' and angle is not None:
         scale=1.0
         height,width=image.shape[:2]
         center=(width//2,height//2)
@@ -224,7 +220,7 @@ async def image_transformation(
     
     if not success:
         return ("404 can't process image")
-    return Response(content=encoded_image.tobyte(),media_type='image/jpeg')
+    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
 
 @app.post("/detection")
 async def image_detection(
@@ -233,7 +229,8 @@ async def image_detection(
     image=await validate_image(file)
     
     if conversionId=='d2':
-        edge=cv2.Canny(image,100,200)
+        gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+        edge=cv2.Canny(gray,100,200)
         success,encoded_image=cv2.imencode('.jpg',edge)
         
     else:
@@ -241,7 +238,7 @@ async def image_detection(
     
     if not success:
         return ("404: can't process image")
-    return Response(content=encoded_image.togyte(),media_type='image/jpeg')
+    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
 
 
 @app.post("/compress")
@@ -253,9 +250,13 @@ async def image_compression(
     if conversionId=='compress':
         
         sucess,encoded_image=cv2.imencode('.jpg',image,[cv2.IMWRITE_JPEG_QUALITY, intensity])
-    if not sucess:
-        return ("404: Can't process image")
-    return Response(content=encoded_image.tobyte(),media_type='image/jpeg')
+        if not sucess:
+            return ("404: Can't process image")
+        return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
+    else:
+        raise HTTPException(status_code=404,detail="Inavlid conversionId")
+
+    
 
 @app.post("/operations")
 async def image_operations(
@@ -292,7 +293,7 @@ async def image_operations(
 
     else:
         raise HTTPException(status_code=400, detail="Invalid operation ID")
-    return Response(content=encoded_image.tobyte(),media_type='image/jpeg')
+    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
 
 @app.post("/analytics")
 async def image_analytics(
@@ -334,7 +335,7 @@ async def image_analytics(
         fig=Figure(figsize=(7,4))
         ax=fig.add_subplot(1,1,1)
         ax.imshow(magnitude_spectrum,cmap='gray')
-        ax.set_title("DFT Transformasion")
+        ax.set_title("DFT Transformation")
         ax.axis('off')
 
         buf= io.BytesIO()
@@ -357,7 +358,7 @@ async def image_analytics(
         fig=Figure(figsize=(7,4))
         ax=fig.add_subplot(1,1,1)
         ax.imshow(dct_log,cmap='gray')
-        ax.set_title("DCT Transformasion")
+        ax.set_title("DCT Transformation")
         ax.axis('off')
 
         buf=io.BytesIO()
@@ -376,7 +377,7 @@ async def image_analytics(
         fig=Figure(figsize=(7,4))
         ax=fig.add_subplot(1,1,1)
         ax.imshow(magnitude_spectrum,cmap='gray')
-        ax.set_title('FFt Transformasion')
+        ax.set_title('FFt Transformation')
         ax.axis('off')
         
         buf=io.BytesIO()
@@ -449,7 +450,7 @@ async def Image_restoration(
     success,encoded_image=cv2.imencode('.jpg',restored)
     if not success:
         return ('500 : server Error')
-    return Response(content=encoded_image.tobytes(),media_type='image/.jpeg')
+    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
 
 @app.post('/tools')
 async def image_tools(
@@ -483,6 +484,8 @@ async def image_tools(
         success,encoded_image=cv2.imencode('.jpg',hdr_img)
     
     else:
-        raise HTTPException(status_code=400,detail='Provide Image for Background Removal')
+        raise HTTPException(status_code=400,detail='Invalid conversionId')
+    if not success:
+        return ("500 Can't process Image")
     
     return Response(content=encoded_image.tobytes(),media_type='image/jpeg')

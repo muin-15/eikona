@@ -112,6 +112,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
             const blob =await response.blob();
             const outputImage=URL.createObjectURL(blob)
             setResultimage(outputImage);
+            setPreview("");
             setmessage(`Success: Image Processed`);
             setError(false);
 
@@ -127,6 +128,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     }
     finally{
       setLoading(false);
+      setShowpreview(false);
     }
 };
   
@@ -290,8 +292,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     
     <img
       src={resultimage}
-      /* Notice: No broken onClick function here anymore! */
-      className='max-w-xs md:max-w-md border-2 border-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.5)] rounded-xl object-contain'
+      className='max-w-xs size-11/12 md:max-w-md border-2 border-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.5)] rounded-xl object-contain'
     />
 
     </div>
@@ -299,8 +300,6 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     {resultimage && !loading &&(
       <div
       className='mt-8 flex flex-col items-center justify-center p-6 border-2 border-emerald-500 rounded-xl bg-emerald-950/20 w-full'>
-          <h3 className="text-emerald-400 font-bold mb-4 uppercase tracking-widest">Output Result</h3>
-          <img src={resultimage} alt="Processed Result" className='max-w-xs md:max-w-md border-2 border-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.5)] rounded-xl object-contain' />
           <a href={resultimage} download={`Eikona-Result-${Date.now()}.jpg`} className="mt-6 flex items-center gap-2 px-6 py-2 bg-emerald-500 text-black font-bold uppercase tracking-wider rounded hover:bg-emerald-400 transition-colors">
             <Download size={20}/>
             Download
