@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from rembg import remove #type:ignore
 from typing import Optional
+import io
 
 app = FastAPI()
 
@@ -95,14 +96,10 @@ async def convert_color(
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         success, encoded_image = cv2.imencode('.jpg', gray)
         
-        
-    elif conversionId=="bgr2":
-        if image.ndim == 3 and image.shape[2] == 3:
-           color=cv2.applyColorMap(image,cv2.COLORMAP_TWILIGHT_SHIFTED)
-        elif image.ndim==1:
-            color=cv2.cvtColor(image,cv2.COLOR_GRAY2BGR)
-        success,encoded_image=cv2.imencode('.jpg',color)
-        
+    elif conversionId=='d1':
+        gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+        ret,thresh=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
+        success,encoded_image=cv2.imencode('.jpg',thresh)
         
         
     elif conversionId=="bgr3":
@@ -121,6 +118,9 @@ async def convert_color(
         rgb_bgr=cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
         success,encoded_image=cv2.imencode('.jpg',rgb_bgr)
 
+    else:
+        raise HTTPException(status_code=400, detail=f"Unknown conversionId: {conversionId}")
+
     if not success:
             return ("404 can't process image")
 
@@ -138,26 +138,31 @@ async def image_filter(
 
     if conversionId=="filter3":
         gaussian=cv2.GaussianBlur(image,(5,5),0)
-        cv2.imwrite('gaussian_blur.jpg',gaussian)
+        success,encoded_image=cv2.imencode('.jpg',gaussian)
 
     elif conversionId=="filter1":
         mean=cv2.boxFilter(image,-1,(5,5))
-        cv2.imwrite('mean_blur.jpg',mean)
+        success,encoded_image=cv2.imencode('.jpg',mean)
 
     elif conversionId=="filter2":
         median=cv2.medianBlur(image,5)
-        cv2.imwrite('median_blur.jpg',median)
+        success,encoded_image=cv2.imencode('.jpg',median)
 
     elif conversionId=="filter4":
         laplacian=cv2.Laplacian(image,cv2.CV_64F,ksize=3)
-        cv2.imwrite('laplacian_blur.jpg',laplacian)
+        success,encoded_image=cv2.imencode('.jpg',laplacian)
 
     elif conversionId=="filter5":
         bilateral=cv2.bilateralFilter(image,d=9,sigmaColor=75,sigmaSpace=75)
-        cv2.imwrite('bilateral_blur.jpg',bilateral)
+        success,encoded_image-cv2.imencode('.jpg',bilateral)
 
     else:
-        {"message": "Image successfully processed"}
+        {"message": "Invalid conversionId"}
+
+    if not success:
+        return ("Can't process image")
+    return Response(content=encoded_image.tobyte(),media_type='image/jpeg')
+
 
 
 @app.post("/transformations")
@@ -175,8 +180,8 @@ async def image_transformation(
         center=(width//2,height//2)
         rotation_matrix=cv2.getRotationMatrix2D(center,angle,scale)
         rotated_img=cv2.warpAffine(image,rotation_matrix,(width,height))
-        cv2.imwrite('Rotated_img.jpg',rotated_img)
-        return {"message":" Image rotated successfully"}
+        success,encoded_image=cv2.imencode('.jpg',rotated_img)
+
 
     elif conversionId=='t6' or conversionId=='t7':
         if conversionId=='t6':
@@ -187,25 +192,22 @@ async def image_transformation(
             height=int(image.shape[0]*0.5)
 
         upscale=cv2.resize(image,(width,height))
-        cv2.imwrite('Scaled_image.jpg',upscale)
-        return {"message":"Image Scaled Successfully"}
+        success,encoded_image=cv2.imencode('.jpg',upscale)
 
     elif conversionId=='t2':
         bg_removed=remove(image)
-        cv2.imwrite('Background_removed.jpg',bg_removed)
-        return {"message": "Image successfully processed"}
+        success,encoded_image=cv2.imencode('.jpg',bg_removed)
     
     elif conversionId=='t3':
         negative_img=255-image
-        cv2.imwrite('Negative_img.jpg',negative_img)
-        return {"message":"Negative Transformation Applied Successfully"}
+        
+        success,encoded_image=cv2.imencode('.jpg',negative_img)
     
     elif conversionId=='t4':
         if gamma>=0 and gamma<=5:
             table=np.array([((i/255)**gamma)*255 for i in np.arange(0,256)]).astype("uint8")
             power_law=cv2.LUT(image,table)
-            cv2.imwrite('Power_law_img.jpg',power_law)
-            return {"message":"PowerLaw Transformation Applied Successfully"}
+            success,encoded_image=cv2.imencode('.jpg',power_law)
         else:
             raise HTTPException(status_code=400,detail="Provide Gamma Value between 0.1-5.0")
 
@@ -215,29 +217,31 @@ async def image_transformation(
         c=255/np.log(1+max_val) if max_val> 0 else 1
         log_img=c*np.log(1+img_float)
         restored_log=cv2.convertScaleAbs(log_img)
-        cv2.imwrite('Log_img.jpg',restored_log)
-        return {"message":"Log Transformation Applied Successfully"}
+        success,encoded_image=cv2.imencode('.jpg',restored_log)
 
     else:
         raise HTTPException(status_code=400, detail="Invalid detection ID")
+    
+    if not success:
+        return ("404 can't process image")
+    return Response(content=encoded_image.tobyte(),media_type='image/jpeg')
 
 @app.post("/detection")
 async def image_detection(
     file:UploadFile=File(...),
     conversionId:str=Form(...)):
     image=await validate_image(file)
-    if conversionId=='d1':
-        gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-        ret,thresh=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
-        cv2.imwrite('threshold_img(binary).jpg',thresh)
-        return {"message":"Transformed to binary successfully"}
-    elif conversionId=='d2':
+    
+    if conversionId=='d2':
         edge=cv2.Canny(image,100,200)
-        cv2.imwrite('edges.jpg',edge)
-        return {"message": "Image successfully processed"}
+        success,encoded_image=cv2.imencode('.jpg',edge)
         
     else:
         raise HTTPException(status_code=400, detail="Invalid detection ID")
+    
+    if not success:
+        return ("404: can't process image")
+    return Response(content=encoded_image.togyte(),media_type='image/jpeg')
 
 
 @app.post("/compress")
@@ -248,10 +252,10 @@ async def image_compression(
     image=await validate_image(file)
     if conversionId=='compress':
         
-        cv2.imwrite('img.jpg',image,[cv2.IMWRITE_JPEG_QUALITY, intensity])
-        return{"message": f"Image successfully compressed with intensity {intensity}"}
-    else:
-        raise HTTPException(status_code=400, detail="Invalid compression ID")
+        sucess,encoded_image=cv2.imencode('.jpg',image,[cv2.IMWRITE_JPEG_QUALITY, intensity])
+    if not sucess:
+        return ("404: Can't process image")
+    return Response(content=encoded_image.tobyte(),media_type='image/jpeg')
 
 @app.post("/operations")
 async def image_operations(
@@ -265,31 +269,30 @@ async def image_operations(
         if image1.shape!=image2.shape:
             raise HTTPException(status_code=400, detail="Images must have the same dimensions for addition")
         added=cv2.add(image1,image2)
-        cv2.imwrite('added_img.jpg',added)
-        return {"message": "Images Successfully added"}
+        success,encoded_image=cv2.imencode('.jpg',added)
+
     
     elif conversionId=='sub':
         if image1.shape!=image2.shape:
             raise HTTPException(status_code=400,detail="Images must have the same dimensions for subtraction")
         subtract=cv2.subtract(image1,image2)
-        cv2.imwrite('subtracted_img.jpg',subtract)
-        return {"message":"Images Successfully subtracted"}
+        success,encoded_image=cv2.imencode('.jpg',subtract)
     
     elif conversionId=='mul':
         if image1.shape!=image2.shape:
             raise HTTPException(status_code=400,detail="Images must have the same dimensions for multiplication")
         multiplied=cv2.multiply(image1,image2)
-        cv2.imwrite('multiplied_img.jpg',multiplied)
-        return {"message":"Images Successfully multiplicated"}
+        success,encoded_image=cv2.imencode('.jpg',multiplied)
     
     elif conversionId=='div':
         if image1.shape!=image2.shape:
             raise HTTPException(status_code=400,detail="Images must have the same dimensions for division")
         divided=cv2.divide(image1,image2)
-        cv2.imwrite('divided_img.jpg',divided)
-        return {"message":"Images Successfully divided"}
+        success,encoded_image=cv2.imencode('.jpg',divided)
+
     else:
         raise HTTPException(status_code=400, detail="Invalid operation ID")
+    return Response(content=encoded_image.tobyte(),media_type='image/jpeg')
 
 @app.post("/analytics")
 async def image_analytics(
@@ -304,36 +307,65 @@ async def image_analytics(
         ax.set_title('Histogram Analysis')
         ax.set_xlabel('Pixel Value')
         ax.set_ylabel('Frequency')
-        for i,color in enumerate(colors):
-            img_hist=cv2.calcHist([image],[i],None,[256],[0,256])
-            ax.plot(img_hist,color=color,label=f'{color.upper()} Channel')
-        
+        if image.ndim==2:
+            hist=cv2.calcHist([image],[0],None,[256],[0,256])
+            ax.plot(hist,color='black',label='Intensity')
+        else:
+            for i,color in enumerate(colors):
+                hist=cv2.calcHist([image],[i],None,[256],[0,256])
+                ax.plot(hist,color=color,label=f'{color.upper()} channel')
+
         ax.set_xlim([0,256])
         ax.legend()
         ax.grid(True)
-        fig.savefig('img_hist.png',bbox_inches='tight')
-        return {"message": "Image successfully processed"}
+
+        buf = io.BytesIO()
+        fig.savefig(buf, format='png', bbox_inches='tight')
+        buf.seek(0)
+        return Response(content=buf.getvalue(),media_type='image/png')
+
     
     elif conversionId=='dft':
         if len(image.shape) == 3:
             image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         dft_img=cv2.dft(np.float32(image),flags=cv2.DFT_COMPLEX_OUTPUT) 
-        magnitude_spectrum=20*np.log(cv2.magnitude(dft_img[:,:,0],dft_img[:,:,1]))
+        dft_shift=np.fft.fftshift(dft_img)
+        magnitude_spectrum=20*np.log(cv2.magnitude(dft_shift[:,:,0],dft_shift[:,:,1]))
         fig=Figure(figsize=(7,4))
         ax=fig.add_subplot(1,1,1)
         ax.imshow(magnitude_spectrum,cmap='gray')
-        fig.savefig('img_dft.png',bbox_inches='tight')
-        return {"message": "Image successfully processed"}
+        ax.set_title("DFT Transformasion")
+        ax.axis('off')
+
+        buf= io.BytesIO()
+        fig.savefig(buf,format='png',bbox_inches='tight')
+        buf.seek(0)
+        return Response(content=buf.getvalue(),media_type='image/png')
     
     elif conversionId=='dct':
         if len(image.shape) == 3:
             image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        dct_img=cv2.dct(np.float32(image))
+        h, w = image.shape
+        image_f = np.float32(image)
+        if h % 2 != 0:
+            image_f = image_f[:-1, :]
+        if w % 2 != 0:
+            image_f = image_f[:, :-1]
+
+        dct_img = cv2.dct(image_f)
+        dct_log = np.log(np.abs(dct_img) + 1e-8)
         fig=Figure(figsize=(7,4))
         ax=fig.add_subplot(1,1,1)
-        ax.imshow(dct_img,cmap='gray')
-        fig.savefig('img_dct.png',bbox_inches='tight')
-        return {"message": "Image successfully processed"}
+        ax.imshow(dct_log,cmap='gray')
+        ax.set_title("DCT Transformasion")
+        ax.axis('off')
+
+        buf=io.BytesIO()
+        fig.savefig(buf,format='png',bbox_inches='tight')
+        buf.seek(0)
+        return Response(content=buf.getvalue(),media_type='image/png')
+        
+        
     
     elif conversionId=='fft':
         if len(image.shape) == 3:
@@ -344,8 +376,15 @@ async def image_analytics(
         fig=Figure(figsize=(7,4))
         ax=fig.add_subplot(1,1,1)
         ax.imshow(magnitude_spectrum,cmap='gray')
-        fig.savefig('img_fft.png',bbox_inches='tight')
-        return {"message": "Image successfully processed"}
+        ax.set_title('FFt Transformasion')
+        ax.axis('off')
+        
+        buf=io.BytesIO()
+        fig.savefig(buf,format='png',bbox_inches='tight')
+        buf.seek(0)
+        return Response(content=buf.getvalue(),media_type='image/png')
+
+        
     
     else:
         raise HTTPException(status_code=400,detail="Can't process successfully")
@@ -358,24 +397,34 @@ async def image_conversions(
     image=await validate_image(file)
     
     if conversionId=='topng':
-        cv2.imwrite('png_converted.png',image)
-        return {"message":"Converted to PNG"}
+        success,encoded_image=cv2.imencode('.png',image)
+        if not success:
+            return ('Invalid Format')
+        return Response(content=encoded_image.tobytes(),media_type='image/png')
     
     elif conversionId=='tojpg':
-        cv2.imwrite('jpg_converted.jpg',image)
-        return {"message":"Converted to JPG"}
+        success,encoded_image=cv2.imencode('.jpg',image)
+        if not success:
+            return ('Invalid Format')
+        return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
     
     elif conversionId=='tobmp':
-        cv2.imwrite('bmp_converted.bmp',image)
-        return {"message":"Converted to BMP"}
+        success,encoded_image=cv2.imencode('.bmp',image)
+        if not success:
+            return ('Invalid Format')
+        return Response(content=encoded_image.tobytes(),media_type='image/bmp')
     
     elif conversionId=='totiff':
-        cv2.imwrite('tiff_converted.tiff',image)
-        return {"message":"Converted to TIFF"}
+        success,encoded_image=cv2.imencode('.tiff',image)
+        if not success:
+            return ('Invalid Format')
+        return Response(content=encoded_image.tobytes(),media_type='image/tiff')
     
     elif conversionId=='towebp':
-        cv2.imwrite('webp_converted.webp',image)
-        return {"message":"Converted to WEBP"}
+        success,encoded_image=cv2.imencode('.webp',image)
+        if not success:
+            return ("Invalid Format")
+        return Response(content=encoded_image.tobytes(),media_type='image/webp')
     
     else:
         raise HTTPException(status_code=400,detail="Invalide extension for operation")
@@ -397,8 +446,10 @@ async def Image_restoration(
         restored=wiener_filter(image,psf,k=0.01)
     else: 
         raise HTTPException(status_code=400,detail='Invalid processing')
-    cv2.imwrite('restored.png',restored)
-    return {"message":"Image Restored Successfully"}
+    success,encoded_image=cv2.imencode('.jpg',restored)
+    if not success:
+        return ('500 : server Error')
+    return Response(content=encoded_image.tobytes(),media_type='image/.jpeg')
 
 @app.post('/tools')
 async def image_tools(
@@ -413,28 +464,25 @@ async def image_tools(
 
     if conversionId=='tool1':
         bg_remove=remove(image)
-        cv2.imwrite('Background_removed.jpg',bg_remove)
-        return {"message":"Background Removed Successfully"}
+        success,encoded_image=cv2.imencode('.jpg',bg_remove)
     
     elif conversionId=='tool2' and (sigmaS or sigmaR):
         style_image=cv2.stylization(image,sigma_s=sigmaS,sigma_r=sigmaR)
-        cv2.imwrite('stilyzed_img.jpg',style_image)
-        return {"message":"Image Stylized Properly"}
+        success,encoded_image=cv2.imencode('.jpg',style_image)
     
     elif conversionId=='tool3':
         enhance=cv2.inpaint(image,mask,3,cv2.INPAINT_TELEA)
-        cv2.imwrite('Enhanced_img.jpg',enhance)
-        return {"message":"Image Enhanced Successfully"}
+        success,encoded_image=cv2.imencode('.jpg',enhance)
     
     elif conversionId=='tool4' and (sigmaS or sigmaR):
         gray,pencil_img=cv2.pencilSketch(image,sigma_s=sigmaS,sigma_r=sigmaR,shade_factor=0.05)
-        cv2.imwrite("pencil_sketch.jpg",pencil_img)
-        return {"message":"Image Enhanced Successfully"}
+        success,encoded_image=cv2.imencode('.jpg',pencil_img)
     
     elif conversionId=='tool5' and (sigmaS or sigmaR):
         hdr_img=cv2.detailEnhance(image,sigma_s=sigmaS,sigma_r=sigmaR)
-        cv2.imwrite('hdr_img.jpg',hdr_img)
-        return {"message":"Image Enhanced Successfully"}
+        success,encoded_image=cv2.imencode('.jpg',hdr_img)
     
     else:
         raise HTTPException(status_code=400,detail='Provide Image for Background Removal')
+    
+    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
