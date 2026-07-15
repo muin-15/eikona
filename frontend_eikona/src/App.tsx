@@ -30,12 +30,16 @@ const UploadBox:React.FC<prop_uploadbox> = ({
   const [preview,setPreview]=useState("");
   const [showpreview,setShowpreview]=useState(false);
   const [resultimage,setResultimage]=useState("");
+  const [Resultview,setResultview]=useState(false);
+  const [hidePreviewThumb,setHidePreviewThumb]=useState(false);
+  const [hideResultThumb,setHideResultThumb]=useState(false);
+  const [outputFormat,setOutputformat]=useState('jpg');
 
   const handlefilechange = async(event: ChangeEvent<HTMLInputElement>,type:'file' | 'file2') => {
     console.log("Event handling is processing");
     const selectedFile=event.target.files?.[0];
-    const imageURL=URL.createObjectURL(selectedFile); 
-    setPreview(imageURL);
+    if(!selectedFile) return;
+    
     setShowpreview(true);
     if(selectedFile){
       if(type==='file'){
@@ -45,6 +49,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
         setFile2(selectedFile);
         setPreview(URL.createObjectURL(selectedFile));
       }
+      setHidePreviewThumb(false);
     }
   };
 
@@ -113,6 +118,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
             const outputImage=URL.createObjectURL(blob)
             setResultimage(outputImage);
             setPreview("");
+            setHideResultThumb(false);
             setmessage(`Success: Image Processed`);
             setError(false);
 
@@ -129,6 +135,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     finally{
       setLoading(false);
       setShowpreview(false);
+      setResultview(true);
     }
 };
   
@@ -209,7 +216,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     }
     {file && <p className="mt-2 w-64 text-center text-amber-300 text-sm wrap-break-words mx-auto">Selected: {file.name}</p>}
 
-    <button onClick={handleSubmit} className='flex flex-col text-center items-center justify-center border-2 to-black bg-[#302b2b] hover:bg-[#3e3938]  hover:text-white cursor-pointer rounded-md w-54 h-12 mt-10 '>
+    <button onClick={handleSubmit} className=' text-center items-center justify-center border-2 to-black bg-[#302b2b] hover:bg-[#3e3938]  hover:text-white cursor-pointer rounded-md w-54 h-12 mt-10 '>
       Submit
     </button>
 
@@ -236,19 +243,8 @@ const UploadBox:React.FC<prop_uploadbox> = ({
 
     </div>
     )}
-    {preview && (
-      <div className='mt-5'>
-        <img
-        src={preview}
-        alt="Preview"
-        onClick={() => setShowpreview(true)}
-        className='w-54 border-2 border-black shadow-lg rounded-xl'
-        />
-
-      </div>
-    )}
     {showpreview &&(
-      <div className="fixed inset-0 bg-black/95 z-9999 flex justify-center items-center"
+      <div className="fixed inset-0 bg-black/95 z-[9999] flex justify-center items-center"
       onClick={()=> setShowpreview(false)}>
         
 
@@ -268,7 +264,8 @@ const UploadBox:React.FC<prop_uploadbox> = ({
         
         <button
           className="absolute bottom-28 right-8 bg-emerald-500 px-8 py-3 rounded-xl text-black font-bold hover:bg-emerald-400 border-black border-2"
-          onClick={() => setShowpreview(false)}
+          onClick={() => {setShowpreview(false);
+                        setHidePreviewThumb(true);}}
         >
         Use Image
         </button>
@@ -276,6 +273,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
           className="absolute bottom-8 right-8 bg-red-600 px-13 py-3 rounded-xl border-black border-2"
           onClick={() => {
           setShowpreview(false);
+          setHidePreviewThumb(true);
           setFile(null);
           setPreview("");
       }}
@@ -284,28 +282,54 @@ const UploadBox:React.FC<prop_uploadbox> = ({
       </button>
       </div>
     )}
- 
-  {resultimage && (
-    <div className='mt-8 flex flex-col items-center justify-center p-6 border-2 border-emerald-500 rounded-xl bg-emerald-950/20 w-full'>
+ {preview && !hidePreviewThumb && (
+  <div className='mt-5'>
+    <img
+      src={preview}
+      alt="Preview"
+      onClick={() => setShowpreview(true)}
+      className='w-54 border-2 border-black shadow-lg rounded-xl'
+    />
+  </div>
+)}
+  {resultimage && !hideResultThumb && (
+    <div className='mt-8 flex flex-col items-center justify-center border-2 border-emerald-500 rounded-xl bg-emerald-950/20 w-full'>
     
-    <h3 className="text-emerald-400 font-bold mb-4 uppercase tracking-widest">Output Result</h3>
+    
     
     <img
       src={resultimage}
-      className='max-w-xs size-11/12 md:max-w-md border-2 border-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.5)] rounded-xl object-contain'
+      className='max-w-xs  md:max-w-md border-2 border-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.5)] rounded-xl object-contain'
+      onClick={()=>setResultview(true)}
     />
 
     </div>
     )}
     {resultimage && !loading &&(
-      <div
-      className='mt-8 flex flex-col items-center justify-center p-6 border-2 border-emerald-500 rounded-xl bg-emerald-950/20 w-full'>
-          <a href={resultimage} download={`Eikona-Result-${Date.now()}.jpg`} className="mt-6 flex items-center gap-2 px-6 py-2 bg-emerald-500 text-black font-bold uppercase tracking-wider rounded hover:bg-emerald-400 transition-colors">
+      <div>
+          <a href={resultimage} download={`Eikona-Result-${Date.now()}.jpg`} className="mt-6 flex items-center px-4 py-4 bg-emerald-900 text-indigo-300 font-bold uppercase tracking-wider rounded-full hover:bg-emerald-950 hover:text-indigo-100 transition-colors">
             <Download size={20}/>
-            Download
             </a>
       </div>
 
+    )}
+    {Resultview &&(
+      <div className="fixed inset-0 bg-black/95 z-[9999] flex justify-center items-center"
+      onClick={()=> { setResultview(false); setHideResultThumb(true); }}>
+       <img
+        src={resultimage}
+        alt="Full Preview"
+        className="max-w-[90vw] max-h-[90vh] object-contain "
+        onClick={(e)=>e.stopPropagation()}
+      />
+
+      <button
+      onClick={()=> { setResultview(false); setHideResultThumb(true); }}
+      className="absolute top-5 right-5 text-white text-4xl hover:text-red-500">
+        ✕
+      </button>
+        
+      </div>
     )}
     </>
   );
