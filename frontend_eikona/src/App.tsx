@@ -1,7 +1,7 @@
 import React,{ useState, type ChangeEvent } from 'react' 
 import './App.css'
 import {LoaderCircle} from "lucide-react"; 
-import {Download,Image,ImageDown,ImageUp} from "lucide-react";
+import {Download} from "lucide-react";
 
 interface prop_uploadbox{
   id:string;

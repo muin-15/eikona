@@ -31,9 +31,18 @@
         
       </nav>  
       <div class="flex-1 flex flex-col min-h-screen overflow-x-hidden justify-between">
-        
-        <!-- Main page sections container -->
-        <main class="flex flex-col items-center px-4 w-full bg-[url('/src/assets/newagain.png')] bg-cover bg-center bg-fixed opacity-100%">
+        <style>
+          @keyframes slowPan {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          .animate-moving-bg {
+            animation: slowPan 20s ease infinite;
+            background-size: 150% 150%; 
+          }
+</style>
+        <main class="flex flex-col items-center px-4 w-full bg-[url('/src/assets/newagain.png')] bg-cover bg-fixed opacity-100% animate-moving-bg">
       <div id="home" class="h-screen w-full max-w-4xl py-20">
         <h2 class="text-5xl font-bold mb-15 text-center justify-center items-center">Eikona</h2>
        <div class="text-white text-justify tracking-normal font-sans font-normal">

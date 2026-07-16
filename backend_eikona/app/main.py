@@ -1,10 +1,10 @@
 from fastapi import FastAPI,UploadFile,File,Form,HTTPException #type:ignore
 from fastapi.middleware.cors import CORSMiddleware #type:ignore
-from fastapi.responses import Response
+from fastapi.responses import Response #type:ignore
 import cv2 #type:ignore
 import numpy as np #type:ignore
-import matplotlib.pyplot as plt 
-from matplotlib.figure import Figure
+import matplotlib.pyplot as plt #type:ignore
+from matplotlib.figure import Figure    #type:ignore
 from rembg import remove #type:ignore
 from typing import Optional
 import io
