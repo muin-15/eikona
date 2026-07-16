@@ -1,7 +1,7 @@
 import React,{ useState, type ChangeEvent } from 'react' 
 import './App.css'
 import {LoaderCircle} from "lucide-react"; 
-import {Download} from "lucide-react";
+import {Download,Image,ImageDown,ImageUp} from "lucide-react";
 
 interface prop_uploadbox{
   id:string;
@@ -216,7 +216,6 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     )
 
     }
-    {file && <p className="mt-2 w-64 text-center text-amber-300 text-sm wrap-break-words mx-auto">Selected: {file.name}</p>}
     <select
     value={outputFormat}
     onChange={(e) => setOutputFormat(e.target.value)}
@@ -231,6 +230,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     <button onClick={handleSubmit} className=' text-center items-center justify-center border-2 to-black bg-[#302b2b] hover:bg-[#3e3938]  hover:text-white cursor-pointer rounded-md w-54 h-12 mt-10 '>
       Submit
     </button>
+    {file && <p className="mt-2 w-64 text-center text-amber-300 text-sm wrap-break-words mx-auto">Selected: {file.name}</p>}
 
     {message && (
       <p className={`mt-4 text-sm ${isError ? 'text-red-500' : 'text-amber-50'}`}>
@@ -318,11 +318,9 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     </div>
     )}
     {resultimage && !loading &&(
-      <div>
           <a href={resultimage} download={`Eikona-Result-${Date.now()}.${outputFormat}`} className="mt-6 flex items-center px-4 py-4 bg-emerald-900 text-indigo-300 font-bold uppercase tracking-wider rounded-full hover:bg-emerald-950 hover:text-indigo-100 transition-colors">
             <Download size={20}/>
             </a>
-      </div>
 
     )}
     {Resultview &&(

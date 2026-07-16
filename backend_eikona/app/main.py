@@ -129,8 +129,6 @@ async def convert_color(
 
     return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
     
-    
-    
 
 @app.post("/filtering")
 async def image_filter(
@@ -392,8 +390,7 @@ async def image_analytics(
         buf.seek(0)
         return Response(content=buf.getvalue(),media_type='image/png')
 
-        
-    
+
     else:
         raise HTTPException(status_code=400,detail="Can't process successfully")
 
@@ -457,7 +454,7 @@ async def image_tools(
     elif conversionId=='tool3':
         enhance=cv2.inpaint(image,mask,3,cv2.INPAINT_TELEA)
         success,encoded_image=cv2.imencode('.jpg',enhance)
-    
+
     elif conversionId=='tool4' and (sigmaS or sigmaR):
         gray,pencil_img=cv2.pencilSketch(image,sigma_s=sigmaS,sigma_r=sigmaR,shade_factor=0.05)
         success,encoded_image=cv2.imencode('.jpg',pencil_img)
@@ -472,3 +469,23 @@ async def image_tools(
         return ("500 Can't process Image")
     
     return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
+
+@app.post('/exclusive')
+async def highend_tools(
+    file:UploadFile=File(...),
+    conversionId:str=Form(...)):
+    image=await validate_image(file)
+    if conversionId=='e1':
+        lab=cv2.cvtColor(image,cv2.COLOR_BGR2LAB)
+        channel_l,channel_a,channel_b=cv2.split(lab)
+        CLAHE=cv2.createCLAHE(clipLimit=3.0,tileGridSize=(8,8))
+        cl=CLAHE.apply(channel_l)
+        mergedlab=cv2.merge((cl,channel_a,channel_b))
+        enhanced_img=cv2.cvtColor(mergedlab,cv2.COLOR_LAB2BGR)
+        final_ouput=cv2.bilateralFilter(enhanced_img,d=9,sigmaColor=75,sigmaSpace=75)
+        success,encoded_img=cv2.imencode('.jpg',final_ouput)
+
+    if not success:
+        return ("500 server Error")
+    
+    return Response(content=encoded_img.tobytes(),media_type="image/jpeg")

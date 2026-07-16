@@ -357,3 +357,12 @@ mountUploadBox('bgr8',{
   paraValue:'bgr8',
   requiredInput:1
 });
+
+mountUploadBox('e1',{
+  id:'e1',
+  title:'Quality Enhancement',
+  endpoint:'/exclusive',
+  paraName:'conversionId',
+  paraValue:'e1',
+  requiredInput:1
+});
