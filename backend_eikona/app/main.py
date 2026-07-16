@@ -114,6 +114,13 @@ async def convert_color(
         rgb_bgr=cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
         success,encoded_image=cv2.imencode('.jpg',rgb_bgr)
 
+    elif conversionId=="bgr7":
+        bgr_lab=cv2.cvtColor(image,cv2.COLOR_BGR2LAB)
+        success,encoded_image=cv2.imencode('.jpg',bgr_lab)
+
+    elif conversionId=='bgr8':
+        lab_bgr=cv2.cvtColor(image,cv2.COLOR_LAB2BGR)
+        success,encoded_image=cv2.imencode('.jpg',lab_bgr)
     else:
         raise HTTPException(status_code=400, detail=f"Unknown conversionId: {conversionId}")
 

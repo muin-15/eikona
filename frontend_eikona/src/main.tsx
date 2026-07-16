@@ -340,3 +340,20 @@ mountUploadBox('d1',{
   requiredInput:1
 });
 
+mountUploadBox('bgr7',{
+  id:'bgr7',
+  title:'BGR to LAB',
+  endpoint:'/color_conversion',
+  paraName:'conversionId',
+  paraValue:'bgr7',
+  requiredInput:1
+});
+
+mountUploadBox('bgr8',{
+  id:'bgr8',
+  title:'LAB to BGR',
+  endpoint:'/color_conversion',
+  paraName:'conversionId',
+  paraValue:'bgr8',
+  requiredInput:1
+});
