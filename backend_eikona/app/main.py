@@ -320,6 +320,7 @@ async def image_analytics(
         buf = io.BytesIO()
         fig.savefig(buf, format='png', bbox_inches='tight')
         buf.seek(0)
+        plt.close(fig)
         return Response(content=buf.getvalue(),media_type='image/png')
 
     
@@ -338,6 +339,7 @@ async def image_analytics(
         buf= io.BytesIO()
         fig.savefig(buf,format='png',bbox_inches='tight')
         buf.seek(0)
+        plt.close(fig)
         return Response(content=buf.getvalue(),media_type='image/png')
     
     elif conversionId=='dct':
@@ -361,6 +363,7 @@ async def image_analytics(
         buf=io.BytesIO()
         fig.savefig(buf,format='png',bbox_inches='tight')
         buf.seek(0)
+        plt.close(fig)
         return Response(content=buf.getvalue(),media_type='image/png')
         
         
@@ -380,6 +383,7 @@ async def image_analytics(
         buf=io.BytesIO()
         fig.savefig(buf,format='png',bbox_inches='tight')
         buf.seek(0)
+        plt.close(fig)
         return Response(content=buf.getvalue(),media_type='image/png')
 
 
@@ -437,30 +441,30 @@ async def image_tools(
 
     if conversionId=='tool1':
         bg_remove=remove(image)
-        success,encoded_image=cv2.imencode('.jpg',bg_remove)
+        success,encoded_image=cv2.imencode('.png',bg_remove)
     
     elif conversionId=='tool2' and (sigmaS or sigmaR):
         style_image=cv2.stylization(image,sigma_s=sigmaS,sigma_r=sigmaR)
-        success,encoded_image=cv2.imencode('.jpg',style_image)
+        success,encoded_image=cv2.imencode('.png',style_image)
     
     elif conversionId=='tool3':
         enhance=cv2.inpaint(image,mask,3,cv2.INPAINT_TELEA)
-        success,encoded_image=cv2.imencode('.jpg',enhance)
+        success,encoded_image=cv2.imencode('.png',enhance)
 
     elif conversionId=='tool4' and (sigmaS or sigmaR):
         gray,pencil_img=cv2.pencilSketch(image,sigma_s=sigmaS,sigma_r=sigmaR,shade_factor=0.05)
-        success,encoded_image=cv2.imencode('.jpg',pencil_img)
+        success,encoded_image=cv2.imencode('.png',pencil_img)
     
     elif conversionId=='tool5' and (sigmaS or sigmaR):
         hdr_img=cv2.detailEnhance(image,sigma_s=sigmaS,sigma_r=sigmaR)
-        success,encoded_image=cv2.imencode('.jpg',hdr_img)
+        success,encoded_image=cv2.imencode('.png',hdr_img)
     
     else:
         raise HTTPException(status_code=400,detail='Invalid conversionId')
     if not success:
         return ("500 Can't process Image")
     
-    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
+    return Response(content=encoded_image.tobytes(),media_type='image/png')
 
 @app.post('/exclusive')
 async def highend_tools(
@@ -526,27 +530,27 @@ async def highend_tools(
                     continue
                 confidence=float(box.conf[0])
                 x1,y1,x2,y2=map(int,box.xyxy[0])
-            cv2.rectangle(
-                annotated,
-                (x1,y1),
-                (x2,y2),
-                (0,255,0),
-                2
-            )
-            cv2.putText(
-                annotated,
-                f"result {confidence:.2f}",
-                (x1,y1-10),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.7,
-                (0,255,0),
-                2
-            )
+                cv2.rectangle(
+                    annotated,
+                    (x1,y1),
+                    (x2,y2),
+                    (0,255,0),
+                    2
+                )
+                cv2.putText(
+                    annotated,
+                    f"result {confidence:.2f}",
+                    (x1,y1-10),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.7,
+                    (0,255,0),
+                    2
+                )   
         
         
         success,encoded_img=cv2.imencode('.jpg',annotated)
 
-    if conversionId=='e4':
+    elif conversionId=='e4':
         gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
         edge=cv2.Canny(gray,100,200)
         success,encoded_img=cv2.imencode('.jpg',edge)
