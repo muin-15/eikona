@@ -366,3 +366,12 @@ mountUploadBox('e1',{
   paraValue:'e1',
   requiredInput:1
 });
+
+mountUploadBox('e2',{
+  id:'e2',
+  title:'Face Detection',
+  endpoint:'/exclusive',
+  paraName:'conversionId',
+  paraValue:'e2',
+  requiredInput:1
+});

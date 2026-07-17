@@ -8,6 +8,7 @@ from matplotlib.figure import Figure    #type:ignore
 from rembg import remove #type:ignore
 from typing import Optional
 import io
+import os
 
 app = FastAPI()
 
@@ -22,6 +23,12 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+)
+
+modelpath=os.join.path(
+    os.path.dirname(__file__),
+    "models",
+    "face_detection_yunet_2023mar.onnx"
 )
 
 def psf_genretion(shape,cid,length=20,angle=45):
@@ -484,7 +491,26 @@ async def highend_tools(
         enhanced_img=cv2.cvtColor(mergedlab,cv2.COLOR_LAB2BGR)
         final_ouput=cv2.bilateralFilter(enhanced_img,d=9,sigmaColor=75,sigmaSpace=75)
         success,encoded_img=cv2.imencode('.jpg',final_ouput)
+    elif conversionId=='e2':
+        gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+        face_cascade=cv2.CascadeClassifier(cv2.data.haarcascades+'haarcascade_frontalface_default.xml')
 
+        if not face_cascade:
+            return ("500: Internal Server Error")
+        
+        faces=face_cascade.detectMultiScale(
+            gray,
+            scaleFactor=1.1,
+            minNeighbors=5,
+            minSize=(30,30),
+            flags=cv2.CASCADE_SCALE_IMAGE
+        )
+        
+        for (x,y,w,h) in faces:
+            cv2.rectangle(image,(x,y),(x+w,y+h),(255,0,255),3)
+
+        success,encoded_img=cv2.imencode('.jpg',image)
+        
     if not success:
         return ("500 server Error")
     
