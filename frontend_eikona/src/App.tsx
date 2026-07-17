@@ -129,6 +129,19 @@ const UploadBox:React.FC<prop_uploadbox> = ({
         if (response.ok) {
             const blob =await response.blob();
             const outputImage=URL.createObjectURL(blob)
+            const countsHeader=response.headers.get("X-Objects-Counts")
+
+            if (countsHeader) {
+            const counts = JSON.parse(countsHeader);
+            
+            // Format the alert nicely
+            let alertMessage = "Objects Found:\n";
+            for (const [objectName, count] of Object.entries(counts)) {
+                alertMessage += `- ${objectName}: ${count}\n`;
+            }
+            
+            alert(alertMessage);
+        }
             setResultimage(outputImage);
             setPreview("");
             setHideResultThumb(false);
@@ -262,7 +275,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     <option value="tiff">TIFF</option>
     <option value="webp">WEBP</option>
     </select>
-    <button onClick={handleSubmit} className=' text-center items-center justify-center border-2 to-black bg-[#302b2b] hover:bg-[#3e3938]  hover:text-white cursor-pointer rounded-md w-54 h-12 mt-10 '>
+    <button onClick={handleSubmit} className=' border-2 border-emerald-200 text-black/55 hover:bg-green-50 font-semibold py-2 px-4 rounded-lg transition-colors duration-200 mt-10'>
       Submit
     </button>
     {file && <p className="mt-2 w-64 text-center text-amber-300 text-sm wrap-break-words mx-auto">Selected: {file.name}</p>}

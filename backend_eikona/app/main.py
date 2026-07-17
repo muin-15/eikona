@@ -9,7 +9,8 @@ from rembg import remove #type:ignore
 from typing import Optional
 import io
 import os
-from ultralytics import YOLO
+from ultralytics import YOLO #type:ignore
+import json #type:ignore
 
 app = FastAPI()
 
@@ -24,6 +25,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["X-Objects-Counts"]
 )
 
 modelpath=os.path.join(
@@ -261,32 +263,36 @@ async def image_operations(
     file:UploadFile=File(...),
     file2:UploadFile=File(...),
     conversionId:str=Form(...)):
+
     image1=await validate_image(file)
     image2=await validate_image(file2)
+    
+    if image1.shape != image2.shape:
+        h1,w1=image1.shape[:2]
+        image2new=cv2.resize(image2,(w1,h1))
+
+    else:
+        image2new=image2.copy()
 
     if conversionId=='add':
-        if image1.shape!=image2.shape:
-            raise HTTPException(status_code=400, detail="Images must have the same dimensions for addition")
-        added=cv2.add(image1,image2)
+        
+        added=cv2.add(image1,image2new)
         success,encoded_image=cv2.imencode('.jpg',added)
 
     
     elif conversionId=='sub':
-        if image1.shape!=image2.shape:
-            raise HTTPException(status_code=400,detail="Images must have the same dimensions for subtraction")
-        subtract=cv2.subtract(image1,image2)
+        
+        subtract=cv2.subtract(image1,image2new)
         success,encoded_image=cv2.imencode('.jpg',subtract)
     
     elif conversionId=='mul':
-        if image1.shape!=image2.shape:
-            raise HTTPException(status_code=400,detail="Images must have the same dimensions for multiplication")
-        multiplied=cv2.multiply(image1,image2)
+        
+        multiplied=cv2.multiply(image1,image2new)
         success,encoded_image=cv2.imencode('.jpg',multiplied)
     
     elif conversionId=='div':
-        if image1.shape!=image2.shape:
-            raise HTTPException(status_code=400,detail="Images must have the same dimensions for division")
-        divided=cv2.divide(image1,image2)
+        
+        divided=cv2.divide(image1,image2new)
         success,encoded_image=cv2.imencode('.jpg',divided)
 
     else:
@@ -478,6 +484,7 @@ async def highend_tools(
     file:UploadFile=File(...),
     conversionId:str=Form(...)):
     image=await validate_image(file)
+    headers={}
     if conversionId=='e1':
         lab=cv2.cvtColor(image,cv2.COLOR_BGR2LAB)
         channel_l,channel_a,channel_b=cv2.split(lab)
@@ -527,14 +534,21 @@ async def highend_tools(
         
     elif conversionId=='e3':
         model=YOLO("yolo11n.pt")
-        results=model(image)[0]
-       
+        results=model(image)
+            
         annotated=image.copy()
+        object_counts={}  
+        class_names=model.names 
         for result in results:
             for box in result.boxes:
-                cls=(box.cls[:])
-                if cls !=0:
-                    continue
+                cls_id=int(box.cls[0])
+                cls_name=class_names[cls_id]
+
+                if cls_name in object_counts:
+                    object_counts[cls_name]+=1
+                else:
+                    object_counts[cls_name]=1
+
                 confidence=float(box.conf[0])
                 x1,y1,x2,y2=map(int,box.xyxy[0])
                 cv2.rectangle(
@@ -546,7 +560,7 @@ async def highend_tools(
                 )
                 cv2.putText(
                     annotated,
-                    f"result {confidence:.2f}",
+                    f"{cls_name} {confidence:.2f}",
                     (x1,y1-10),
                     cv2.FONT_HERSHEY_SIMPLEX,
                     0.7,
@@ -554,6 +568,7 @@ async def highend_tools(
                     2
                 )   
         
+        headers["X-Objects-Counts"]=json.dumps(object_counts)
         
         success,encoded_img=cv2.imencode('.jpg',annotated)
 
@@ -565,4 +580,4 @@ async def highend_tools(
     if not success:
         return ("500 server Error")
     
-    return Response(content=encoded_img.tobytes(),media_type="image/jpeg")
+    return Response(content=encoded_img.tobytes(),media_type="image/jpeg",headers=headers)
