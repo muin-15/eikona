@@ -235,23 +235,7 @@ async def image_transformation(
         return ("404 can't process image")
     return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
 
-@app.post("/detection")
-async def image_detection(
-    file:UploadFile=File(...),
-    conversionId:str=Form(...)):
-    image=await validate_image(file)
-    
-    if conversionId=='d2':
-        gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-        edge=cv2.Canny(gray,100,200)
-        success,encoded_image=cv2.imencode('.jpg',edge)
-        
-    else:
-        raise HTTPException(status_code=400, detail="Invalid detection ID")
-    
-    if not success:
-        return ("404: can't process image")
-    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
+
 
 
 @app.post("/compress")
@@ -561,7 +545,12 @@ async def highend_tools(
         
         
         success,encoded_img=cv2.imencode('.jpg',annotated)
-        
+
+    if conversionId=='e4':
+        gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+        edge=cv2.Canny(gray,100,200)
+        success,encoded_img=cv2.imencode('.jpg',edge)
+
     if not success:
         return ("500 server Error")
     

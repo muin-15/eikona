@@ -128,12 +128,12 @@ mountUploadBox('t7',{
   requiredInput:1
 });
 
-mountUploadBox('d2',{
-  id:'d2',
+mountUploadBox('e4',{
+  id:'e4',
   title:'Edge Detection',
-  endpoint:'/detection',
+  endpoint:'/exclusive',
   paraName:'conversionId',
-  paraValue:'d2',
+  paraValue:'e4',
   requiredInput:1
 });
 
