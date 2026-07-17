@@ -375,3 +375,12 @@ mountUploadBox('e2',{
   paraValue:'e2',
   requiredInput:1
 });
+
+mountUploadBox('e3',{
+  id:'e3',
+  title:'Object Detection',
+  endpoint:'/exclusive',
+  paraName:'conversionId',
+  paraValue:'e3',
+  requiredInput:1
+});

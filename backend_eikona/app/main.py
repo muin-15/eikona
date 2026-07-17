@@ -9,6 +9,7 @@ from rembg import remove #type:ignore
 from typing import Optional
 import io
 import os
+from ultralytics import YOLO
 
 app = FastAPI()
 
@@ -25,7 +26,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-modelpath=os.join.path(
+modelpath=os.path.join(
     os.path.dirname(__file__),
     "models",
     "face_detection_yunet_2023mar.onnx"
@@ -491,25 +492,75 @@ async def highend_tools(
         enhanced_img=cv2.cvtColor(mergedlab,cv2.COLOR_LAB2BGR)
         final_ouput=cv2.bilateralFilter(enhanced_img,d=9,sigmaColor=75,sigmaSpace=75)
         success,encoded_img=cv2.imencode('.jpg',final_ouput)
+
     elif conversionId=='e2':
-        gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-        face_cascade=cv2.CascadeClassifier(cv2.data.haarcascades+'haarcascade_frontalface_default.xml')
-
-        if not face_cascade:
-            return ("500: Internal Server Error")
-        
-        faces=face_cascade.detectMultiScale(
-            gray,
-            scaleFactor=1.1,
-            minNeighbors=5,
-            minSize=(30,30),
-            flags=cv2.CASCADE_SCALE_IMAGE
+        detector=cv2.FaceDetectorYN.create(
+            model=modelpath,
+            config="",
+            input_size=(320,320),
+            score_threshold=0.8,
+            nms_threshold=0.3,
+            top_k=5000
         )
-        
-        for (x,y,w,h) in faces:
-            cv2.rectangle(image,(x,y),(x+w,y+h),(255,0,255),3)
+        h,w=image.shape[:2]
+        detector.setInputSize((w,h))
 
+        _,faces=detector.detect(image)
+        if faces is None:
+            return ("Image doesn't contain any faces")
+        
+        for i,face in enumerate(faces,start=1):
+            x,y,fw,fh=face[:4].astype(int)
+            confidence=face[-1]
+            cv2.rectangle(
+                image,
+                (x,y),
+                (x+fw,y+fh),
+                (0,255,0),
+                2
+            )
+            cv2.putText(
+                image,
+                f"face {i}:{confidence:.2f}",
+                (x,y-10),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.6,
+                (0,255,0),
+                2
+            )
         success,encoded_img=cv2.imencode('.jpg',image)
+        
+    elif conversionId=='e3':
+        model=YOLO("yolo11n.pt")
+        results=model(image)[0]
+       
+        annotated=image.copy()
+        for result in results:
+            for box in result.boxes:
+                cls=(box.cls[:])
+                if cls !=0:
+                    continue
+                confidence=float(box.conf[0])
+                x1,y1,x2,y2=map(int,box.xyxy[0])
+            cv2.rectangle(
+                annotated,
+                (x1,y1),
+                (x2,y2),
+                (0,255,0),
+                2
+            )
+            cv2.putText(
+                annotated,
+                f"result {confidence:.2f}",
+                (x1,y1-10),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.7,
+                (0,255,0),
+                2
+            )
+        
+        
+        success,encoded_img=cv2.imencode('.jpg',annotated)
         
     if not success:
         return ("500 server Error")
