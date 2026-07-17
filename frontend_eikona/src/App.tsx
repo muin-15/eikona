@@ -34,6 +34,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
   const [hidePreviewThumb,setHidePreviewThumb]=useState(false);
   const [hideResultThumb,setHideResultThumb]=useState(false);
   const [outputFormat,setOutputFormat]=useState('jpg');
+  const [length,setLength]=useState<number | null>(null);
 
   const handlefilechange = async(event: ChangeEvent<HTMLInputElement>,type:'file' | 'file2') => {
     console.log("Event handling is processing");
@@ -80,6 +81,12 @@ const UploadBox:React.FC<prop_uploadbox> = ({
       setError(true);
       return;
     }
+    if (requiredInput === 6 && (angle===null || length === null)){
+      setmessage("please Enter Full Info");
+      setError(true);
+      return;
+    }
+
     const formData = new FormData();
     
     formData.append("file", file);
@@ -96,6 +103,10 @@ const UploadBox:React.FC<prop_uploadbox> = ({
       formData.append("sigmaS",sigmaS.toString())
       
       formData.append("sigmaR",sigmaR.toString()) 
+    }
+    if(requiredInput===6 && angle!==null && length!==null){
+      formData.append("angle",angle.toString())
+      formData.append("length",length.toString())
     }
     formData.append("outputFormat", outputFormat);
     formData.append(paraName, paraValue);
@@ -216,6 +227,30 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     )
 
     }
+    {requiredInput===6 &&(
+      <div className='mt-12'>
+        <label htmlFor={`${id}-7`} className='block mb-2'>
+          Enter Angle for Restoration
+        </label>
+        <input
+        id={`${id}-7`}
+        type='number'
+        className='border-2 rounded-md p-2 w-full'
+        placeholder='eg:30'
+        onChange={(e) => setAngle(Number(e.target.value))}
+        />
+        <label htmlFor={`${id}-8`} className='block mb-2'>
+          Enter length for Restoration
+        </label>
+        <input
+        id={`${id}-8`}
+        type='number'
+        className='border-2 rounded-md p-2 w-full'
+        placeholder='eg:25'
+        onChange={(e)=> setLength(Number(e.target.value))}
+        />
+      </div>
+    )}
     <select
     value={outputFormat}
     onChange={(e) => setOutputFormat(e.target.value)}

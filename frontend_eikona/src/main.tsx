@@ -283,7 +283,7 @@ mountUploadBox('res1',{
   endpoint:'/restoration',
   paraName:'conversionId',
   paraValue:'res1',
-  requiredInput:1
+  requiredInput:6
 });
 
 mountUploadBox('res2',{
@@ -292,7 +292,7 @@ mountUploadBox('res2',{
   endpoint:'/restoration',
   paraName:'conversionId',
   paraValue:'res2',
-  requiredInput:1
+  requiredInput:6
 });
 
 mountUploadBox('tool2',{

@@ -159,7 +159,8 @@ async def image_filter(
 
     elif conversionId=="filter4":
         laplacian=cv2.Laplacian(image,cv2.CV_64F,ksize=3)
-        success,encoded_image=cv2.imencode('.jpg',laplacian)
+        laplacian8bit=cv2.convertScaleAbs(laplacian)
+        success,encoded_image=cv2.imencode('.jpg',laplacian8bit)
 
     elif conversionId=="filter5":
         bilateral=cv2.bilateralFilter(image,d=9,sigmaColor=75,sigmaSpace=75)
@@ -409,13 +410,15 @@ async def image_conversions(
 @app.post('/restoration')
 async def Image_restoration(
     file:UploadFile=File(...),
-    conversionId:str=Form(...)):
+    conversionId:str=Form(...),
+    angle:Optional[float]=Form(45.0),
+    length:Optional[int]=Form(25)):
     image=await validate_image(file)
     cid=conversionId
     if len(image.shape)==3:
         image=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
-    psf=psf_genretion(image.shape,cid,length=25,angle=30,)
+    psf=psf_genretion(image.shape,cid,length=length,angle=angle)
 
     if conversionId=='res1':
         restored=inverse_filter(image,psf)
@@ -437,7 +440,6 @@ async def image_tools(
 
     image=await validate_image(file)
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-    _, mask = cv2.threshold(gray, 240, 255, cv2.THRESH_BINARY)
 
     if conversionId=='tool1':
         bg_remove=remove(image)
@@ -448,6 +450,11 @@ async def image_tools(
         success,encoded_image=cv2.imencode('.png',style_image)
     
     elif conversionId=='tool3':
+        kernel=cv2.getStructuringElement(cv2.MORPH_RECT,(5,5))
+
+        blackhat=cv2.morphologyEx(gray,cv2.MORPH_BLACKHAT,kernel)
+        _,mask=cv2.threshold(blackhat,10,255,cv2.THRESH_BINARY)
+
         enhance=cv2.inpaint(image,mask,3,cv2.INPAINT_TELEA)
         success,encoded_image=cv2.imencode('.png',enhance)
 
