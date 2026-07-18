@@ -41,43 +41,129 @@
             animation: slowPan 20s ease infinite;
             background-size: 150% 150%; 
           }
-</style>
-        <main class="flex flex-col items-center px-4 w-full bg-[url('/src/assets/newagain.png')] bg-cover bg-fixed opacity-100% animate-moving-bg">
-      <div id="home" class="h-screen w-full max-w-4xl py-20">
-        <h2 class="text-5xl font-bold mb-15 text-center justify-center items-center">Eikona</h2>
-       <div class="text-white text-justify tracking-normal font-sans font-normal">
-        <b class="text-emerald-400 font-mono uppercase tracking-widest font-bold block mb-4">Eikona - Advanced Image Processing Suite:-</b>
-        
-      Eikona is a powerful web-based image processing platform designed to make advanced image editing, enhancement, and computer vision techniques accessible through an intuitive interface. Built with modern technologies and high-performance image processing libraries, Eikona enables users to transform, analyze, and optimize images in real time.
-      The platform offers a comprehensive set of tools including image transformations, geometric operations, filtering, restoration, segmentation, object detection, and color analysis. Users can apply effects such as scaling, rotation, filtering, image analysis, edge detection, image sharpening, and noise reduction with just a few clicks.
-      Beyond traditional image processing, Eikona integrates AI-powered features such as automatic background removal, object detection, super-resolution image enhancement, and dominant color extraction. These capabilities allow creators, students, developers, and researchers to perform complex image analysis without requiring specialized software or technical expertise.
-      Designed with performance and usability in mind, Eikona delivers fast processing, interactive previews, and a seamless workflow, making it an all-in-one solution for modern image enhancement and computer vision tasks.
-      Eikona is created by noticing the daily needs of students who are learning and professionals in the field of image processing and computer vision.
+          @keyframes reveal{
+            from{
+              opacity: 0;
+              transform: translateY(40px);
+              filter: blur(8px);
+            }
+            to{
+              opacity:50;
+              transform:translateY(0);
+              filter:blur(0);
+            }
+          }
+          .animate-reveal{
+            animation:reveal .9s ease forwards;
+          }
+          @keyframes typing{
+            from{width:0;}
+            to{width:100%;}
+          }
+          .typewriter{
+            overflow: hidden;
+            white-space: nowrap;
+            animation:typing 2s steps(12) forwards;
+            width: max-content;
+            margin: 0 auto;
+          }
+          @keyframes fadeUp {
+            from {
+              opacity: 0;
+              transform: translateY(60px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
 
-      <div class="flex">
-      <div class="relative text-center justify-between items-center mt-50 text-cyan-500 hover:text-cyan-200 hover:border-black font-semibold w-full "> 
-        <div class="absolute inset-0 m-auto h-36 w-36 rounded-full bg-emerald-200 blur-xl opacity-30"></div>
-        <div class="relative z-10 text-center justify-center items-center">
-          <p class="text-5xl relative ">35+</p>
-          <p class="mt-3">operations</p>
+          .animate-fade-up {
+            animation: fadeUp 2s ease forwards;
+          }
+          @keyframes textFadeSlider{
+            0%,20% {opacity:1;transform:translateY(0);pointer-events:auto;}
+            25%,95%{opacity:0;transform:translateY(20px);pointer-events:none;}
+            100%{opacity:1 transform;transform:translateY(0);pointer-events:auto;}
+          }
+          .slide-1{animation:textFadeSlider 12s infinite;}
+          .slide-2{animation:textFadeSlider 12s infinite;animation-delay: 4s;}
+          .slide-3{animation:textFadeSlider 12s infinite;animation-delay: 8s;}
+        </style>
+        <main class="flex flex-col items-center px-4 w-full bg-[url('/src/assets/newagain.png')] bg-cover bg-fixed opacity-100% animate-moving-bg">
+       <div id="home" class="min-h-screen w-full max-w-4xl py-20 flex flex-col justify-start pt-32 mb-auto">
+        
+        <div class="text-center mt-[20%] mb-[600px] lowercase first-letter:uppercase">
+          <p class="text-[100px] text-white [text-shadow:0_0_20px_#10b981,0_0_30px_#047857] font-bold typewriter">Eikona</p>
         </div>
-      </div>
-      <div class="relative text-center justify-between items-center mt-50 text-cyan-500 hover:text-cyan-200 hover:border-black font-semibold w-full "> 
-        <div class="absolute inset-0 m-auto h-36 w-36 rounded-full bg-emerald-200 blur-xl opacity-30"></div>
-        <div class="relative z-10 text-center justify-center items-center">
-          <p class="text-5xl relative ">0%</p>
-          <p class="mt-3">Quality loss</p>
-        </div>
-      </div>
-      <div class="relative text-center justify-between items-center mt-50 text-cyan-500 hover:text-cyan-200 hover:border-black font-semibold w-full "> 
-        <div class="absolute inset-0 m-auto h-36 w-36 rounded-full bg-emerald-200 blur-xl opacity-30"></div>
-        <div class="relative z-10 text-center justify-center items-center">
-          <p class="text-5xl relative ">24/7</p>
-          <p class="mt-3">support</p>
-        </div>
-      </div>
-      </div>
-      </div>
+       
+        <div>
+          <div class="grid md:grid-cols-1">
+            <p class="text-4xl text-center text-shadow-white mb-10">&lt; Specialized Sectors &gt;</p>
+            <div class="grid md:grid-cols-3 gap-2 group w-full max-w-4xl mx-auto animate-fade-up min-h-2/3">
+              <div></div>
+              <a href="#histogram" class="relative w-full h-36 block cursor-pointer">
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center text-white border-2 border-r-4 border-b-4 hover:-inset-2 hover:border-r-8 hovver:border-b-8 rounded-md border-emerald-500 bg-black hover:z-10 transition-all duration-300 hover:text-black hover:bg-lime-300">
+                  Image<br>Histogram
+                </div>
+              </a>
+              <div></div>
+              <a href="#e3" class="relative w-full h-36 block cursor-pointer"> 
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center text-white border-2 border-r-4 border-b-4 hover:-inset-2 hover:border-r-8 hover:border-b-8 rounded-md border-emerald-500 bg-black hover:z-10 transition-all duration-300 hover:text-black hover:bg-lime-300">
+                Object<br>Detection
+                </div>
+                </a>
+              <a href="#image_compressor" class="relative w-full h-36 block cursor-pointer"> 
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center shadow text-white border-2 border-r-4 border-b-4 hover:border-r-8 hover:border-b-8 rounded-md bg-black hover:-inset-2 hover:z-10 transition-all duration-300 border-emerald-500 hover:bg-lime-300 hover:text-black">
+                  Image<br> Compression
+                </div>
+              </a>
+              <a href="#image_conversion" class="relative w-full h-36 block cursor-pointer"> 
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center text-white border-2 border-r-4 border-b-4 hover:border-b-8 hover:border-r-8 border-emerald-500 rounded-md bg-black hover:-inset-2 hover:z-10 transition-all duration-300 hover:bg-lime-300 hover:text-black">
+                  Image<br> Conversion
+                </div>
+              </a>
+              <div></div>
+              <a href="#tool1" class="relative w-full h-36 block cursor-pointer"> 
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center text-white border-2 border-r-4 border-b-4 hover:border-r-8 hover:border-b-8 border-emerald-500 rounded-md bg-black hover:-inset-2 hover:z-10 transition-all duration-300 hover:text-black hover:bg-lime-300">
+                  Background<br> Removal
+                </div>
+              </a>
+            </div>
+            <div class="relative w-full h-32 mt-10 text-center flex justify-center items-center">
+              <div class="absolute inset-0 flex flex-col justify-center items-center opacity-0 slide-1">
+                <h3 class="text-3xl font-bold text-emerald-400 mb-2">Image Processing Libraries</h3>
+              </div>
+            </div>
+            
+
+            <p class="text-4xl text-center text-shadow-white mt-50 mb-10">&lt; Stats... &gt;</p>
+
+            <div class="flex">
+              <div class="relative text-center justify-between items-center text-cyan-500 hover:text-cyan-200 hover:border-black font-semibold w-full "> 
+                <div class="absolute inset-0 m-auto h-48 w-48 rounded-full bg-emerald-200 blur-xl opacity-30"></div>
+                  <div class="relative z-10 text-center justify-center items-center mt-25">
+                    <p class="text-6xl relative ">35+</p>
+                    <p class="mt-3">operations</p>
+                  </div>
+                </div>
+              <div class="relative text-center justify-between items-center mt-50 text-cyan-500 hover:text-cyan-200 hover:border-black font-semibold w-full "> 
+                <div class="absolute inset-0 m-auto h-48 w-48 rounded-full bg-emerald-200 blur-xl opacity-30"></div>
+                  <div class="relative z-10 text-center justify-center items-center ">
+                    <p class="text-6xl relative ">99%</p>
+                    <p class="mt-3">Success Rate</p>
+                  </div>
+                </div>
+              <div class="relative text-center justify-between items-center text-cyan-500 hover:text-cyan-200 hover:border-black font-semibold w-full "> 
+                <div class="absolute inset-0 m-auto h-48 w-48 rounded-full bg-emerald-200 blur-xl opacity-30"></div>
+                  <div class="relative z-10 text-center justify-center items-center mt-25">
+                    <p class="text-6xl relative ">24/7</p>
+                    <p class="mt-3">support</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       
         </div>
         <div id="image_compressor" class=" flex flex-col  max-w-4xl justify-center mt-50 items-center px-4 py-0">
@@ -89,7 +175,7 @@
           <input type="range" id="rangeInput" min="1" max="100" value="50" class="w-64 accent-emerald-600 " oninput="document.getElementById('rangeValue').innerText = this.value">
           <span id="rangeValue" class="text-white">50</span> 
           <br><br>
-           <div class="grid grid-cols-3 text-center justify-center items-center">
+           <div class="grid md:grid-cols-3 text-center justify-center items-center">
             <div></div>
            
           <div id="compress-mount" class="justify-center items-center "></div></div>
@@ -120,6 +206,7 @@
         </div>
         
         <div id="color_conversion" class="min-h-screen py-20 w-full max-w-4xl mb-auto">
+          
         <h2 class="text-2xl font-bold mb-15 text-center ">Color Conversions</h2>
           <div class="grid md:grid-cols-2 gap-8 w-full text-[24px]">
             <label id="bgr1" class="border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
@@ -194,6 +281,7 @@
 
             </label>
             </div>
+            
         </div>
         
         <div id="filtering" class="min-h-screen py-20 w-full max-w-4xl mb-auto">
@@ -299,7 +387,7 @@
         </div>
         <div id="exclusive" class="min-h-screen w-full text-center py-20 max-w-4xl mb-50">
           <h3 class="text-emerald-500 text-2xl mb-10">Exclusive</h3>
-          <div class="grid grid-cols-2 gap-8 w-full ">
+          <div class="grid md:grid-cols-2 gap-8 w-full ">
               <label id="e1" class="flex flex-col justify-center items-center text-center border-2 border-emerald-500 hover:border-amber-50 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer rounded-md p-18 mb-4 text-2xl">
                 Quality Enhancement
               </label>
@@ -310,7 +398,7 @@
               <label id="e3" class="flex flex-col justify-center items-center text-center bg-emerald-950/30 hover:bg-emerald-500 border-2 border-emerald-500 hover:border-amber-50 hover:text-black cursor-pointer rounded-md p-18 mb-4 text-2xl">
                 Object Detection
               </label>
-
+              
               <label id="e4" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
               Edge Detection
               <input type="file" accept="image/" class="hidden">
