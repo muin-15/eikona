@@ -139,7 +139,7 @@ mountUploadBox('e4',{
 
 mountUploadBox('compress-mount',{
   id:'compression',
-  title:'Click to select img',
+  title:'Click here',
   endpoint:'/compress',
   paraName:'conversionId',
   paraValue:'compress',

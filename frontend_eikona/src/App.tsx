@@ -275,7 +275,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     <option value="tiff">TIFF</option>
     <option value="webp">WEBP</option>
     </select>
-    <button onClick={handleSubmit} className=' border-2 border-emerald-200 text-black/55 hover:bg-green-50 font-semibold py-2 px-4 rounded-lg transition-colors duration-200 mt-10'>
+    <button onClick={handleSubmit} className=' border-2 border-emerald-200 text-lime-200 hover:bg-emerald-950 font-semibold py-2 px-4 rounded-lg transition-colors duration-200 mt-10'>
       Submit
     </button>
     {file && <p className="mt-2 w-64 text-center text-amber-300 text-sm wrap-break-words mx-auto">Selected: {file.name}</p>}
