@@ -30,7 +30,6 @@
       </div>
         
       </nav>  
-      <div class="flex-1 flex flex-col min-h-screen overflow-x-hidden justify-between">
         <style>
           @keyframes slowPan {
             0% { background-position: 0% 50%; }
@@ -86,19 +85,45 @@
             25%,95%{opacity:0;transform:translateY(20px);pointer-events:none;}
             100%{opacity:1 transform;transform:translateY(0);pointer-events:auto;}
           }
-          .slide-1{animation:textFadeSlider 12s infinite;}
-          .slide-2{animation:textFadeSlider 12s infinite;animation-delay: 4s;}
-          .slide-3{animation:textFadeSlider 12s infinite;animation-delay: 8s;}
+          .slide-1{animation:textFadeSlider 9s infinite;}
+          .slide-2{animation:textFadeSlider 9s infinite;animation-delay: 3s;}
+          .slide-3{animation:textFadeSlider 9s infinite;animation-delay: 6s;}
         </style>
         <main class="flex flex-col items-center px-4 w-full bg-[url('/src/assets/newagain.png')] bg-cover bg-fixed opacity-100% animate-moving-bg">
        <div id="home" class="min-h-screen w-full max-w-4xl py-20 flex flex-col justify-start pt-32 mb-auto">
         
-        <div class="text-center mt-[20%] mb-[600px] lowercase first-letter:uppercase">
+        <div class="text-center mb-16 lowercase first-letter:uppercase">
           <p class="text-[100px] text-white [text-shadow:0_0_20px_#10b981,0_0_30px_#047857] font-bold typewriter">Eikona</p>
         </div>
        
         <div>
-          <div class="grid md:grid-cols-1">
+          <div>
+            <div class="flex flex-row justify-center items-center w-full gap-8 mt-10"></div>
+              <div class="relative w-full h-32 mt-10 text-center flex justify-center items-center">
+                <div class="absolute inset-0 flex flex-col justify-center items-center opacity-0 slide-1">
+                  <h3 class="text-3xl font-bold text-emerald-400 mb-2">Image Processing Libraries</h3>
+                  <p class="text-white">libraries like opencv,rembg</p>
+                </div>
+              </div>
+              <div class="flex flex-row justify center items-center w-full gap-8 mt-10">
+                <div class="relative w-full h-32 mt-10 text-center flex justify-center items-center">
+                  <div class="absolute inset-0 flex flex-col justify-center items-center opacity-0 slide-2">
+                  <h3 class="text-3xl font-bold text-emerald-400 mb-2">AI powered</h3>
+                  <p class="text-white">Object detection(YOLO),Face detection(YuNet)</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-row justify center items-center w-full gap-8 mt-10">
+                <div class="relative w-full h-32 mt-10 text-center flex justify-center items-center">
+                  <div class="absolute inset-0 flex flex-col justify-center items-center opacity-0 slide-3">
+                  <h3 class="text-3xl font-bold text-emerald-400 mb-2">All-in-One</h3>
+                  <p class="text-white">Multiple operations and analytical tools</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          <div class="grid md:grid-cols-1 mt-20">
             <p class="text-4xl text-center text-shadow-white mb-10">&lt; Specialized Sectors &gt;</p>
             <div class="grid md:grid-cols-3 gap-2 group w-full max-w-4xl mx-auto animate-fade-up min-h-2/3">
               <div></div>
@@ -130,13 +155,7 @@
                 </div>
               </a>
             </div>
-            <div class="relative w-full h-32 mt-10 text-center flex justify-center items-center">
-              <div class="absolute inset-0 flex flex-col justify-center items-center opacity-0 slide-1">
-                <h3 class="text-3xl font-bold text-emerald-400 mb-2">Image Processing Libraries</h3>
-              </div>
-            </div>
             
-
             <p class="text-4xl text-center text-shadow-white mt-50 mb-10">&lt; Stats... &gt;</p>
 
             <div class="flex">
@@ -163,7 +182,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          
       
         </div>
         <div id="image_compressor" class=" flex flex-col  max-w-4xl justify-center mt-50 items-center px-4 py-0">
