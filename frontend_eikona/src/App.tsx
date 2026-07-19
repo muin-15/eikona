@@ -368,6 +368,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     {resultimage && !loading &&(
           <a href={resultimage} download={`Eikona-Result-${Date.now()}.${outputFormat}`} className="mt-6 flex items-center px-4 py-4 bg-emerald-900 text-indigo-300 font-bold uppercase tracking-wider rounded-full hover:bg-emerald-950 hover:text-indigo-100 transition-colors">
             <Download size={20}/>
+            
             </a>
 
     )}
@@ -389,6 +390,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
         
       </div>
     )}
+    
     </>
   );
 }
