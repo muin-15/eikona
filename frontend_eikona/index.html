@@ -101,7 +101,11 @@
           .slide-2{animation:textFadeSlider 9s infinite;animation-delay: 3s;}
           .slide-3{animation:textFadeSlider 9s infinite;animation-delay: 6s;}
         </style>
-        <main class="flex flex-col items-center px-4 w-full bg-[url('/src/assets/newagain.png')] bg-cover bg-fixed opacity-100% animate-moving-bg">
+        
+        <main class="flex flex-col items-center px-4 w-full bg-[url('/src/assets/newagain.png')] bg-cover bg-fixed opacity-100 animate-moving-bg">
+        <div class="flex justify-end sticky top-5 right-5 z-10 w-full">
+          <a class="hover:underline lowercase first-letter:uppercase text-green-400 text-lg cursor-pointer hover:text-lime-500" href="#file_sharing" target="_blank">Guide</a>
+        </div>
        <div id="home" class="min-h-screen w-full max-w-4xl py-20 flex flex-col justify-start pt-32 mb-auto">
         
         <div class="flex justify-center w-full">
@@ -149,29 +153,29 @@
             <div class="grid md:grid-cols-3 gap-2 group w-full max-w-4xl mx-auto animate-fade-up min-h-2/3">
               <div></div>
               <a href="#histogram" class="relative w-full h-36 block cursor-pointer">
-                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center text-white border-2 border-r-4 border-b-4 hover:-inset-2 hover:border-r-8 hovver:border-b-8 rounded-md border-emerald-500 bg-black hover:z-10 transition-all duration-300 hover:text-black hover:bg-lime-300">
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center text-white border-2 border-r-4 border-b-4 hover:-inset-2 hover:border-r-8 hovver:border-b-8 rounded-md border-emerald-500 bg-black hover:z-10 transition-all duration-300 hover:text-black hover:bg-amber-300">
                   Image<br>Histogram
                 </div>
               </a>
               <div></div>
               <a href="#e3" class="relative w-full h-36 block cursor-pointer"> 
-                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center text-white border-2 border-r-4 border-b-4 hover:-inset-2 hover:border-r-8 hover:border-b-8 rounded-md border-emerald-500 bg-black hover:z-10 transition-all duration-300 hover:text-black hover:bg-lime-300">
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center text-white border-2 border-r-4 border-b-4 hover:-inset-2 hover:border-r-8 hover:border-b-8 rounded-md border-emerald-500 bg-black hover:z-10 transition-all duration-300 hover:text-black hover:bg-amber-300">
                 Object<br>Detection
                 </div>
                 </a>
               <a href="#image_compressor" class="relative w-full h-36 block cursor-pointer"> 
-                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center shadow text-white border-2 border-r-4 border-b-4 hover:border-r-8 hover:border-b-8 rounded-md bg-black hover:-inset-2 hover:z-10 transition-all duration-300 border-emerald-500 hover:bg-lime-300 hover:text-black">
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center shadow text-white border-2 border-r-4 border-b-4 hover:border-r-8 hover:border-b-8 rounded-md bg-black hover:-inset-2 hover:z-10 transition-all duration-300 border-emerald-500 hover:bg-amber-300 hover:text-black">
                   Image<br> Compression
                 </div>
               </a>
               <a href="#image_conversion" class="relative w-full h-36 block cursor-pointer"> 
-                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center text-white border-2 border-r-4 border-b-4 hover:border-b-8 hover:border-r-8 border-emerald-500 rounded-md bg-black hover:-inset-2 hover:z-10 transition-all duration-300 hover:bg-lime-300 hover:text-black">
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center text-white border-2 border-r-4 border-b-4 hover:border-b-8 hover:border-r-8 border-emerald-500 rounded-md bg-black hover:-inset-2 hover:z-10 transition-all duration-300 hover:bg-amber-300 hover:text-black">
                   Image<br> Conversion
                 </div>
               </a>
               <div></div>
               <a href="#tool1" class="relative w-full h-36 block cursor-pointer"> 
-                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center text-white border-2 border-r-4 border-b-4 hover:border-r-8 hover:border-b-8 border-emerald-500 rounded-md bg-black hover:-inset-2 hover:z-10 transition-all duration-300 hover:text-black hover:bg-lime-300">
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-2xl text-center text-white border-2 border-r-4 border-b-4 hover:border-r-8 hover:border-b-8 border-emerald-500 rounded-md bg-black hover:-inset-2 hover:z-10 transition-all duration-300 hover:text-black hover:bg-amber-300">
                   Background<br> Removal
                 </div>
               </a>
@@ -509,6 +513,7 @@
       </div>
 
       </footer>
+      
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

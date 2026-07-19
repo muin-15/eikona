@@ -1,7 +1,7 @@
 import React,{ useState, type ChangeEvent } from 'react' 
 import './App.css'
 import {LoaderCircle} from "lucide-react"; 
-import {Download} from "lucide-react";
+import {Download,DonutIcon} from "lucide-react";
 
 interface prop_uploadbox{
   id:string;
@@ -35,6 +35,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
   const [hideResultThumb,setHideResultThumb]=useState(false);
   const [outputFormat,setOutputFormat]=useState('jpg');
   const [length,setLength]=useState<number | null>(null);
+  
 
   const handlefilechange = async(event: ChangeEvent<HTMLInputElement>,type:'file' | 'file2') => {
     console.log("Event handling is processing");
@@ -390,7 +391,6 @@ const UploadBox:React.FC<prop_uploadbox> = ({
         
       </div>
     )}
-    
     </>
   );
 }
