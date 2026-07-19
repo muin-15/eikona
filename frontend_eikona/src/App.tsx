@@ -1,8 +1,20 @@
-import React,{ useState, type ChangeEvent } from 'react' 
+import React,{ useState,useEffect, type ChangeEvent } from 'react' 
 import './App.css'
 import {LoaderCircle} from "lucide-react"; 
-import {Download,DonutIcon} from "lucide-react";
+import {Download,Orbit} from "lucide-react";
 
+
+interface Stage{
+  label:string;
+  duration:number;
+}
+
+const INTRO_STAGES:Stage[]=[
+  {label:"IMAGE CORRUPTED? We reconstruct it",duration:900},
+  {label:"low resolution? We Upscale it",duration:900},
+  {label:"Noise Background? We clarify it",duration:900},
+  {label:"Object Detection? We nail it",duration:500},
+];
 interface prop_uploadbox{
   id:string;
   title:string;
@@ -35,7 +47,30 @@ const UploadBox:React.FC<prop_uploadbox> = ({
   const [hideResultThumb,setHideResultThumb]=useState(false);
   const [outputFormat,setOutputFormat]=useState('jpg');
   const [length,setLength]=useState<number | null>(null);
+  const [mainloading,setMainLoading]=useState<boolean>(true);
+  const [introExiting,setIntroExiting]=useState(false);
+  const [introStageIndex,setIntroStageIndex]=useState(0);
+  const [introDots,setIntroDots]=useState(0);
   
+
+  useEffect(()=>{
+    if(!mainloading) return;
+    if(introStageIndex<INTRO_STAGES.length-1){
+      const t=setTimeout(()=>setIntroStageIndex((i)=>i+1),INTRO_STAGES[introStageIndex].duration);
+      return ()=>clearTimeout(t);
+    }
+    else{
+      const t=setTimeout(()=>setIntroExiting(true),INTRO_STAGES[introStageIndex].duration);
+      const t2=setTimeout(()=>setMainLoading(false),INTRO_STAGES[introStageIndex].duration+500);
+      return ()=>{clearTimeout(t);clearTimeout(t2);};
+    }
+  },[introStageIndex,mainloading]);
+
+  useEffect(()=>{
+    if (!mainloading)return;
+    const t=setInterval(()=>setIntroDots((c)=>(c+1)%4),350);
+    return ()=>clearInterval(t);
+  },[mainloading]);
 
   const handlefilechange = async(event: ChangeEvent<HTMLInputElement>,type:'file' | 'file2') => {
     console.log("Event handling is processing");
@@ -304,6 +339,21 @@ const UploadBox:React.FC<prop_uploadbox> = ({
 
     </div>
     )}
+{mainloading && (
+  <div className={`fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center transition-opacity duration-500 ${introExiting ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+    <Orbit size={72} className="animate-spin text-emerald-400" />
+    <p className="mt-8 text-4xl md:text-6xl font-bold text-emerald-400 tracking-wide">Eikona</p>
+    <p className="mt-4 text-emerald-400/80 font-mono text-sm tracking-widest uppercase">
+      {INTRO_STAGES[introStageIndex].label}
+      <span className="inline-block w-6 text-left">{".".repeat(introDots)}</span>
+    </p>
+    <div className="mt-4 flex gap-2">
+      {INTRO_STAGES.map((s, i) => (
+        <span key={s.label} className={`h-1.5 w-6 rounded-full transition-colors duration-300 ${i <= introStageIndex ? "bg-emerald-400" : "bg-emerald-400/20"}`} />
+      ))}
+    </div>
+  </div>
+)}
     {showpreview &&(
       <div className="fixed inset-0 bg-black/95 z-[9999] flex justify-center items-center"
       onClick={()=> setShowpreview(false)}>

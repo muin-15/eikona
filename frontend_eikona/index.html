@@ -14,21 +14,21 @@
         <div class="bg-black text-white font-bold py-5 px-4 flex flex-col h-screen border-r-4 border-white ">
           <div class="flex flex-row pb-5 border-b-2">
           <img src="src/assets/logo3.png" alt="Eikona" font-size="24px" class="inline-block h-12 w-12 mr-2 border-2 border-emerald-500 rounded-full">
-          <p class="text-white font-bold py-2 px-2 h-10 w-30 text-[25px] ">Eikona</p>
+          <p class="text-white font-bold py-2 px-2 h-10 w-30 text-[25px] hover:animate-pulse ">Eikona</p>
           </div>
           <br>
           <div class="flex flex-col justify-start items-start text-start tracking-widest">
-              <a href="#home" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1d] hover:text-white w-full">Home</a>
-              <a href="#image_compressor" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1d] hover:text-white w-full">Compression</a>
-              <a href="#operations" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1d] hover:text-white w-full">Operations</a>
-              <a href="#color_conversion" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1d] hover:text-white tracking-widest w-full">Color Conv</a>
-              <a href="#transformations" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1d] hover:text-white w-full">Transformations</a>
-              <a href="#filtering" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1d] hover:text-white w-full">Filtering</a>
-              <a href="#restoration" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1d] w-full hover:text-white">Restoration</a>
-              <a href="#analytics" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1d] w-full hover:text-white">Analytics</a>
-              <a href="#image_conversion" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1d] w-full hover:text-white">Image Conv</a>
-              <a href="#tools" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1d] w-full hover:text-white">Tools</a>
-              <a href="#exclusive" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1d] w-full hover:text-white">Exclusive</a>
+              <a href="#home" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1a] hover:text-white w-full">Home</a>
+              <a href="#image_compressor" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2b] hover:text-white w-full">Compression</a>
+              <a href="#operations" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1c] hover:text-white w-full">Operations</a>
+              <a href="#color_conversion" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2d] hover:text-white tracking-widest w-full">Color Conv</a>
+              <a href="#transformations" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1e] hover:text-white w-full">Transformations</a>
+              <a href="#filtering" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2f] hover:text-white w-full">Filtering</a>
+              <a href="#restoration" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1a] w-full hover:text-white">Restoration</a>
+              <a href="#analytics" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2b] w-full hover:text-white">Analytics</a>
+              <a href="#image_conversion" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1c] w-full hover:text-white">Image Conv</a>
+              <a href="#tools" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2d] w-full hover:text-white">Tools</a>
+              <a href="#exclusive" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1e] w-full hover:text-white">Exclusive</a>
           </div>
       </div>
         
@@ -104,7 +104,7 @@
         
         <main class="flex flex-col items-center px-4 w-full bg-[url('/src/assets/newagain.png')] bg-cover bg-fixed opacity-100 animate-moving-bg">
         <div class="flex justify-end sticky top-5 right-5 z-10 w-full">
-          <a class="hover:underline lowercase first-letter:uppercase text-green-400 text-lg cursor-pointer hover:text-lime-500" href="#file_sharing" target="_blank">Guide</a>
+          <a class="underline lowercase first-letter:uppercase text-green-400 text-lg cursor-pointer hover:text-lime-500 bg-black/15" href="#file_sharing" target="_blank">Guide</a>
         </div>
        <div id="home" class="min-h-screen w-full max-w-4xl py-20 flex flex-col justify-start pt-32 mb-auto">
         
@@ -229,20 +229,20 @@
         <div id="operations" class="min-h-screen py-20 mt-10 w-full max-w-4xl mb-auto">
         <h2 class="text-2xl font-bold mb-15 text-center ">Image Operations</h2>
           <div class="grid md:grid-cols-2 gap-8 w-full text-[24px]">
-            <label id="add" class="flex flex-col items-center border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500  hover:text-black hover:border-amber-50 cursor-pointer text-center justify-center  ">
+            <label id="add" class="flex flex-col items-center border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500  hover:text-black hover:border-amber-50 cursor-pointer text-center justify-center  ">
               Image Addition
               <input type="file" accept="image/" class="hidden">
               
             </label>
-            <label id="sub" class="flex flex-col justify-center items-center border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center">
+            <label id="sub" class="flex flex-col justify-center items-center border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black hover:border-amber-50 cursor-pointer text-center">
               Image Subtraction
               <input type="file" accept="image/" class="hidden">
             </label>
-            <label id="mul" class="flex flex-col justify-center items-center border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center">
+            <label id="mul" class="flex flex-col justify-center items-center border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black hover:border-amber-50 cursor-pointer text-center">
               Image Multiplication
               <input type="file" accept="image/" class="hidden">
             </label>
-            <label id="div" class="flex flex-col justify-center items-center border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center">
+            <label id="div" class="flex flex-col justify-center items-center border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black hover:border-amber-50 cursor-pointer text-center">
               Image Division
               <input type="file" accept="image/" class="hidden">
             </label>
@@ -253,39 +253,39 @@
           
         <h2 class="text-2xl font-bold mb-15 text-center ">Color Conversions</h2>
           <div class="grid md:grid-cols-2 gap-8 w-full text-[24px]">
-            <label id="bgr1" class="border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="bgr1" class="border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
               BGR to Grayscale
               <input type="file" accept="image/" class="hidden">
             </label>
-            <label id="d1" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9  bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center items-center justify-center flex flex-col">
+            <label id="d1" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9  bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center items-center justify-center flex flex-col">
               Thresholding
               <input type="file" accept="image/" class="hidden">
 
             </label>
             
-            <label id="bgr3" class="border-2 rounded-md p-18 mb-9 border-emerald-500  bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="bgr3" class="border-2 rounded-md p-18 mb-9 border-emerald-500  bg-emerald-950/30 hover:bg-green-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
               BGR to HSV
               <input type="file" accept="image/" class="hidden">
             </label>
-            <label id="bgr4" class="border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="bgr4" class="border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
               HSV to BGR
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="bgr5" class="border-2 border-emerald-500  rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="bgr5" class="border-2 border-emerald-500  rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
               BGR to RGB
               <input type="file" accept="image/" class="hidden">
               
             </label>
-            <label id="bgr6" class="border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="bgr6" class="border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
               RGB to BGR
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="bgr7" class="border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="bgr7" class="border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
               BGR to LAB
             </label>
-            <label id="bgr8" class="border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="bgr8" class="border-2 border-emerald-500 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black hover:border-amber-50 cursor-pointer text-center flex flex-col justify-center items-center">
               LAB to BGR
             </label>
           </div>
@@ -293,33 +293,33 @@
         <div id="transformations" class="min-h-screen py-20 w-full max-w-4xl mb-auto">
         <h2 class="text-2xl font-bold mb-15 text-center">Image Transformations</h2>
         <div class="grid md:grid-cols-2 gap-8 w-full text-[24px]">
-          <label id="t1" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
+          <label id="t1" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
               Image Rotation
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="t4" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="t4" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
               Power law Transformation
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="t3" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4  bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="t3" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4  bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
               Log Transformation
               <input type="file" accept="image/" class="hidden">
 
             </label>
             
-            <label id="t5" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="t5" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
               Negative Transformation
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="t6" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="t6" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
               Uniform Image Scaling(Upscaling)
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="t7" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="t7" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
               Uniform Image Scaling(Downscaling)
               <input type="file" accept="image/" class="hidden">
 
@@ -331,27 +331,27 @@
         <div id="filtering" class="min-h-screen py-20 w-full max-w-4xl mb-auto">
         <h2 class="text-2xl font-bold mb-15 text-center">Image Filtering</h2>
         <div class="grid md:grid-cols-2 gap-8 w-full text-[24px]">
-        <label id="filter1" class=" align-center border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
+        <label id="filter1" class=" align-center border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
               Mean Filtering
               <input type="file" accept="image/" class="hidden">
 
         </label>
-            <label id="filter2" class="flex flex-col justify-center items-center border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center">
+            <label id="filter2" class="flex flex-col justify-center items-center border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center">
               Median Filtering
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="filter3" class="flex flex-col justify-center items-center border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center">
+            <label id="filter3" class="flex flex-col justify-center items-center border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center">
               Gaussian smoothing
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="filter4" class="flex flex-col justify-center items-center border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center">
+            <label id="filter4" class="flex flex-col justify-center items-center border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center">
               Laplacian Sharpening
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="filter5" class="flex flex-col justify-center items-center border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center">
+            <label id="filter5" class="flex flex-col justify-center items-center border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center">
               <input type="file" accept="image/" class="hidden">
             </label>
             </div>
@@ -359,12 +359,12 @@
         <div id="restoration" class="min-h-screen py-20 w-full max-w-4xl mb-auto">
         <h2 class="text-2xl font-bold mb-15 text-center">Image Restoration</h2>
         <div class="grid md:grid-cols-2 gap-8 w-full text-[24px]">
-            <label id="res1" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center items-center justify-center flex flex-col">
+            <label id="res1" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center items-center justify-center flex flex-col">
               Inverse Filtering
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="res2" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
+            <label id="res2" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center">
               Wiener Filtering
               <input type="file" accept="image/" class="hidden">
 
@@ -375,20 +375,20 @@
         <div id="analytics" class="min-h-screen w-full text-center max-w-4xl mb-auto">
         <h2 class="text-2xl font-bold mb-15 text-center">Image Analytics</h2>
         <div class="grid md:grid-cols-2 gap-8 w-full text-[24px]">
-          <label id="histogram" class="flex flex-col text-2xl border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center items-center justify-center">
+          <label id="histogram" class="flex flex-col text-2xl border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center items-center justify-center">
               Histogram Analysis
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="dft" class="flex flex-col text-2xl border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center items-center justify-center">
+            <label id="dft" class="flex flex-col text-2xl border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center items-center justify-center">
               Discrete Fourier Transform
               <input type="file" accept="image/" class="hidden">
             </label>
-            <label id="fft" class="flex flex-col text-2xl border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center items-center justify-center">
+            <label id="fft" class="flex flex-col text-2xl border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center items-center justify-center">
               Fast Fourier Transform
               <input type="file" accept="image/" class="hidden">
             </label>
-            <label id="dct" class="flex flex-col text-2xl border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center items-center justify-center">
+            <label id="dct" class="flex flex-col text-2xl border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center items-center justify-center">
               Discrete Cosine Transform
               <input type="file" accept="image/" class="hidden"> 
             </label>
@@ -399,7 +399,7 @@
           <h3 class="text-center text-2xl font-bold text-emerald-500 mb-15">Image Conversion</h3>
           <div class="grid md:grid-cols-1 gap-8 w-full ">
 
-            <label id="toconvert" class="flex flex-col text-2xl border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer items-center text-center justify-center ">
+            <label id="toconvert" class="flex flex-col text-2xl border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-9 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer items-center text-center justify-center ">
               <input type="file" accept="image/" class="hidden">
             </label>
             
@@ -408,23 +408,23 @@
         <div id="tools" class="min-h-screen w-full text-center py-20 max-w-4xl mb-auto">
           <h3 class="text-center text-2xl font-bold text-emerald-500 mb-15">PROCESSING TOOLS</h3>
           <div class="grid md:grid-cols-2 gap-8 w-full">
-            <label id="tool1" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
+            <label id="tool1" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
               Background Removal
               <input type="file" accept="image/" class="hidden">
 
             </label>
-            <label id="tool3" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
+            <label id="tool3" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
               Image InPAINT
             </label>
           
-            <label id="tool2" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
+            <label id="tool2" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
               Stylization
             </label>
             
-            <label id="tool4" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
+            <label id="tool4" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
               Pencil Sketch
             </label>
-            <label id="tool5" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
+            <label id="tool5" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
               HDR Effect
             </label>
           </div>
@@ -432,18 +432,18 @@
         <div id="exclusive" class="min-h-screen w-full text-center py-20 max-w-4xl mb-50">
           <h3 class="text-emerald-500 text-2xl mb-10">Exclusive</h3>
           <div class="grid md:grid-cols-2 gap-8 w-full ">
-              <label id="e1" class="flex flex-col justify-center items-center text-center border-2 border-emerald-500 hover:border-amber-50 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer rounded-md p-18 mb-4 text-2xl">
+              <label id="e1" class="flex flex-col justify-center items-center text-center border-2 border-emerald-500 hover:border-amber-50 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer rounded-md p-18 mb-4 text-2xl">
                 Quality Enhancement
               </label>
-              <label id="e2" class="flex flex-col text-center justify-center items-center border-2 border-emerald-500 hover:border-amber-50 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer rounded-md p-18 mb-4 text-2xl">
+              <label id="e2" class="flex flex-col text-center justify-center items-center border-2 border-emerald-500 hover:border-amber-50 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer rounded-md p-18 mb-4 text-2xl">
                 Face Detection
               </label>
           
-              <label id="e3" class="flex flex-col justify-center items-center text-center bg-emerald-950/30 hover:bg-emerald-500 border-2 border-emerald-500 hover:border-amber-50 hover:text-black cursor-pointer rounded-md p-18 mb-4 text-2xl">
+              <label id="e3" class="flex flex-col justify-center items-center text-center bg-emerald-950/30 hover:bg-green-500 border-2 border-emerald-500 hover:border-amber-50 hover:text-black cursor-pointer rounded-md p-18 mb-4 text-2xl">
                 Object Detection
               </label>
               
-              <label id="e4" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-emerald-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
+              <label id="e4" class="border-2 border-emerald-500 hover:border-amber-50 rounded-md p-18 mb-4 bg-emerald-950/30 hover:bg-green-500 hover:text-black cursor-pointer text-center flex flex-col justify-center items-center text-2xl">
               Edge Detection
               <input type="file" accept="image/" class="hidden">
             </label>
@@ -475,19 +475,19 @@
         <div class="flex-container justify-center items-center">
           <h3 class="text-white font-bold mb-5">TECH STACK</h3>
           
-            <div>
+            <div class="mb-1">
               <a href="https://react.dev/" target="_blank" class="hover:text-white">React</a>
             </div>
-            <div>
+            <div class="mb-1">
               <a href="https://github.com/" target="_blank" class="hover:text-white">Git & GitHub</a>
             </div>
-            <div>
+            <div class="mb-1">
               <a href="https://tailwindcss.com/" target="_blank" class="hover:text-white">Tailwind</a>
             </div>
-            <div>
+            <div class="mb-1">
               <a href="https://fastapi.tiangolo.com/" target="_blank" class="hover:text-white">FastApi</a>
             </div>
-            <div>
+            <div class="mb-1">
               <a href="https://opencv-opencv.mintlify.app/" target="_blank" class="hover:text-white">OpenCV</a>
             </div>
         </div>

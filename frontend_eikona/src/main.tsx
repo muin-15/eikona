@@ -6,7 +6,6 @@ import UploadBox from './App.tsx';
 
 const mountUploadBox=(mountId:string,props:React.ComponentProps<typeof UploadBox> )=>{
 const rootElement = document.getElementById(mountId);
-
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
@@ -17,6 +16,10 @@ if (rootElement) {
 }else{
   console.error(`can't procide through element hook ID ${mountId}`);
 }
+
+<label>
+  Dots 
+</label>
 };
 
 mountUploadBox('bgr1',{
