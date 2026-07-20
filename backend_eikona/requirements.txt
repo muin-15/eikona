@@ -1,15 +1,12 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
 fastapi
-uvicorn
-
-numpy==2.5.0
-opencv-python==4.13.0.92
-matplotlib
-
+uvicorn[standard]
 python-multipart
-
+numpy>=1.26,<2.3
+opencv-python-headless
+matplotlib
 rembg
 onnxruntime
-
 ultralytics
 torch
 torchvision
