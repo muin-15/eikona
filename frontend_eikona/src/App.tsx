@@ -341,15 +341,15 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     )}
 {mainloading && (
   <div className={`fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center transition-opacity duration-500 ${introExiting ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-    <Orbit size={72} className="animate-spin text-emerald-400" />
-    <p className="mt-8 text-4xl md:text-6xl font-bold text-emerald-400 tracking-wide">Eikona</p>
-    <p className="mt-4 text-emerald-400/80 font-mono text-sm tracking-widest uppercase">
+    <Orbit size={72} className="animate-spin text-green-400" />
+    <p className="mt-8 text-4xl md:text-6xl font-bold text-green-400 tracking-wide">Eikona</p>
+    <p className="mt-4 text-green-400/80 font-mono text-sm tracking-widest uppercase">
       {INTRO_STAGES[introStageIndex].label}
       <span className="inline-block w-6 text-left">{".".repeat(introDots)}</span>
     </p>
     <div className="mt-4 flex gap-2">
       {INTRO_STAGES.map((s, i) => (
-        <span key={s.label} className={`h-1.5 w-6 rounded-full transition-colors duration-300 ${i <= introStageIndex ? "bg-emerald-400" : "bg-emerald-400/20"}`} />
+        <span key={s.label} className={`h-1.5 w-6 rounded-full transition-colors duration-300 ${i <= introStageIndex ? "bg-green-400" : "bg-emerald-400/20"}`} />
       ))}
     </div>
   </div>
