@@ -3,3 +3,6 @@ uvicorn
 numpy==2.5.0
 opencv-python==4.13.0.92
 python-multipart
+rembg
+ultralytics
+matplotlib
