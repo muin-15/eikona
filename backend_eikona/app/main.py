@@ -5,11 +5,9 @@ import cv2 #type:ignore
 import numpy as np #type:ignore
 import matplotlib.pyplot as plt #type:ignore
 from matplotlib.figure import Figure    #type:ignore
-from rembg import remove #type:ignore
 from typing import Optional
 import io
 import os
-from ultralytics import YOLO #type:ignore
 import json #type:ignore
 
 app = FastAPI()
@@ -70,6 +68,14 @@ def wiener_filter(image,psf_kernel,k=0.01):
     restored=np.clip(restored,0,1)
 
     return (restored*255).astype(np.uint8)
+
+_yolo_model = None
+def get_yolo_model():
+    global _yolo_model
+    if _yolo_model is None:
+        from ultralytics import YOLO #type:ignore
+        _yolo_model = YOLO("yolo11n.pt")
+    return _yolo_model
 
 @app.get("/")
 async def root():
@@ -206,9 +212,6 @@ async def image_transformation(
         upscale=cv2.resize(image,(width,height))
         success,encoded_image=cv2.imencode('.jpg',upscale)
 
-    elif conversionId=='t2':
-        bg_removed=remove(image)
-        success,encoded_image=cv2.imencode('.jpg',bg_removed)
     
     elif conversionId=='t3':
         negative_img=255-image
@@ -448,6 +451,7 @@ async def image_tools(
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
     if conversionId=='tool1':
+        from rembg import remove #type:ignore
         bg_remove=remove(image)
         success,encoded_image=cv2.imencode('.png',bg_remove)
     
@@ -532,13 +536,14 @@ async def highend_tools(
             )
         success,encoded_img=cv2.imencode('.jpg',image)
         
+
     elif conversionId=='e3':
-        model=YOLO("yolo11n.pt")
-        results=model(image)
+        yolomodel=get_yolo_model()
+        results=yolomodel(image)
             
         annotated=image.copy()
         object_counts={}  
-        class_names=model.names 
+        class_names=yolomodel.names 
         for result in results:
             for box in result.boxes:
                 cls_id=int(box.cls[0])
