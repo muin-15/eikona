@@ -1,5 +1,5 @@
 
-import React, { StrictMode } from 'react';
+import React, { StrictMode } from 'react'; 
 import ReactDOM from 'react-dom/client';
 import './index.css'; 
 import UploadBox from './App.tsx';
@@ -8,10 +8,10 @@ const mountUploadBox=(mountId:string,props:React.ComponentProps<typeof UploadBox
 const rootElement = document.getElementById(mountId);
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
+    <StrictMode>
       <UploadBox {...props}
       />
-    </React.StrictMode>
+    </StrictMode>
   );
 }else{
   console.error(`can't procide through element hook ID ${mountId}`);

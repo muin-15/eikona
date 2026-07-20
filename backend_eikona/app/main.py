@@ -182,7 +182,6 @@ async def image_filter(
     return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
 
 
-
 @app.post("/transformations")
 async def image_transformation(
     file:UploadFile=File(...),
@@ -240,8 +239,6 @@ async def image_transformation(
     if not success:
         return ("404 can't process image")
     return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
-
-
 
 
 @app.post("/compress")
