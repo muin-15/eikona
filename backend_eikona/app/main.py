@@ -86,7 +86,7 @@ def encoded_image_gen(image,output_Format=".jpg"):
         ext,mime='.png','image/png'
     elif fmt=='bmp':
         ext,mime='.bmp','image/bmp'
-    elif fmt=='tiff':
+    elif fmt in ('tif','tiff'):
         ext,mime='.tiff','image/tiff'
     elif fmt=='webp':
         ext,mime='.webp','image/webp'

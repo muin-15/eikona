@@ -27,6 +27,8 @@ interface prop_uploadbox{
     elementId:string;
   };
 }
+
+
 const UploadBox:React.FC<prop_uploadbox> = ({ 
   id, title, endpoint, paraName, paraValue, range,requiredInput=1,
 }) => {
@@ -200,7 +202,18 @@ const UploadBox:React.FC<prop_uploadbox> = ({
       setResultview(true);
     }
 };
-  
+const disableTIFF=[
+  '/restoration',
+  '/color_conversion',
+  '/operations',
+  '/filtering',
+  '/transformations',
+].includes(endpoint);
+useEffect(()=>{
+  if(disableTIFF && outputFormat==="tiff"){
+    setOutputFormat('.png');
+  }
+},[disableTIFF,outputFormat]);
   return (
     <>
     <label htmlFor={id} className="upload-box ">
@@ -308,7 +321,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
     <option value="jpg">JPG</option>
     <option value="png">PNG</option>
     <option value="bmp">BMP</option>
-    <option value="tiff">TIFF</option>
+    {!disableTIFF && (<option value="tiff">TIFF</option>)}
     <option value="webp">WEBP</option>
     </select>
     <button onClick={handleSubmit} className=' border-2 border-emerald-200 text-lime-200 hover:bg-emerald-950 font-semibold py-2 px-4 rounded-lg transition-colors duration-200 mt-10'>
