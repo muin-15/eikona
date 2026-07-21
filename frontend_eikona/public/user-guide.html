@@ -3,13 +3,96 @@
         <link rel="stylesheet" href="userguide.css">
     </head>
     <body>
-        <nav id="navbar">
-            <a href="#Intro">INTRO</a>
-            <a href="#loading">LOADING</a>
-            <a href="Uploading">UPLOADING</a>
-            <a href="#Common_Issues">COMMON ISSUES</a>
-            <a href="#feedback">FEEDBACK</a>
-        </nav>
-        <div style="color: white;">hi</div>
+        <div style="display: flex;">
+            <nav id="navbar">
+                <a href="#Intro">Intro</a>
+                <a href="#loading">Loading</a>
+                <a href="#Uploading">Uploading</a>
+                <a href="#Common_Issues">Common issues</a>
+                <a href="#feedback">Feedback</a>
+            </nav>
+        <div style="color: white;text-align: center;width: 100%;display: grid;grid-column: 1;">
+            <br>
+            <div id="Intro">
+                <div id="etitle" style="font-size: 46px;">
+                    EIKONA Guide
+                </div>
+                <div style="color:white;font-size: 20px;text-align: start;padding-left:10%; padding-right: 10%;padding-bottom:5%">
+                    <p><span id="eikona">Eikona</span> is a powerful web-basd image processing platform designed to make advanced image editing,enhancement,and computer vision techniques.<span id="eikona">Eikona</span> provides wide range of operations;image transformations,geometric operations,filtering restoration,segmentation,object detection,and color analysis.</p>
+                    <p>Though <span id="eikona">Eikona</span> provides 99% success rate it can be falsy at sometimes.To recover from this the four sections of the Guide stands in a priority format.The <span id="guide">Guide Section</span> provides the proper way to use the web-app.It is created to provide flexibility to users.</p>
+                </div>
+                <div id="aligning">
+                    
+                    <a href="https://opencv-opencv.mintlify.app/">click to know fundamentals of image processing</a>
+                </div>
+            </div>
+            <div id="loading">
+                <div id="aligning">
+                    <div id="error">Loading Buffers</div>
+                    <div id="img-container"><img id="image" src="buffer.png" alt="Buffering image"/></div>
+                    <div id="solution"><span id="s">Solution 1: </span>Wait till 2-5 mins because some operations like <i>Face detection</i> and <i>Object detection</i> consumes a lot of time.</div>
+                    <div id="solution"><span id="s">Solution 2: </span>Even after this if the loading didn't stop then refresh the page.</div>
+                    <div id="solution"><span id="s">Solution 3: </span>If nothing makes the result then contact to support.</div>
+                </div>
+            </div>
+            <div id="Uploading">
+                <div id="aligning">
+                    <div id="info">Upload an Image</div>
+                    <div id="img-container"><img id="image" src="upload1.png" alt="Uploading Image"/></div>
+                    <div id="solution">As you hover the operation box it will change color to green.You can click anywhere in the green region to upload an image.</div>
+                </div>
+                <div id="aligning">
+                    <div id="info">Upload two Images</div>
+                    <div id="img-container">
+                        <img id="image" src="upload2.png" alt="Two Images Uploading"/>
+                        <img id="image" src="upload3.png" alt="Two Images Uploading"/>    
+                    </div>
+                    <div id="solution">For two Images the first image will be taken as the method given below,for second image you need to click in the White box.</div>
+                    <div id="solution">Even if the sizes/format of the images is different the operations are taken place successfully.</div>
+                </div>
+                <div id="aligning">
+                    <div id="info">Upload Parameters and Range</div>
+                    <div id="img-container">
+                        <img id='image' src="upload4.png" alt="Number Input Image"/>
+                        <img id="image" src="upload5.png" alt="Range Input and Format Specifier"/>
+                    </div>
+                    <div id="solution">The First Image describe that the numbered inputs with image and given sample examples of numbering values at placeholder.</div>
+                    <div id="solution">As shown in second image there are different formats to get output image and user-defined compressed image.</div>
+                </div>
+            </div>
+            <div id="Common_Issues">
+                <div id="aligning">
+                    <div id="error">Format Error</div>
+                    <div id="img-container">
+                        <img id="image" src="ci1.png" alt="Format Image"/>
+                    </div>
+                    <div id="solution">We support only 5 formats (.jpg/.jpeg , .png , .webp , .bmp , .tiff)</div>
+                    <div id="error">TIFF Error</div>
+                    <div id="solution"><span id="s">Solution: </span>Somtimes tiff could not work due difference in number of channels</div>
+                    <div id="solution"><span id="s">Solution: </span>Even if users tries somehow to get tiff,it will not actually be a tiff but a png by default settings.</div>
+                </div>
+                <div id="aligning">
+                    <div id="error">Resize problem</div>
+                    <div id="solution"><span id="s">Solution: </span>Sometimes exclusive functions like detection cannot figure out the object,this could be because the small size of the image or that image could be a screenshot or AI generated.At times like this you should scale the image up/down based on need.</div>
+                </div>
+                <div id="aligning">
+                    <div id="error">Network Error</div>
+                    <div id="solution"><span id="s">Solution: </span>Network Errors are pretty common ,this may happen due to the network traffic,site under-construction or improper user connection to the website.To recover from this first we checkout for connection then we need to wait for sometime then apply again.</div>
+                </div>
+            </div>
+            <div id="feedback">
+                <div id="aligning" style="margin-bottom: 20%;">
+                    <div id="info">Feedback</div>
+                    <div id="solution">If your error is something different from the guide then you could contact us through support otherwise give us feedback.Which will help us to improve.</div>
+                    <div id="feed">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdcYEceA8-r894eOgTENoP_wtWR6Bvb8B1m-1SCkfJ_-YcC4A/viewform?usp=publish-editor">feedback</a>-Feedback
+                    <br>
+                    <a href="mailto:muinmomin2@gmail.com" target="_blank">muinmomin2@gmail.com</a>-support
+                </div>
+                </div>
+                
+            </div>
+        </div>
+        </div>
     </body>
 </html>
