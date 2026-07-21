@@ -157,7 +157,7 @@ const UploadBox:React.FC<prop_uploadbox> = ({
 
     try {
         setLoading(true);
-        const response = await fetch(`https://eikona-3l7t.onrender.com${endpoint}`, {
+        const response = await fetch(`http://127.0.0.1:8000${endpoint}`, {
             method: "POST",
             body: formData,
         });

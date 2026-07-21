@@ -78,6 +78,27 @@ def get_yolo_model():
         _yolo_model = YOLO("yolo11n.pt")
     return _yolo_model
 
+def encoded_image_gen(image,output_Format=".jpg"):
+    fmt=output_Format.lower()
+    if fmt=='jpg':
+        ext,mime=".jpg","image/jpeg"
+    elif fmt=='png':
+        ext,mime='.png','image/png'
+    elif fmt=='bmp':
+        ext,mime='.bmp','image/bmp'
+    elif fmt=='tiff':
+        ext,mime='.tiff','image/tiff'
+    elif fmt=='webp':
+        ext,mime='.webp','image/webp'
+    else:
+        raise HTTPException(status_code=400,detail="Invalid Format")
+    success,encoded_image=cv2.imencode(ext,image)
+
+    if not success:
+        raise HTTPException(status_code=500,detail="Server Error")
+    return Response(content=encoded_image.tobytes(),media_type=mime)
+
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
@@ -101,86 +122,71 @@ async def validate_image(file:UploadFile):
 async def convert_color(
     
     file:UploadFile=File(...),
-    conversionId:str=Form(...)):
+    conversionId:str=Form(...),
+    outputFormat:Optional[str]=Form(...)):
 
     image=await validate_image(file)
 
     if conversionId=="bgr1":
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        success, encoded_image = cv2.imencode('.jpg', gray)
+        g = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         
     elif conversionId=='d1':
         gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-        ret,thresh=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
-        success,encoded_image=cv2.imencode('.jpg',thresh)
-        
+        ret,g=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
         
     elif conversionId=="bgr3":
-        hsv=cv2.cvtColor(image,cv2.COLOR_BGR2HSV) 
-        success,encoded_image=cv2.imencode('.jpg',hsv)
+        g=cv2.cvtColor(image,cv2.COLOR_BGR2HSV) 
 
     elif conversionId=="bgr4":
-        hsv_bgr=cv2.cvtColor(image,cv2.COLOR_HSV2BGR)
-        success,encoded_image=cv2.imencode('.jpg',hsv_bgr)
+        g=cv2.cvtColor(image,cv2.COLOR_HSV2BGR)
 
     elif conversionId=="bgr5":
-        rgb=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
-        success,encoded_image=cv2.imencode('.jpg',rgb)
+        g=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
 
     elif conversionId=="bgr6":
-        rgb_bgr=cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
-        success,encoded_image=cv2.imencode('.jpg',rgb_bgr)
+        g=cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
 
     elif conversionId=="bgr7":
-        bgr_lab=cv2.cvtColor(image,cv2.COLOR_BGR2LAB)
-        success,encoded_image=cv2.imencode('.jpg',bgr_lab)
+        g=cv2.cvtColor(image,cv2.COLOR_BGR2LAB)
 
     elif conversionId=='bgr8':
-        lab_bgr=cv2.cvtColor(image,cv2.COLOR_LAB2BGR)
-        success,encoded_image=cv2.imencode('.jpg',lab_bgr)
+        g=cv2.cvtColor(image,cv2.COLOR_LAB2BGR)
     else:
         raise HTTPException(status_code=400, detail=f"Unknown conversionId: {conversionId}")
+    
+    return encoded_image_gen(g,outputFormat)
 
-    if not success:
-            return ("404 can't process image")
 
-    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
     
 
 @app.post("/filtering")
 async def image_filter(
     file:UploadFile=File(...),
-    conversionId:str=Form(...)):
+    conversionId:str=Form(...),
+    outputFormat:Optional[str]=Form(...)):
 
     image=await validate_image(file)
 
     if conversionId=="filter3":
-        gaussian=cv2.GaussianBlur(image,(5,5),0)
-        success,encoded_image=cv2.imencode('.jpg',gaussian)
+        filtered=cv2.GaussianBlur(image,(5,5),0)
 
     elif conversionId=="filter1":
-        mean=cv2.boxFilter(image,-1,(5,5))
-        success,encoded_image=cv2.imencode('.jpg',mean)
+        filtered=cv2.boxFilter(image,-1,(5,5))
 
     elif conversionId=="filter2":
-        median=cv2.medianBlur(image,5)
-        success,encoded_image=cv2.imencode('.jpg',median)
+        filtered=cv2.medianBlur(image,5)
 
     elif conversionId=="filter4":
         laplacian=cv2.Laplacian(image,cv2.CV_64F,ksize=3)
-        laplacian8bit=cv2.convertScaleAbs(laplacian)
-        success,encoded_image=cv2.imencode('.jpg',laplacian8bit)
+        filtered=cv2.convertScaleAbs(laplacian)
 
     elif conversionId=="filter5":
-        bilateral=cv2.bilateralFilter(image,d=9,sigmaColor=75,sigmaSpace=75)
-        success,encoded_image=cv2.imencode('.jpg',bilateral)
+        filtered=cv2.bilateralFilter(image,d=9,sigmaColor=75,sigmaSpace=75)
 
     else:
         return {"message": "Invalid conversionId"}
 
-    if not success:
-        return ("Can't process image")
-    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
+    return encoded_image_gen(filtered,outputFormat)
 
 
 @app.post("/transformations")
@@ -188,7 +194,8 @@ async def image_transformation(
     file:UploadFile=File(...),
     conversionId:str=Form(...),
     angle:Optional[float]=Form(None),
-    gamma:Optional[float]=Form(None)):
+    gamma:Optional[float]=Form(None),
+    outputFormat:Optional[str]=Form(...)):
 
     image=await validate_image(file)
 
@@ -197,8 +204,7 @@ async def image_transformation(
         height,width=image.shape[:2]
         center=(width//2,height//2)
         rotation_matrix=cv2.getRotationMatrix2D(center,angle,scale)
-        rotated_img=cv2.warpAffine(image,rotation_matrix,(width,height))
-        success,encoded_image=cv2.imencode('.jpg',rotated_img)
+        transformed=cv2.warpAffine(image,rotation_matrix,(width,height))
 
 
     elif conversionId=='t6' or conversionId=='t7':
@@ -209,20 +215,18 @@ async def image_transformation(
             width=int(image.shape[1]*0.5)
             height=int(image.shape[0]*0.5)
 
-        upscale=cv2.resize(image,(width,height))
-        success,encoded_image=cv2.imencode('.jpg',upscale)
+        transformed=cv2.resize(image,(width,height))
 
     
     elif conversionId=='t3':
-        negative_img=255-image
-        
-        success,encoded_image=cv2.imencode('.jpg',negative_img)
+
+        transformed=255-image
     
     elif conversionId=='t4':
         if gamma>=0 and gamma<=5:
             table=np.array([((i/255)**gamma)*255 for i in np.arange(0,256)]).astype("uint8")
-            power_law=cv2.LUT(image,table)
-            success,encoded_image=cv2.imencode('.jpg',power_law)
+            transformed=cv2.LUT(image,table)
+
         else:
             raise HTTPException(status_code=400,detail="Provide Gamma Value between 0.1-5.0")
 
@@ -231,29 +235,27 @@ async def image_transformation(
         max_val=np.max(img_float)
         c=255/np.log(1+max_val) if max_val> 0 else 1
         log_img=c*np.log(1+img_float)
-        restored_log=cv2.convertScaleAbs(log_img)
-        success,encoded_image=cv2.imencode('.jpg',restored_log)
+        transformed=cv2.convertScaleAbs(log_img)
 
     else:
         raise HTTPException(status_code=400, detail="Invalid detection ID")
     
-    if not success:
-        return ("404 can't process image")
-    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
+    return encoded_image_gen(transformed,outputFormat)
 
 
 @app.post("/compress")
 async def image_compression(
     file:UploadFile=File(...),
     conversionId:str=Form(...),
-    intensity:int=Form(50)):
+    intensity:int=Form(50),
+    outputFormat:Optional[str]=Form(...)):
     image=await validate_image(file)
     if conversionId=='compress':
         
-        sucess,encoded_image=cv2.imencode('.jpg',image,[cv2.IMWRITE_JPEG_QUALITY, intensity])
-        if not sucess:
-            return ("404: Can't process image")
-        return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
+        success,encoded_image=cv2.imencode('.jpg',image,[cv2.IMWRITE_JPEG_QUALITY, intensity])
+        if not success:
+            raise HTTPException(status_code=500,detail="Internal Error")
+        return Response(content=encoded_image.tobytes(),media_type="image/jpeg")
     else:
         raise HTTPException(status_code=404,detail="Inavlid conversionId")
 
@@ -263,7 +265,8 @@ async def image_compression(
 async def image_operations(
     file:UploadFile=File(...),
     file2:UploadFile=File(...),
-    conversionId:str=Form(...)):
+    conversionId:str=Form(...),
+    outputFormat:Optional[str]=Form(...)):
 
     image1=await validate_image(file)
     image2=await validate_image(file2)
@@ -277,28 +280,23 @@ async def image_operations(
 
     if conversionId=='add':
         
-        added=cv2.add(image1,image2new)
-        success,encoded_image=cv2.imencode('.jpg',added)
-
+        operation=cv2.add(image1,image2new)
     
     elif conversionId=='sub':
         
-        subtract=cv2.subtract(image1,image2new)
-        success,encoded_image=cv2.imencode('.jpg',subtract)
+        operation=cv2.subtract(image1,image2new)
     
     elif conversionId=='mul':
         
-        multiplied=cv2.multiply(image1,image2new)
-        success,encoded_image=cv2.imencode('.jpg',multiplied)
+        operation=cv2.multiply(image1,image2new)
     
     elif conversionId=='div':
         
-        divided=cv2.divide(image1,image2new)
-        success,encoded_image=cv2.imencode('.jpg',divided)
+        operation=cv2.divide(image1,image2new)
 
     else:
         raise HTTPException(status_code=400, detail="Invalid operation ID")
-    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
+    return encoded_image_gen(operation,outputFormat)
 
 @app.post("/analytics")
 async def image_analytics(
@@ -401,16 +399,14 @@ async def image_analytics(
 @app.post('/image_conversion')
 async def image_conversions(
     file:UploadFile=File(...),
-    conversionId:str=Form(...)):
+    conversionId:str=Form(...),
+    outputFormat:Optional[str]=Form(...)):
 
     image=await validate_image(file)
     
     if conversionId=='toconvert':
-        success,encoded_image=cv2.imencode('.png',image)
-        if not success:
-            return ('Invalid Format')
-        return Response(content=encoded_image.tobytes(),media_type='image/png')
-    
+        return encoded_image_gen(image,outputFormat)
+
     else:
         raise HTTPException(status_code=400,detail="Invalide extension for operation")
 
@@ -419,7 +415,8 @@ async def Image_restoration(
     file:UploadFile=File(...),
     conversionId:str=Form(...),
     angle:Optional[float]=Form(45.0),
-    length:Optional[int]=Form(25)):
+    length:Optional[int]=Form(25),
+    outputFormat:Optional[str]=Form(...)):
     image=await validate_image(file)
     cid=conversionId
     if len(image.shape)==3:
@@ -433,10 +430,8 @@ async def Image_restoration(
         restored=wiener_filter(image,psf,k=0.01)
     else: 
         raise HTTPException(status_code=400,detail='Invalid processing')
-    success,encoded_image=cv2.imencode('.jpg',restored)
-    if not success:
-        return ('500 : server Error')
-    return Response(content=encoded_image.tobytes(),media_type='image/jpeg')
+    
+    return encoded_image_gen(restored,outputFormat)
 
 @app.post('/tools')
 async def image_tools(
@@ -495,7 +490,7 @@ async def highend_tools(
         mergedlab=cv2.merge((cl,channel_a,channel_b))
         enhanced_img=cv2.cvtColor(mergedlab,cv2.COLOR_LAB2BGR)
         final_ouput=cv2.bilateralFilter(enhanced_img,d=9,sigmaColor=75,sigmaSpace=75)
-        success,encoded_img=cv2.imencode('.jpg',final_ouput)
+        success,encoded_img=cv2.imencode('.png',final_ouput)
 
     elif conversionId=='e2':
         detector=cv2.FaceDetectorYN.create(
@@ -532,7 +527,7 @@ async def highend_tools(
                 (0,255,0),
                 2
             )
-        success,encoded_img=cv2.imencode('.jpg',image)
+        success,encoded_img=cv2.imencode('.png',image)
         
 
     elif conversionId=='e3':
@@ -573,14 +568,14 @@ async def highend_tools(
         
         headers["X-Objects-Counts"]=json.dumps(object_counts)
         
-        success,encoded_img=cv2.imencode('.jpg',annotated)
+        success,encoded_img=cv2.imencode('.png',annotated)
 
     elif conversionId=='e4':
         gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
         edge=cv2.Canny(gray,100,200)
-        success,encoded_img=cv2.imencode('.jpg',edge)
+        success,encoded_img=cv2.imencode('.png',edge)
 
     if not success:
         return ("500 server Error")
     
-    return Response(content=encoded_img.tobytes(),media_type="image/jpeg",headers=headers)
+    return Response(content=encoded_img.tobytes(),media_type="image/png",headers=headers)
