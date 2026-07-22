@@ -5,25 +5,27 @@
     <body>
         <div style="display: flex;">
             <nav id="navbar">
-                <a href="#Intro">Intro</a>
-                <a href="#loading">Loading</a>
-                <a href="#Uploading">Uploading</a>
-                <a href="#Common_Issues">Common issues</a>
-                <a href="#feedback">Feedback</a>
+                <a href="#Intro" id="nav-style"><i data-lucide="book-open"></i>Intro</a>
+                <a href="#loading" id="nav-style"><i data-lucide="loader-circle"></i>Loading</a>
+                <a href="#Uploading" id="nav-style"><i data-lucide="upload"></i>Uploading</a>
+                <a href="#Common_Issues" id="nav-style"><i data-lucide="triangle-alert"></i>Common issues</a>
+                <a href="#feedback" id="nav-style"><i data-lucide="message-square"></i>Feedback</a>
+                <a href="https://github.com/muin-15/eikona/blob/main/Readme.md" target="_blank" id="nav-style"><i data-lucide="book-text"></i>Readme.md</a>
             </nav>
         <div style="color: white;text-align: center;width: 100%;display: grid;grid-column: 1;">
             <br>
             <div id="Intro">
-                <div id="etitle" style="font-size: 46px;">
+                <div id="etitle" style="font-size: 46px;color:crimson">
                     EIKONA Guide
                 </div>
                 <div style="color:white;font-size: 20px;text-align: start;padding-left:10%; padding-right: 10%;padding-bottom:5%">
                     <p><span id="eikona">Eikona</span> is a powerful web-basd image processing platform designed to make advanced image editing,enhancement,and computer vision techniques.<span id="eikona">Eikona</span> provides wide range of operations;image transformations,geometric operations,filtering restoration,segmentation,object detection,and color analysis.</p>
                     <p>Though <span id="eikona">Eikona</span> provides 99% success rate it can be falsy at sometimes.To recover from this the four sections of the Guide stands in a priority format.The <span id="guide">Guide Section</span> provides the proper way to use the web-app.It is created to provide flexibility to users.</p>
                 </div>
-                <div id="aligning">
+                <div id="aligning" style="margin-bottom: 10px;">
                     
-                    <a href="https://opencv-opencv.mintlify.app/">click to know fundamentals of image processing</a>
+                    <a href="https://opencv-opencv.mintlify.app/" style="color:chartreuse;">click to know fundamentals of image processing:(opencv)</a><br>
+                    <a href="https://www.geeksforgeeks.org/computer-vision/image-processing/" style="color:chartreuse;">click to know fundamentals of image processing:(geeksforgeeks)</a>
                 </div>
             </div>
             <div id="loading">
@@ -85,14 +87,19 @@
                     <div id="info">Feedback</div>
                     <div id="solution">If your error is something different from the guide then you could contact us through support otherwise give us feedback.Which will help us to improve.</div>
                     <div id="feed">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdcYEceA8-r894eOgTENoP_wtWR6Bvb8B1m-1SCkfJ_-YcC4A/viewform?usp=publish-editor">feedback</a>-Feedback
                     <br>
-                    <a href="mailto:muinmomin2@gmail.com" target="_blank">muinmomin2@gmail.com</a>-support
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdcYEceA8-r894eOgTENoP_wtWR6Bvb8B1m-1SCkfJ_-YcC4A/viewform?usp=publish-editor" target="_blank">form</a>-Feedback
+                    <br>
+                    <a href="mailto:muinmomin2@gmail.com" target="_blank">muinmomin2@gmail.com</a>-Support
                 </div>
                 </div>
                 
             </div>
         </div>
         </div>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <script>
+            lucide.createIcons();
+        </script>
     </body>
 </html>

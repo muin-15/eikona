@@ -10,25 +10,25 @@
     <div id="root"></div>
     <div></div>
     <div class="font-mono uppercase tracking-widest font-bold text-emerald-400 text-center text-base min-h-screen flex flex-row">
-      <nav class="sticky top-0 h-screen w-52 flex flex-row shrink-0 tracking-widest "> 
-        <div class="bg-black text-white font-bold py-5 px-4 flex flex-col h-screen border-r-4 border-white ">
+      <nav class="sticky top-0 h-screen w-58 flex flex-row shrink-0 tracking-widest "> 
+        <div class="bg-black text-white font-bold py-5 px-4 flex flex-col h-screen border-r-4 border-green-500 ">
           <div class="flex flex-row pb-5 border- border-b-2 border-b-emerald-400">
           <img src="src/assets/logo3.png" alt="Eikona" font-size="24px" class="inline-block h-12 w-12 mr-2 border-2 border-emerald-500 rounded-full">
           <p class="text-white font-bold py-2 px-2 h-10 w-30 text-[25px] hover:animate-pulse ">Eikona</p>
           </div>
           <br>
           <div class="flex flex-col justify-start items-start text-start tracking-widest">
-              <a href="#home" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1a] hover:text-white w-full">Home</a>
-              <a href="#image_compressor" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2b] hover:text-white w-full">Compression</a>
-              <a href="#operations" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1c] hover:text-white w-full">Operations</a>
-              <a href="#color_conversion" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2d] hover:text-white tracking-widest w-full">Color Conv</a>
-              <a href="#transformations" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1e] hover:text-white w-full">Transformations</a>
-              <a href="#filtering" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2f] hover:text-white w-full">Filtering</a>
-              <a href="#restoration" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1a] w-full hover:text-white">Restoration</a>
-              <a href="#analytics" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2b] w-full hover:text-white">Analytics</a>
-              <a href="#image_conversion" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1c] w-full hover:text-white">Image Conv</a>
-              <a href="#tools" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2d] w-full hover:text-white">Tools</a>
-              <a href="#exclusive" class="block text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1e] w-full hover:text-white">Exclusive</a>
+              <a href="#home" class="flex flex-inline gap-2 text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1a] hover:text-white w-full"><i data-lucide="house"></i>Home</a>
+              <a href="#image_compressor" class="flex flex-inline gap-2 text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2b] hover:text-white w-full"><i data-lucide="archive"></i>Compression</a>
+              <a href="#operations" class="flex flex-inline gap-2 text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1c] hover:text-white w-full"><i data-lucide="settings-2"></i>Operations</a>
+              <a href="#color_conversion" class="flex flex-inline gap-2 text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2d] hover:text-white tracking-widest w-full"><i data-lucide="palette"></i>Color Conv</a>
+              <a href="#transformations" class="flex flex-inline gap-2 text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1e] hover:text-white w-full"><i data-lucide="move"></i>Transformations</a>
+              <a href="#filtering" class="flex flex-inline gap-2 text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2f] hover:text-white w-full"><i data-lucide="sliders-horizontal"></i>Filtering</a>
+              <a href="#restoration" class="flex flex-inline gap-2 text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1a] w-full hover:text-white"><i data-lucide="shield-plus"></i>Restoration</a>
+              <a href="#analytics" class="flex flex-inline gap-2 text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2b] w-full hover:text-white"><i data-lucide="chart-column"></i>Analytics</a>
+              <a href="#image_conversion" class="flex flex-inline gap-2 text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1c] w-full hover:text-white"><i data-lucide="refresh-cw"></i>Image Conv</a>
+              <a href="#tools" class="flex flex-inline gap-2 text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e2d] w-full hover:text-white"><i data-lucide="award"></i>Tools</a>
+              <a href="#exclusive" class="flex flex-inline gap-2 text-white font-bold py-4 px-4 rounded-xl hover:bg-[#082e1e] w-full hover:text-white"><i data-lucide="crown"></i>Exclusive</a>
           </div>
       </div>
         
@@ -515,5 +515,9 @@
       </footer>
       
     <script type="module" src="/src/main.tsx"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
   </body>
 </html>
