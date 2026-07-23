@@ -1,6 +1,6 @@
-# **📸EIKONA**
+# **📸 EIKONA**
 
-## 🖌️Eikona - Advanced Image Processing Suite:-
+## 🖌️ Eikona - Advanced Image Processing Suite:-
 **Eikona** is a **powerful web-based image processing** platform designed to make advanced ***image editing, enhancement, and computer vision techniques*** accessible through an intuitive interface. Built with modern technologies like FastAPI,React,TypeScript,Python,OpenCV providing high-performance image processing libraries, **Eikona** enables users to transform, analyze, and optimize images in real time.<br>
 
 ---
@@ -16,27 +16,27 @@
 
 ---
 
-## 📖Overview
+## 📖 Overview
 The platform offers a comprehensive set of tools including *image transformations, geometric operations, filtering, restoration, segmentation, object detection, and color analysis.* Users can apply effects such as ***scaling, rotation, filtering, image analysis, edge detection, image sharpening, and noise reduction*** with just a few clicks.
 <br>
 Beyond traditional image processing, **Eikona** integrates *AI-powered* features such as automatic <u>background removal</u>,<u> object detection, super-resolution</u>,<u> image enhancement</u>,and<u> dominant color extraction</u>.<br> These capabilities allow creators, students, developers, and researchers to perform complex image analysis without requiring specialized software or technical expertise.<br>
 
 ---
 
-## ✨Features
+## ✨ Features
 
-### 🎨Color Conversion
+### 🎨 Color Conversion
 - BGR ↔ RGB,
 - BGR ↔ LAB,
 - BGR ↔ HSV,
 - BGR to Binary,
 - BGR to Gray,
 
-### 📉Image Compression
+### 📉 Image Compression
 - Adjustable compression quality
 - Optimized file size
 
-### 🖼Transformations
+### 🖼 Transformations
 - Negative transformation
 - Power Law transformation
 - Log transformation
@@ -44,40 +44,40 @@ Beyond traditional image processing, **Eikona** integrates *AI-powered* features
 - Upscaling
 - Downscaling
 
-### ⛑️Operations
+### ⛑️ Operations
 - Image Addition
 - Image Subtraction
 - Image Multiplication
 - Image Division
 
-### 🔍Filtering
+### 🔍 Filtering
 - Mean Filter
 - Median Filter
 - Gaussian Smoothing
 - Laplacian Sharpening
 - Bilateral Filtering
 
-### 🦺Restoration
+### 🦺 Restoration
 - Inverse Filtering
 - Wiener Filtering
 
-### 📊Analytics
+### 📊 Analytics
 - Histogram
 - DCT
 - DFT
 - FFT
 
-### 🔁Image Conversion
+### 🔁 Image Conversion
 - Convert to different file formats:jpg,png,webp,bmp,tiff
 
-### 🛠️Tools
+### 🛠️ Tools
 - Background Removal
 - Image INPAINT
 - Stylization
 - HDR Effect
 - Pencil Sketch
 
-### ✨Exclusive/AI Features
+### ✨ Exclusive/AI Features
 - Quality Enhancement
 - Face Detection
 - Object Detection
@@ -110,7 +110,7 @@ Beyond traditional image processing, **Eikona** integrates *AI-powered* features
 
 ---
 
-## 🛠️Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
 - HTML5
@@ -150,6 +150,7 @@ eikona/
 │   │   ├── user-guide.html
 │   │   └── user-guide.css
 │   └── README.md
+├──Testing                 #Contains Examples of each type of image processing operation
 ├── .gitattributes
 ├── .gitignore
 ├── LICENSE
@@ -158,7 +159,7 @@ eikona/
 
 ---
 
-## 🚀Getting Started
+## 🚀 Getting Started
 
 ### Clone Repository
 ```bash
@@ -179,26 +180,42 @@ backend_eikona/Readme.md
 
 ---
 
-## 📖Documentation
+## 📖 Documentation
 - 📘 User Guide: https://eikona-img-khaki.vercel.app/user-guide.html
-- ⚙ Backend Documentation: https://github.com/muin-15/eikona/blob/main/backend_eikona/README.md
+- ⚙ Backend Documentation: https://github.com/muin-15/eikona/blob/main/backend_eikona/Readme.md
 - 💻 Frontend Documentation: https://github.com/muin-15/eikona/blob/main/frontend_eikona/README.md
 
 ---
 
-## 🌟Future Plans
+## 🧪 Testing
+Testing is the directory that contains Results of all different types of Image processing Operations.
+- [Sample Input Images](Testing/sample_images/)
+- [Image Compression](Testing/image_compression/)
+- [Image Operations](Testing/operations/)
+- [Color Conversion](Testing/color_conversion/)
+- [Transformations](Testing/transformation/)
+- [Filtering](Testing/filtering/)
+- [Restoration](Testing/restoration/)
+- [Analytics](Testing/analytics/)
+- [Image Conversion](Testing/image_conversion/)
+- [Tools](Testing/Image_tools(enhancement)/)
+- [Exclusive](Testing/Image_Exclusive/)
+
+---
+
+## 🌟 Future Plans
 - User Accounts
 - Enhanced Image Restoration
 - More AI-based Image Processing tools
 
 ---
 
-## 🤝Suggestions
+## 🤝 Suggestions
 Suggestions and Bug reports are welcome.
 
 ---
 
-## 📜License
+## 📜 License
 This project is licensed under the GPL 3.0 License.
 
 ---

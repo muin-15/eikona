@@ -1,73 +1,115 @@
-# React + TypeScript + Vite
+# 💻 EIKONA Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+>Frontend of Eikona is combination of React + Vite + TypeScript + Tailwind + Vanilla js ,which results in Modern Frontend for Eikona.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![GPL-3.0](https://img.shields.io/badge/License-GPLv3-blue.svg)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 📖 Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The frontend provides a clean and responsive interface for accessing all Eikona image processing features.
 
-## Expanding the ESLint configuration
+Users can upload images, configure processing options, preview results, and download processed images through an intuitive web interface.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ✨ Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Responsive Interface
+- Live Image Preview
+- Animated UI
+- User Guide
+- Download Results
+- Error Handling
+- Feedback & Support
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## ⚙️ Tech Stack
+
+- HTML5
+- CSS3
+- React
+- Vite
+- Tailwind CSS
+- TypeScript
+- Vanilla JS (Icons)
+
+---
+
+## 📂 Project Structure
+
+```
+frontend_eikona/
+├── public/              # static assets & user guide
+├── src/
+│   ├── assets/          # logos & images
+│   ├── App.tsx
+│   ├── main.tsx
+│   ├── App.css
+│   └── index.css
+├── Processing_Images/   # screenshots for docs
+├── index.html
+├── package.json
+├── vite.config.ts
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀Installation
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Clone Repository
+
+```bash
+git clone <https://github.com/muin-15/eikona.git>
+cd eikona/backend_eikona
 ```
+
+Install dependencies
+
+```
+npm install
+```
+
+Start Development Server
+
+```
+npm run dev
+```
+
+---
+
+## 🏗 Build
+
+```bash
+npm run build
+```
+
+Preview Production Build
+
+```bash
+npm run preview
+```
+
+---
+
+## 🔗Backend Connection
+
+Update the Backend URL if necessary
+
+Example
+
+```
+http://localhost:8000
+```
+
+## 📜 License
+
+This frontend is part of the Eikona project and is licensed under the GNU General Public License v3.0 (GPL-3.0).
+
+See the root LICENSE file for complete license terms.

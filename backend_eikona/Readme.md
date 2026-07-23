@@ -9,7 +9,7 @@
 
 ---
 
-## 📖Overview
+## 📖 Overview
 
 The Eikona Backend provides RestAPI for image processing using FastAPI.It handles image uploading ,validation ,processing and returns the image with user specified format to the Frontend.
 
@@ -18,7 +18,7 @@ Backend combines the traditional search and computer vision for Image processing
 
 ---
 
-## ✨Features
+## ✨ Features
 
 - 📉Image Compression
 - 🪬Image Combining & Operations
@@ -36,7 +36,7 @@ Backend combines the traditional search and computer vision for Image processing
 
 ---
 
-## ⚙️Tech Stack
+## ⚙️ Tech Stack
 
 - FastAPI
 - Python 
@@ -50,7 +50,7 @@ Backend combines the traditional search and computer vision for Image processing
 
 ---
 
-## 📂Project Structure
+## 📂 Project Structure
 
 ```
 backend_eikona/
@@ -67,7 +67,7 @@ backend_eikona/
 
 ---
 
-## 🚀Installation
+## 🚀 Installation
 
 ### Clone
 ```bash
@@ -99,7 +99,7 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️Running the Server
+## ▶️ Running the Server
 ```bash
 uvicorn app.main:app --reload
 ```
@@ -117,7 +117,7 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## 📌API Modules
+## 📌 API Modules
 
 |Module|Description|
 |-------|-----------|
@@ -133,7 +133,7 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## 📄Requirements
+## 📄 Requirements
 See:
 
 requirements.txt
