@@ -20,19 +20,19 @@ Backend combines the traditional search and computer vision for Image processing
 
 ## ✨ Features
 
-- 📉Image Compression
-- 🪬Image Combining & Operations
-- 🎨Color Conversion
-- 🎯Transformations
-- 🎞️Filtering
-- 🛠️Restoration
-- 📊Analytics
-- 🤖Background Removal
-- ✏️Pencil Sketch
-- 🕵️YuNet:Face Detection
-- 🥨Image Format Conversion
-- 🚞AI based Processing
-- 🌟CLAHE Enhacement
+- Image Compression
+- Image Combining & Operations
+- Color Conversion
+- Transformations
+- Filtering
+- Restoration
+- Analytics
+- Background Removal
+- Pencil Sketch
+- YuNet:Face Detection
+- Image Format Conversion
+- AI based Processing
+- CLAHE Enhacement
 
 ---
 

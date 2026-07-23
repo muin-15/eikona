@@ -1,6 +1,6 @@
-# **📸 EIKONA**
+# **EIKONA**
 
-## 🖌️ Eikona - Advanced Image Processing Suite:-
+## Eikona - Advanced Image Processing Suite:-
 **Eikona** is a **powerful web-based image processing** platform designed to make advanced ***image editing, enhancement, and computer vision techniques*** accessible through an intuitive interface. Built with modern technologies like FastAPI,React,TypeScript,Python,OpenCV providing high-performance image processing libraries, **Eikona** enables users to transform, analyze, and optimize images in real time.<br>
 
 ---
@@ -25,18 +25,18 @@ Beyond traditional image processing, **Eikona** integrates *AI-powered* features
 
 ## ✨ Features
 
-### 🎨 Color Conversion
+### Color Conversion
 - BGR ↔ RGB,
 - BGR ↔ LAB,
 - BGR ↔ HSV,
 - BGR to Binary,
 - BGR to Gray,
 
-### 📉 Image Compression
+### Image Compression
 - Adjustable compression quality
 - Optimized file size
 
-### 🖼 Transformations
+### Transformations
 - Negative transformation
 - Power Law transformation
 - Log transformation
@@ -44,40 +44,40 @@ Beyond traditional image processing, **Eikona** integrates *AI-powered* features
 - Upscaling
 - Downscaling
 
-### ⛑️ Operations
+### Operations
 - Image Addition
 - Image Subtraction
 - Image Multiplication
 - Image Division
 
-### 🔍 Filtering
+### Filtering
 - Mean Filter
 - Median Filter
 - Gaussian Smoothing
 - Laplacian Sharpening
 - Bilateral Filtering
 
-### 🦺 Restoration
+### Restoration
 - Inverse Filtering
 - Wiener Filtering
 
-### 📊 Analytics
+### Analytics
 - Histogram
 - DCT
 - DFT
 - FFT
 
-### 🔁 Image Conversion
+### Image Conversion
 - Convert to different file formats:jpg,png,webp,bmp,tiff
 
-### 🛠️ Tools
+### Tools
 - Background Removal
 - Image INPAINT
 - Stylization
 - HDR Effect
 - Pencil Sketch
 
-### ✨ Exclusive/AI Features
+### Exclusive/AI Features
 - Quality Enhancement
 - Face Detection
 - Object Detection
@@ -181,9 +181,9 @@ backend_eikona/Readme.md
 ---
 
 ## 📖 Documentation
-- [📘 User Guide](https://eikona-img-khaki.vercel.app/user-guide.html)
-- [⚙ Backend Documentation](backend_eikona/Readme.md) 
-- [💻 Frontend Documentation](frontend_eikona/README.md)
+- [ User Guide](https://eikona-img-khaki.vercel.app/user-guide.html)
+- [ Backend Documentation](backend_eikona/Readme.md) 
+- [ Frontend Documentation](frontend_eikona/README.md)
 
 ---
 
@@ -221,7 +221,7 @@ Feedback Form is present in the guide section at the bottom.
 ---
 
 ## 📜 License
-This project is licensed under the GPL 3.0 License.
+This project is licensed under the [GPL 3.0 License](LICENSE).
 
 ---
 
