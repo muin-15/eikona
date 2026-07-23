@@ -26,62 +26,62 @@ Beyond traditional image processing, **Eikona** integrates *AI-powered* features
 ## ✨Features
 
 ### 🎨Color Conversion
--BGR ↔ RGB,
--BGR ↔ LAB,
--BGR ↔ HSV,
--BGR to Binary,
--BGR to Gray,
+- BGR ↔ RGB,
+- BGR ↔ LAB,
+- BGR ↔ HSV,
+- BGR to Binary,
+- BGR to Gray,
 
 ### 📉Image Compression
--Adjustable compression quality
--Optimized file size
+- Adjustable compression quality
+- Optimized file size
 
 ### 🖼Transformations
--Negative transformation
--Power Law transformation
--Log transformation
--Rotation
--Upscaling
--Downscaling
+- Negative transformation
+- Power Law transformation
+- Log transformation
+- Rotation
+- Upscaling
+- Downscaling
 
 ### ⛑️Operations
--Image Addition
--Image Subtraction
--Image Multiplication
--Image Division
+- Image Addition
+- Image Subtraction
+- Image Multiplication
+- Image Division
 
 ### 🔍Filtering
--Mean Filter
--Median Filter
--Gaussian Smoothing
--Laplacian Sharpening
--Bilateral Filtering
+- Mean Filter
+- Median Filter
+- Gaussian Smoothing
+- Laplacian Sharpening
+- Bilateral Filtering
 
 ### 🦺Restoration
--Inverse Filtering
--Wiener Filtering
+- Inverse Filtering
+- Wiener Filtering
 
 ### 📊Analytics
--Histogram
--DCT
--DFT
--FFT
+- Histogram
+- DCT
+- DFT
+- FFT
 
 ### 🔁Image Conversion
--Convert to different file formats:jpg,png,webp,bmp,tiff
+- Convert to different file formats:jpg,png,webp,bmp,tiff
 
 ### 🛠️Tools
--Background Removal
--Image INPAINT
--Stylization
--HDR Effect
--Pencil Sketch
+- Background Removal
+- Image INPAINT
+- Stylization
+- HDR Effect
+- Pencil Sketch
 
 ### ✨Exclusive/AI Features
--Quality Enhancement
--Face Detection
--Object Detection
--Edge Detection
+- Quality Enhancement
+- Face Detection
+- Object Detection
+- Edge Detection
 
 ---
 
@@ -103,7 +103,7 @@ Beyond traditional image processing, **Eikona** integrates *AI-powered* features
 ![Processing](./frontend_eikona/Processing_Images/processing.png)
 
 ### Result Image
-![Output Image](./frontend_eikona/Processing_Images/processing.png)
+![Output Image](./frontend_eikona/Processing_Images/result_img.png)
 
 ### Downloading Image
 ![Download Icon Enabled](./frontend_eikona/Processing_Images/downloadprocess.png)
@@ -113,21 +113,21 @@ Beyond traditional image processing, **Eikona** integrates *AI-powered* features
 ## 🛠️Tech Stack
 
 ### Frontend
--HTML5
--React
--CSS3
--Tailwind CSS
--Vanilla JavaScript
+- HTML5
+- React
+- CSS3
+- Tailwind CSS
+- Vanilla JavaScript
 
 ### Backend
--FastAPI
--Python
--OpenCV
--Numpy
--Pillow
--Ultralytics YOLO
--Matplotlib
--YuNet
+- FastAPI
+- Python
+- OpenCV
+- Numpy
+- Pillow
+- Ultralytics YOLO
+- Matplotlib
+- YuNet
 
 ---
 
@@ -162,7 +162,7 @@ eikona/
 
 ### Clone Repository
 ```bash
-git clone https://github.com/yourusername/eikona.git
+git clone https://github.com/muin-15/eikona.git
 cd eikona
 ```
 
@@ -180,21 +180,16 @@ backend_eikona/Readme.md
 ---
 
 ## 📖Documentation
-- 📘 User Guide
-- ⚙ Backend Documentation
-- 💻 Frontend Documentation
-
----
-
-## 🪬User Guide
--Documentation: [user-guide](https://eikona-img-khaki.vercel.app/user-guide.html)
+- 📘 User Guide: https://eikona-img-khaki.vercel.app/user-guide.html
+- ⚙ Backend Documentation: https://github.com/muin-15/eikona/blob/main/backend_eikona/README.md
+- 💻 Frontend Documentation: https://github.com/muin-15/eikona/blob/main/frontend_eikona/README.md
 
 ---
 
 ## 🌟Future Plans
--User Accounts
--Enhanced Image Restoration
--More AI-based Image Processing tools
+- User Accounts
+- Enhanced Image Restoration
+- More AI-based Image Processing tools
 
 ---
 
