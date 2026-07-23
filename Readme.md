@@ -181,9 +181,9 @@ backend_eikona/Readme.md
 ---
 
 ## 📖 Documentation
-- 📘 User Guide: https://eikona-img-khaki.vercel.app/user-guide.html
-- ⚙ Backend Documentation: https://github.com/muin-15/eikona/blob/main/backend_eikona/Readme.md
-- 💻 Frontend Documentation: https://github.com/muin-15/eikona/blob/main/frontend_eikona/README.md
+- [📘 User Guide](https://eikona-img-khaki.vercel.app/user-guide.html)
+- [⚙ Backend Documentation](backend_eikona/Readme.md) 
+- [💻 Frontend Documentation](frontend_eikona/README.md)
 
 ---
 
@@ -212,6 +212,11 @@ Testing is the directory that contains Results of all different types of Image p
 
 ## 🤝 Suggestions
 Suggestions and Bug reports are welcome.
+
+---
+
+## 📄 Feedback
+Feedback Form is present in the guide section at the bottom.
 
 ---
 
