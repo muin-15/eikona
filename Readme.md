@@ -203,6 +203,14 @@ Testing is the directory that contains Results of all different types of Image p
 
 ---
 
+## 🤖 Use of AI
+- Used for while facing problem to deploy Eikona.
+- Used to resolve error for Range Input.
+- Used to assist backend connection issue.
+- Approximate 3% of Project's duration.
+
+---
+
 ## 🌟 Future Plans
 - User Accounts
 - Enhanced Image Restoration
