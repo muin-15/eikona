@@ -16,8 +16,8 @@ Eikona is combination of Modern Frontend with Traditional backend and Computer V
 
 ## ✨ Features
 
-### Color Conversion
-- BGR ↔ RGB, BGR ↔ LAB, BGR ↔ HSV, BGR to Binary and BGR to Gray
+### Color Conversion and Image Format Conversion.
+- Color conversions like BGR to RGB and Format conversion in .png, .jpeg, .tiff, .bmp and .webp
 
 ### Image Compression
 - Adjustable compression quality
@@ -29,23 +29,19 @@ Eikona is combination of Modern Frontend with Traditional backend and Computer V
 ### Operations
 - Various Image operations like Addition,Subtraction,Multiplication,Division.
 
-### Filtering
--Different filters to reduce noise in an image.
-
-### Restoration
+### Filtering & Restoration.
+- Different filters to reduce noise in an image.
 - Inverse and  Wiener Filtering to restore corrupted and damaged images.
 
-### Analytics
+### Analytics.
 - Histogram, DCT, DFT, FFT
 
-### Image Conversion
-- Convert to different file formats:jpg,png,webp,bmp,tiff
-
-### Tools
+### Tools and AI-based Detection and Quality Enhancement.
 - Modern tools to improvement styling of an image and background removal.
-
-### Exclusive/AI Features
 - CLAHE enhancement and AI based Face & Object detection.
+
+### Image Preview and Download.
+- Resultant Image output is previewed to user.User can download the image.
 
 ---
 
@@ -55,13 +51,13 @@ Eikona is combination of Modern Frontend with Traditional backend and Computer V
 ![Main screen](./frontend_eikona/Processing_Images/home.png)
 
 ### Uploading Image
-![Selecting Image](./frontend_eikona/Processing_Images/upload_img.png)
+![Selecting Image](./frontend_eikona/Processing_Images/ip.png)
 
 ### Input Image
 ![Confirm Selected Image](./frontend_eikona/Processing_Images/input_img.png)
 
 ### Submitting Image
-![Submitting Image](./frontend_eikona/Processing_Images/submit.png)
+![Submitting Image](./frontend_eikona/Processing_Images/submit_ip.png)
 
 ### Processing
 ![Processing](./frontend_eikona/Processing_Images/processing.png)
@@ -70,7 +66,7 @@ Eikona is combination of Modern Frontend with Traditional backend and Computer V
 ![Output Image](./frontend_eikona/Processing_Images/result_img.png)
 
 ### Downloading Image
-![Download Icon Enabled](./frontend_eikona/Processing_Images/downloadprocess.png)
+![Download Icon Enabled](./frontend_eikona/Processing_Images/download_op.png)
 
 ---
 
@@ -84,7 +80,7 @@ Eikona is combination of Modern Frontend with Traditional backend and Computer V
 
 ---
 
-## Project Structure
+## 📂 Project Structure
 
 ```
 eikona/
@@ -120,6 +116,17 @@ git clone https://github.com/muin-15/eikona.git
 cd eikona
 ```
 
+### Frontend
+See:
+```
+frontend_eiokna/Readme.md
+```
+### Backend
+See:
+```
+backend_eikona/Readme.md
+```
+
 ---
 
 ## 📖 Documentation
@@ -140,11 +147,6 @@ Testing is the directory that contains Results of all different types of Image p
 - Used to resolve error for Range Input.
 - Used to assist backend connection issue.
 - Approximate 3% of Project's duration.
-
----
-
-## 📄 Feedback
-Feedback Form is present in the guide section at the bottom.
 
 ---
 
