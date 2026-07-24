@@ -1,9 +1,7 @@
 # **EIKONA**
 
-## Eikona - Advanced Image Processing Suite:-
-**Eikona** is a **powerful web-based image processing** platform designed to make advanced ***image editing, enhancement, and computer vision techniques*** accessible through an intuitive interface. Built with modern technologies like FastAPI,React,TypeScript,Python,OpenCV providing high-performance image processing libraries, **Eikona** enables users to transform, analyze, and optimize images in real time.<br>
-
----
+**Eikona** is a **powerful web-based image processing** platform designed to make advanced ***image editing, enhancement, and computer vision techniques*** accessible through an intuitive interface.
+Eikona is combination of Modern Frontend with Traditional backend and Computer Vision.It contais more tha 35 features of image processing.
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
@@ -16,72 +14,38 @@
 
 ---
 
-## 📖 Overview
-The platform offers a comprehensive set of tools including *image transformations, geometric operations, filtering, restoration, segmentation, object detection, and color analysis.* Users can apply effects such as ***scaling, rotation, filtering, image analysis, edge detection, image sharpening, and noise reduction*** with just a few clicks.
-<br>
-Beyond traditional image processing, **Eikona** integrates *AI-powered* features such as automatic <u>background removal</u>,<u> object detection, super-resolution</u>,<u> image enhancement</u>,and<u> dominant color extraction</u>.<br> These capabilities allow creators, students, developers, and researchers to perform complex image analysis without requiring specialized software or technical expertise.<br>
-
----
-
 ## ✨ Features
 
 ### Color Conversion
-- BGR ↔ RGB,
-- BGR ↔ LAB,
-- BGR ↔ HSV,
-- BGR to Binary,
-- BGR to Gray,
+- BGR ↔ RGB, BGR ↔ LAB, BGR ↔ HSV, BGR to Binary and BGR to Gray
 
 ### Image Compression
 - Adjustable compression quality
-- Optimized file size
 
 ### Transformations
-- Negative transformation
-- Power Law transformation
-- Log transformation
-- Rotation
-- Upscaling
-- Downscaling
+- Negative, Power Law, Log transformation
+- Rotation, Upscaling, Downscaling
 
 ### Operations
-- Image Addition
-- Image Subtraction
-- Image Multiplication
-- Image Division
+- Various Image operations like Addition,Subtraction,Multiplication,Division.
 
 ### Filtering
-- Mean Filter
-- Median Filter
-- Gaussian Smoothing
-- Laplacian Sharpening
-- Bilateral Filtering
+-Different filters to reduce noise in an image.
 
 ### Restoration
-- Inverse Filtering
-- Wiener Filtering
+- Inverse and  Wiener Filtering to restore corrupted and damaged images.
 
 ### Analytics
-- Histogram
-- DCT
-- DFT
-- FFT
+- Histogram, DCT, DFT, FFT
 
 ### Image Conversion
 - Convert to different file formats:jpg,png,webp,bmp,tiff
 
 ### Tools
-- Background Removal
-- Image INPAINT
-- Stylization
-- HDR Effect
-- Pencil Sketch
+- Modern tools to improvement styling of an image and background removal.
 
 ### Exclusive/AI Features
-- Quality Enhancement
-- Face Detection
-- Object Detection
-- Edge Detection
+- CLAHE enhancement and AI based Face & Object detection.
 
 ---
 
@@ -113,21 +77,10 @@ Beyond traditional image processing, **Eikona** integrates *AI-powered* features
 ## 🛠️ Tech Stack
 
 ### Frontend
-- HTML5
-- React
-- CSS3
-- Tailwind CSS
-- Vanilla JavaScript
+- HTML5, React, CSS3, Tailwind CSS, Vanilla JavaScript
 
 ### Backend
-- FastAPI
-- Python
-- OpenCV
-- Numpy
-- Pillow
-- Ultralytics YOLO
-- Matplotlib
-- YuNet
+- FastAPI, Python, OpenCV, Numpy, Pillow, Ultralytics YOLO, Matplotlib, YuNet
 
 ---
 
@@ -150,7 +103,7 @@ eikona/
 │   │   ├── user-guide.html
 │   │   └── user-guide.css
 │   └── README.md
-├──Testing                 #Contains Examples of each type of image processing operation
+├──Testing               
 ├── .gitattributes
 ├── .gitignore
 ├── LICENSE
@@ -159,23 +112,12 @@ eikona/
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Installation
 
 ### Clone Repository
 ```bash
 git clone https://github.com/muin-15/eikona.git
 cd eikona
-```
-
-### Frontend
-See:
-```
-frontend_eiokna/Readme.md
-```
-### Backend
-See:
-```
-backend_eikona/Readme.md
 ```
 
 ---
@@ -189,17 +131,7 @@ backend_eikona/Readme.md
 
 ## 🧪 Testing
 Testing is the directory that contains Results of all different types of Image processing Operations.
-- [Sample Input Images](Testing/sample_images/)
-- [Image Compression](Testing/image_compression/)
-- [Image Operations](Testing/operations/)
-- [Color Conversion](Testing/color_conversion/)
-- [Transformations](Testing/transformation/)
-- [Filtering](Testing/filtering/)
-- [Restoration](Testing/restoration/)
-- [Analytics](Testing/analytics/)
-- [Image Conversion](Testing/image_conversion/)
-- [Tools](Testing/Image_tools(enhancement)/)
-- [Exclusive](Testing/Image_Exclusive/)
+- [Tested Results of Image procesaing operations](Testing/)
 
 ---
 
@@ -208,18 +140,6 @@ Testing is the directory that contains Results of all different types of Image p
 - Used to resolve error for Range Input.
 - Used to assist backend connection issue.
 - Approximate 3% of Project's duration.
-
----
-
-## 🌟 Future Plans
-- User Accounts
-- Enhanced Image Restoration
-- More AI-based Image Processing tools
-
----
-
-## 🤝 Suggestions
-Suggestions and Bug reports are welcome.
 
 ---
 
@@ -233,10 +153,4 @@ This project is licensed under the [GPL 3.0 License](LICENSE).
 
 ---
 
-## 👨‍💻 Author
-
-**Muinashraf Juber Momin**
-
-Artificial Intelligence & Machine Learning Student
-
-GitHub: https://github.com/muin-15
+Build with 💛 by [Muinashraf Momin](https://github.com/muin-15)

@@ -1,6 +1,6 @@
 # 💻 EIKONA Frontend
 
->Frontend of Eikona is combination of React + Vite + TypeScript + Tailwind + Vanilla js ,which results in Modern Frontend for Eikona.
+>Frontend of Eikona is combination of React + Vite + TypeScript + Tailwind + Vanilla js ,which results in Modern Frontend for Eikona.Users can upload images, configure processing options, preview results, and download processed images through an intuitive web interface.
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
@@ -9,35 +9,9 @@
 
 ---
 
-## 📖 Overview
-
-The frontend provides a clean and responsive interface for accessing all Eikona image processing features.
-
-Users can upload images, configure processing options, preview results, and download processed images through an intuitive web interface.
-
----
-
-## ✨ Features
-
-- Responsive Interface
-- Live Image Preview
-- Animated UI
-- User Guide
-- Download Results
-- Error Handling
-- Feedback & Support
-
----
-
 ## ⚙️ Tech Stack
 
-- HTML5
-- CSS3
-- React
-- Vite
-- Tailwind CSS
-- TypeScript
-- Vanilla JS (Icons)
+- HTML5, CSS3, React, Vite, Tailwind CSS, TypeScript and Vanilla JS (Icons).
 
 ---
 
@@ -45,14 +19,14 @@ Users can upload images, configure processing options, preview results, and down
 
 ```
 frontend_eikona/
-├── public/              # static assets & user guide
+├── public/              
 ├── src/
-│   ├── assets/          # logos & images
+│   ├── assets/          
 │   ├── App.tsx
 │   ├── main.tsx
 │   ├── App.css
 │   └── index.css
-├── Processing_Images/   # screenshots for docs
+├── Processing_Images/  
 ├── index.html
 ├── package.json
 ├── vite.config.ts

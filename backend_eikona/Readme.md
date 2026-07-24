@@ -1,6 +1,6 @@
 # ⚙️EIKONA Backend
 
-> High Performance FastAPI backend powering Eikona an image processing tool.
+> High Performance FastAPI backend powering Eikona an image processing tool.The Eikona Backend provides RestAPI for image processing using FastAPI.It handles image uploading ,validation ,processing and returns the image with user specified format to the Frontend.
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
@@ -9,48 +9,13 @@
 
 ---
 
-## 📖 Overview
-
-The Eikona Backend provides RestAPI for image processing using FastAPI.It handles image uploading ,validation ,processing and returns the image with user specified format to the Frontend.
-
-The Spotlights for the backend are AI algorithms like YuNet and YOLO.
-Backend combines the traditional search and computer vision for Image processing.
-
----
-
-## ✨ Features
-
-- Image Compression
-- Image Combining & Operations
-- Color Conversion
-- Transformations
-- Filtering
-- Restoration
-- Analytics
-- Background Removal
-- Pencil Sketch
-- YuNet:Face Detection
-- Image Format Conversion
-- AI based Processing
-- CLAHE Enhacement
-
----
-
 ## ⚙️ Tech Stack
 
-- FastAPI
-- Python 
-- Ultralytics YOLO
-- YuNet
-- rembg
-- Pillow
-- Uvicorn
-- NumPy
-- OpenCV
+- FastAPI, Python, Ultralytics YOLO, YuNet, rembg, Pillow, Uvicorn, NumPy and OpenCV
 
 ---
 
-## 📂 Project Structure
+## 📂 Backend Structure
 
 ```
 backend_eikona/
