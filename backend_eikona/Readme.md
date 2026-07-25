@@ -3,24 +3,24 @@ Backend of Eikona consist of Traditional FastAPI endpoints with opencv for Image
 
 ---
 
-## 📂 Backend Structure
+## Backend Structure
 
 ```
 backend_eikona/
-├── .python-version
-├── app/
-│   ├── dependencies.py
-│   ├── main.py
-│   ├── models/
-│   │   └── face_detection_yunet_2023mar.onnx
-│   └── yolo11n.pt
-├── requirements.txt
-└── runtime.txt
+├─ .python-version
+├─ app
+│  ├─ main.py
+│  ├─ models/
+│  │  └─ face_detection_yunet_2023mar.onnx
+│  └─ yolo11n.pt
+├─ requirements.txt
+├─ runtime.txt
+└─ Readme.md
 ```
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Clone
 ```bash
@@ -52,7 +52,7 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Running the Server
+## Running the Server
 ```bash
 uvicorn app.main:app --reload
 ```
@@ -70,7 +70,7 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## 📌 API Modules
+## API Modules
 
 |Module|Description|
 |-------|-----------|
@@ -86,7 +86,7 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## 📄 Requirements
+## Requirements
 See:
 
 requirements.txt

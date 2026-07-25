@@ -5,7 +5,7 @@ Eikona is an Image-processing tool that contains more than 35 tools which are ba
 Eikona is easy,simple and powerful Image processing tool.It's designed for beginners and experts that are learning and Adapting to Image processing.
 
 ---
-## ✨ Features
+## Features
 - 35+ different Image processing tools.
 - Demanding tools like Background Removal and Image compression.
 - Preview of Resultant Image and Downloadable in different formats.
@@ -28,7 +28,7 @@ Eikona is easy,simple and powerful Image processing tool.It's designed for begin
 ### Download Result
 ![Download](./frontend_eikona/Processing_Images/download_op.png)
 ---
-## 📦 Installation
+## Installation
 ```bash
 # Clone Repo
 git clone "https://github.com/muin-15/eikona.git"
@@ -41,32 +41,32 @@ eikona/frontend_eikona/README.md
 eikona/backend_eikona/Readme.md
 ```
 ---
-## 📂 Project Structure
+## Project Structure
 ```
 eikona/
 ├── Testing/
 ├── backend_eikona/
-│   ├── main.py
-│   └── README.md
+│   ├─ main.py
+│   └─ Readme.md
 ├── frontend_eikona/
-│   ├── src/
-│   │   ├── index.html
-│   │   ├── main.tsx
-│   │   ├── App.tsx
-│   │   ├── index.css
-│   │   └── App.css
-│   ├── public/
-│   │   ├── user-guide.html
-│   │   └── user-guide.css
-│   └── README.md
-├──Testing               
-├── .gitattributes
-├── .gitignore
-├── LICENSE
-└── Readme.md
+│   ├─ index.html
+│   ├─ src/
+│   │  ├─ assets
+│   │  ├─ index.css
+│   │  ├─ App.tsx
+│   │  ├─ main.tsx
+│   │  └─ App.css
+│   ├─ public/
+│   │  ├─ user-guide.html
+│   │  └─ userguide.css
+│   └─ README.md
+├─ .gitignore
+├─ .gitattributes
+├─ LICENSE
+└─ README.md
 ```
 ---
-## 📄 License
+## License
 The project is under the [GPL 3.0 License](LICENSE)
 ---
 Built with 💛 by [Muinashraf](https://github.com/muin-15)

@@ -2,27 +2,29 @@
 Frontend of Eikona is combination of React + Vite + TypeScript + Tailwind + Vanilla js ,which results in Modern Frontend for Eikona.
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 frontend_eikona/
-├── public/              
-├── src/
-│   ├── assets/          
-│   ├── App.tsx
-│   ├── main.tsx
-│   ├── App.css
-│   └── index.css
-├── Processing_Images/  
-├── index.html
-├── package.json
-├── vite.config.ts
-└── README.md
+├─ src/
+│  ├─ assets
+│  ├─ index.css
+│  ├─ main.tsx
+│  ├─ App.tsx
+│  └─ App.css
+├─ public/
+│  ├─ user-guide.html
+│  └─ userguide.css
+├─ index.html
+├─ Processing_Images/
+├─ package.json
+├─ vite.config.js
+└─ README.md
 ```
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Clone Repository
 
@@ -45,7 +47,7 @@ npm run dev
 
 ---
 
-## 🏗 Build
+## Build
 
 ```bash
 npm run build
@@ -59,7 +61,7 @@ npm run preview
 
 ---
 
-## 🔗Backend Connection
+## Backend Connection
 
 Update the Backend URL if necessary
 
