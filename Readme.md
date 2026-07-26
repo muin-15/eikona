@@ -10,7 +10,8 @@ Eikona is easy,simple and powerful Image processing tool.It's designed for begin
 - Demanding tools like Background Removal and Image compression.
 - Preview of Resultant Image and Downloadable in different formats.
 - User-guide and Support provided.
-- Fast locally
+- Individual path for each operation.
+
 ---
 ## Screenshots
 ### Home Screen 
@@ -27,27 +28,76 @@ Eikona is easy,simple and powerful Image processing tool.It's designed for begin
 ![Preview Image](./frontend_eikona/Processing_Images/result_img.png)
 ### Download Result
 ![Download](./frontend_eikona/Processing_Images/download_op.png)
+
 ---
 ## Installation
 ```bash
 # Clone Repo
 git clone "https://github.com/muin-15/eikona.git"
 cd eikona
-
-# Frontend
-eikona/frontend_eikona/README.md
-
-# Backend
-eikona/backend_eikona/Readme.md
 ```
+
+```bash
+# Frontend
+cd eikona/frontend_eikona
+
+# Install dependencies
+npm install
+
+# Start development Server
+npm run dev
+
+# Build
+npm run build
+
+# Build preview
+npm run preview
+
+# Backend connection
+Update the Backend url to use locally
+```
+
+```bash
+# Backend
+cd eikona/backend_eikona
+
+# Create Virtual Environment
+
+# Windows
+python -m venv venv
+venv\Scripts\activate
+
+# Linux/macOS
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Running the server
+uvicorn app.main:app --reload
+
+# default url
+http://127.0.0.1:8000
+
+# Swagger Documentation
+http://127.0.0.1:8000/docs
+
+```
+
 ---
 ## Project Structure
 ```
 eikona/
 ├── Testing/
+│
 ├── backend_eikona/
-│   ├─ main.py
-│   └─ Readme.md
+│   ├─ app/
+│   │  ├─ main.py
+│   │  ├─ models/
+│   │  └─ yolo11n.pt
+│   └─ .python-version
+│   
 ├── frontend_eikona/
 │   ├─ index.html
 │   ├─ src/
@@ -59,14 +109,15 @@ eikona/
 │   ├─ public/
 │   │  ├─ user-guide.html
 │   │  └─ userguide.css
-│   └─ README.md
+│   └─ Processing_Images
+│   
 ├─ .gitignore
 ├─ .gitattributes
 ├─ LICENSE
-└─ README.md
+└─ Readme.md
 ```
+
 ---
 ## License
+
 The project is under the [GPL 3.0 License](LICENSE)
----
-Built with 💛 by [Muinashraf](https://github.com/muin-15)
