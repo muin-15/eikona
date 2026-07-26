@@ -4,6 +4,8 @@ Eikona is an Image-processing tool that contains more than 35 tools which are ba
 
 Eikona is easy,simple and powerful Image processing tool.It's designed for beginners and experts that are learning and Adapting to Image processing.
 
+![Work Process](./frontend_eikona/Processing_Images/Demo.gif)
+
 ---
 ## Features
 - 35+ different Image processing tools.
@@ -13,23 +15,6 @@ Eikona is easy,simple and powerful Image processing tool.It's designed for begin
 - Individual path for each operation.
 
 ---
-## Screenshots
-### Home Screen 
-![Home Screen](./frontend_eikona/Processing_Images/home.png)
-### Upload Image
-![Uploading Image](./frontend_eikona/Processing_Images/ip.png)
-### Checkout before Submit
-![Confirming Image](./frontend_eikona/Processing_Images/input_img.png)
-### Submitting Image
-![Submit Image](./frontend_eikona/Processing_Images/submit_ip.png)
-### Processing Image
-![process image](./frontend_eikona/Processing_Images/processing.png)
-### Result Preview
-![Preview Image](./frontend_eikona/Processing_Images/result_img.png)
-### Download Result
-![Download](./frontend_eikona/Processing_Images/download_op.png)
-
----
 ## Installation
 ```bash
 # Clone Repo
@@ -37,8 +22,8 @@ git clone "https://github.com/muin-15/eikona.git"
 cd eikona
 ```
 
+Frontend
 ```bash
-# Frontend
 cd eikona/frontend_eikona
 
 # Install dependencies
@@ -57,8 +42,8 @@ npm run preview
 Update the Backend url to use locally
 ```
 
+Backend
 ```bash
-# Backend
 cd eikona/backend_eikona
 
 # Create Virtual Environment
