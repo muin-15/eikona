@@ -102,6 +102,8 @@ eikona/
 └─ Readme.md
 ```
 
+## Use of AI
+- AI is mainly used while deploying the Frontend on vercel and Rendering the Backend on Render. 
 ---
 ## License
 
