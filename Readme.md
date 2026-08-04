@@ -1,23 +1,21 @@
-# EIKONA
+# Eikona
 
-Eikona is an Image-processing tool that contains more than 35 tools which are based on different perspectives.
+Eikona is an image processing website that have different operations like Image Addition,Background removal,Object detection,etc.
 
-Eikona is easy,simple and powerful Image processing tool.It's designed for beginners and experts that are learning and Adapting to Image processing.
+It is build using React, FastAPI and OpenCV.
 
-![Work Process](./frontend_eikona/Processing_Images/Demo.gif)
-
+![Working](./frontend_eikona/Processing_Images/Demo.gif)
 ---
 ## Features
-- 35+ different Image processing tools.
-- Demanding tools like Background Removal and Image compression.
-- Preview of Resultant Image and Downloadable in different formats.
-- User-guide and Support provided.
-- Individual path for each operation.
-
+- Image Compression.
+- Background Removal.
+- Object Detection.
+- User guide
+- Multiple Output Formats.
 ---
 ## Installation
 ```bash
-# Clone Repo
+#clone Repository
 git clone "https://github.com/muin-15/eikona.git"
 cd eikona
 ```
@@ -29,17 +27,17 @@ cd eikona/frontend_eikona
 # Install dependencies
 npm install
 
-# Start development Server
+# Start developer server
 npm run dev
 
-# Build
+#Build
 npm run build
 
 # Build preview
 npm run preview
 
-# Backend connection
-Update the Backend url to use locally
+#Backend Connection
+Update the backend url to use locally
 ```
 
 Backend
@@ -48,11 +46,11 @@ cd eikona/backend_eikona
 
 # Create Virtual Environment
 
-# Windows
+#Windows
 python -m venv venv
 venv\Scripts\activate
 
-# Linux/macOS
+#Linux/macOS
 python3 -m venv venv
 source venv/bin/activate
 
@@ -65,46 +63,34 @@ uvicorn app.main:app --reload
 # default url
 http://127.0.0.1:8000
 
-# Swagger Documentation
+# Swagger documentation
 http://127.0.0.1:8000/docs
-
 ```
-
 ---
 ## Project Structure
 ```
 eikona/
-├── Testing/
-│
-├── backend_eikona/
-│   ├─ app/
-│   │  ├─ main.py
-│   │  ├─ models/
-│   │  └─ yolo11n.pt
-│   └─ .python-version
-│   
-├── frontend_eikona/
-│   ├─ index.html
-│   ├─ src/
-│   │  ├─ assets
-│   │  ├─ index.css
-│   │  ├─ App.tsx
-│   │  ├─ main.tsx
-│   │  └─ App.css
-│   ├─ public/
-│   │  ├─ user-guide.html
-│   │  └─ userguide.css
-│   └─ Processing_Images
-│   
-├─ .gitignore
+├─ frontend_eikona/
+│  ├─ index.html
+│  ├─ src/
+│  ├─ public/
+│  └─ processing_images/
+├─ backend_eikona/
+│  ├─ app/
+│  │  ├─ main.py
+│  │  ├─ models/
+│  │  └─ yolo11n.pt
+│  └─ .python-version
+├─ Testing/
+├─.gitignore
 ├─ .gitattributes
 ├─ LICENSE
 └─ Readme.md
 ```
 
 ## Use of AI
-- AI is mainly used while deploying the Frontend on vercel and Rendering the Backend on Render. 
----
-## License
+- Ai tools are used to deploy the project and troubleshoot.
 
-The project is under the [GPL 3.0 License](LICENSE)
+## LICENSE
+
+[GPL 3.0 License](LICENSE)
